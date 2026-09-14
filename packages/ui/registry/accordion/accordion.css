@@ -1,0 +1,26 @@
+@layer nb.components {
+  :where(details) {
+    border-block-end: 1px solid var(--border);
+
+    & > summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 1rem;
+      font-size: .875rem;
+      font-weight: 500;
+      list-style: none;
+      cursor: pointer;
+      &::-webkit-details-marker { display: none; }
+      &::after { content: ""; flex-shrink: 0; inline-size: 1rem; block-size: 1rem; background: currentColor; mask: var(--icon-chevron) center / contain no-repeat; opacity: .5; transition: rotate var(--duration) var(--ease); }
+      &:hover { text-decoration: underline; text-underline-offset: .2em; }
+    }
+    &[open] > summary::after { rotate: 180deg; }
+
+    /* Animates to height: auto thanks to interpolate-size in base. */
+    &::details-content { block-size: 0; overflow: clip; transition: block-size var(--duration) var(--ease), content-visibility var(--duration) allow-discrete; }
+    &[open]::details-content { block-size: auto; }
+    & > :not(summary) { margin-block: 0 1rem; color: var(--muted-foreground); font-size: .875rem; }
+  }
+}

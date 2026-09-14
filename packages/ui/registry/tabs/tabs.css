@@ -1,0 +1,27 @@
+@layer nb.components {
+  /* Exclusive <details name> laid out as tabs. Without support it degrades to an accordion. */
+  :where([data-tabs]) {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > details { display: contents; }
+    & > details > summary {
+      display: block;
+      padding: .5rem .875rem;
+      border-block-end: 2px solid transparent;
+      color: var(--muted-foreground);
+      font-size: .875rem;
+      font-weight: 500;
+      list-style: none;
+      cursor: pointer;
+      transition: color var(--duration), border-color var(--duration);
+      &::-webkit-details-marker { display: none; }
+      &::after { content: none; }
+      &:hover { color: var(--foreground); text-decoration: none; }
+    }
+    & > details[open] > summary { position: relative; z-index: 1; border-color: var(--primary); color: var(--foreground); pointer-events: none; }
+    & > details::details-content { order: 1; flex-basis: 100%; block-size: auto; transition: none; }
+    & > details[open]::details-content { margin-block-start: -1px; padding-block-start: 1rem; border-block-start: 1px solid var(--border); }
+    & > details > :not(summary) { margin-block: 0; color: inherit; }
+  }
+}

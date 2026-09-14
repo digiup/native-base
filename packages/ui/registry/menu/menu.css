@@ -1,0 +1,33 @@
+@layer nb.components {
+  :where(menu[popover]) {
+    min-inline-size: 11rem;
+    margin-block: .25rem;
+    padding: .25rem;
+    font-size: .875rem;
+    list-style: none;
+
+    & li { list-style: none; }
+    & li > small { display: block; padding: .375rem .5rem; color: var(--foreground); font-weight: 500; }
+    & hr { margin: .25rem -.25rem; }
+    & :where(button, a) {
+      display: flex;
+      inline-size: 100%;
+      block-size: auto;
+      justify-content: flex-start;
+      gap: .5rem;
+      padding: .375rem .5rem;
+      border: 0;
+      border-radius: calc(var(--radius) - 4px);
+      background: transparent;
+      color: var(--_tone, var(--popover-foreground));
+      font-size: inherit;
+      font-weight: 400;
+      line-height: 1.4;
+      text-decoration: none;
+      cursor: default;
+      &:is(:hover, :focus-visible) { outline: 0; background: var(--accent); }
+      &:active { scale: 1; }
+    }
+    & kbd { margin-inline-start: auto; padding: 0; border: 0; background: none; color: var(--muted-foreground); font-size: .75rem; letter-spacing: .1em; }
+  }
+}

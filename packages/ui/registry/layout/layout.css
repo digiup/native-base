@@ -1,0 +1,9 @@
+@layer nb.components {
+  /* Real attribute specificity: layout intent beats element defaults like fieldset's grid. */
+  [data-row] { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap, .5rem); }
+  [data-row=between] { justify-content: space-between; }
+  [data-row=end] { justify-content: flex-end; }
+  [data-row=center] { justify-content: center; }
+  [data-stack] { display: grid; align-content: start; gap: var(--gap, 1rem); }
+  [data-grid] { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(var(--min, 16rem), 100%), 1fr)); gap: var(--gap, 1rem); }
+}

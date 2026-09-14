@@ -1,0 +1,26 @@
+/* Cross-document view transitions: every same-origin navigation animates. No router, no JS. */
+@view-transition { navigation: auto; }
+
+@layer nb.transitions {
+  ::view-transition-group(*) { animation-duration: .25s; animation-timing-function: var(--ease); }
+
+  /* Keep the top-level page header still while the page underneath moves. */
+  :root[data-transition] body > header { view-transition-name: nb-header; }
+
+  :root[data-transition=slide] {
+    &::view-transition-old(root) { animation: .25s var(--ease) both nb-slide-out; }
+    &::view-transition-new(root) { animation: .25s var(--ease) both nb-slide-in; }
+    &:active-view-transition-type(back)::view-transition-old(root) { animation-name: nb-slide-out-back; }
+    &:active-view-transition-type(back)::view-transition-new(root) { animation-name: nb-slide-in-back; }
+  }
+  :root[data-transition=none]::view-transition-group(*) { animation: none; }
+
+  @keyframes nb-slide-out { to { opacity: 0; translate: -1.5rem 0; } }
+  @keyframes nb-slide-in { from { opacity: 0; translate: 1.5rem 0; } }
+  @keyframes nb-slide-out-back { to { opacity: 0; translate: 1.5rem 0; } }
+  @keyframes nb-slide-in-back { from { opacity: 0; translate: -1.5rem 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+  }
+}

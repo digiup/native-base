@@ -1,0 +1,36 @@
+{
+  "name": "@native-base/css",
+  "version": "0.1.0",
+  "description": "A drop-in, classless, registry-driven UI kit built on native HTML. No Tailwind, no runtime, minimal tokens.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "native-base": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./native-base.css": "./dist/native-base.css",
+    "./components/*": "./dist/components/*",
+    "./r/*": "./dist/r/*",
+    "./llms.txt": "./dist/llms.txt",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "build": "rolldown -c",
+    "dev": "rolldown -c --watch"
+  },
+  "devDependencies": {
+    "gpt-tokenizer": "^4.0.0",
+    "lightningcss": "^1.33.0",
+    "rolldown": "^1.2.8"
+  }
+}

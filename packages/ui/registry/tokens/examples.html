@@ -1,0 +1,22 @@
+<!-- @example: Scoped dark theme -->
+<article data-card data-theme="dark">
+  <header>
+    <h3>Always dark</h3>
+    <p>data-theme works on any subtree.</p>
+  </header>
+  <footer><button>Primary</button><button data-variant="outline">Outline</button></footer>
+</article>
+<!-- @example: Theme switcher without JS [code] -->
+<select name="color-scheme" aria-label="Theme">
+  <option value="system">System</option>
+  <option value="light">Light</option>
+  <option value="dark">Dark</option>
+</select>
+<!-- @example: Rebrand [code] -->
+<style>
+  :root {
+    --primary: oklch(.55 .2 265);
+    --primary-foreground: white;
+    --radius: .375rem;
+  }
+</style>

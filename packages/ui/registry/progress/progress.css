@@ -1,0 +1,27 @@
+@layer nb.components {
+  :where(progress, meter) {
+    appearance: none;
+    display: block;
+    inline-size: 100%;
+    block-size: .5rem;
+    overflow: hidden;
+    border: 0;
+    border-radius: 999px;
+    background: var(--muted);
+  }
+  progress::-webkit-progress-bar { background: var(--muted); }
+  progress::-webkit-progress-value { border-radius: 999px; background: var(--primary); transition: inline-size .3s var(--ease); }
+  progress::-moz-progress-bar { border-radius: 999px; background: var(--primary); }
+  progress:indeterminate { background: linear-gradient(90deg, var(--muted) 35%, var(--primary) 50%, var(--muted) 65%) 0 0 / 300% 100%; animation: nb-indeterminate 1.4s linear infinite; }
+  progress:indeterminate::-webkit-progress-bar { background: transparent; }
+  progress:indeterminate::-moz-progress-bar { background: transparent; }
+  @keyframes nb-indeterminate { to { background-position: -150% 0; } }
+
+  meter::-webkit-meter-bar { block-size: .5rem; border: 0; border-radius: 999px; background: var(--muted); }
+  meter::-webkit-meter-optimum-value { background: var(--success); }
+  meter::-webkit-meter-suboptimum-value { background: var(--warning); }
+  meter::-webkit-meter-even-less-good-value { background: var(--destructive); }
+  meter::-moz-meter-bar { border-radius: 999px; background: var(--success); }
+  meter:-moz-meter-sub-optimum::-moz-meter-bar { background: var(--warning); }
+  meter:-moz-meter-sub-sub-optimum::-moz-meter-bar { background: var(--destructive); }
+}

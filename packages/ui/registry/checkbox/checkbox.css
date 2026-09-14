@@ -1,0 +1,31 @@
+@layer nb.components {
+  :where(input:is([type=checkbox], [type=radio])) {
+    appearance: none;
+    display: inline-grid;
+    place-content: center;
+    flex-shrink: 0;
+    inline-size: 1rem;
+    block-size: 1rem;
+    margin: 0;
+    border: 1px solid var(--input);
+    border-radius: 4px;
+    background: var(--background);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: background-color var(--duration), border-color var(--duration), box-shadow var(--duration);
+
+    &::before { content: ""; inline-size: .75rem; block-size: .75rem; background: var(--primary-foreground); mask: var(--icon-check) center / contain no-repeat; scale: 0; transition: scale var(--duration) var(--ease), translate var(--duration) var(--ease); }
+    &:is(:checked, :indeterminate) { border-color: var(--primary); background: var(--primary); &::before { scale: 1; } }
+    &:indeterminate::before { block-size: 2px; inline-size: .5rem; mask: none; }
+    &:focus-visible { outline: 0; border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent); }
+    &:user-invalid { border-color: var(--destructive); }
+    &:disabled { opacity: .5; cursor: not-allowed; }
+  }
+  :where(input[type=radio]) {
+    border-radius: 50%;
+    &::before { inline-size: .5rem; block-size: .5rem; border-radius: 50%; mask: none; background: var(--primary); }
+    &:checked { background: var(--background); }
+  }
+  label:has(> :is([type=checkbox], [type=radio])) { display: flex; align-items: center; gap: .5rem; font-weight: 400; cursor: pointer; }
+  fieldset:has(> label > [type=radio]) { gap: .75rem; }
+}

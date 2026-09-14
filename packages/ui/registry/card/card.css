@@ -1,0 +1,19 @@
+@layer nb.components {
+  :where([data-card]) {
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 4px);
+    background: var(--card);
+    color: var(--card-foreground);
+    box-shadow: var(--shadow);
+
+    & > header { display: grid; gap: .375rem; }
+    & > header > :is(h1, h2, h3, h4, h5, h6) { margin: 0; font-size: 1rem; }
+    & > header > p { margin: 0; color: var(--muted-foreground); font-size: .875rem; }
+    & > footer { display: flex; align-items: center; gap: .5rem; }
+    & > :is(img, video, picture):first-child { max-inline-size: calc(100% + 3rem); inline-size: calc(100% + 3rem); margin: -1.5rem -1.5rem 0; border-radius: calc(var(--radius) + 3px) calc(var(--radius) + 3px) 0 0; }
+  }
+}

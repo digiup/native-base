@@ -1,0 +1,63 @@
+/* Layer order: anything you write unlayered always wins. */
+@layer nb.tokens, nb.base, nb.components, nb.transitions;
+
+/* Variant plumbing: private, non-inheriting so a destructive alert never leaks into its buttons. */
+@property --_bg { syntax: "*"; inherits: false; }
+@property --_fg { syntax: "*"; inherits: false; }
+@property --_bd { syntax: "*"; inherits: false; }
+@property --_tone { syntax: "*"; inherits: false; }
+@property --_h { syntax: "*"; inherits: false; }
+@property --_px { syntax: "*"; inherits: false; }
+@property --_fs { syntax: "*"; inherits: false; }
+
+@layer nb.tokens {
+  /* shadcn/ui variable names, so existing shadcn themes drop straight in. */
+  :root {
+    color-scheme: light dark;
+    --radius: .625rem;
+    --background: light-dark(oklch(1 0 0), oklch(.145 0 0));
+    --foreground: light-dark(oklch(.145 0 0), oklch(.985 0 0));
+    --card: light-dark(oklch(1 0 0), oklch(.205 0 0));
+    --card-foreground: var(--foreground);
+    --popover: light-dark(oklch(1 0 0), oklch(.205 0 0));
+    --popover-foreground: var(--foreground);
+    --primary: light-dark(oklch(.205 0 0), oklch(.922 0 0));
+    --primary-foreground: light-dark(oklch(.985 0 0), oklch(.205 0 0));
+    --secondary: light-dark(oklch(.97 0 0), oklch(.269 0 0));
+    --secondary-foreground: var(--foreground);
+    --muted: light-dark(oklch(.97 0 0), oklch(.269 0 0));
+    --muted-foreground: light-dark(oklch(.556 0 0), oklch(.708 0 0));
+    --accent: var(--muted);
+    --accent-foreground: var(--foreground);
+    --destructive: light-dark(oklch(.577 .245 27.3), oklch(.704 .191 22.2));
+    --success: light-dark(oklch(.6 .15 150), oklch(.72 .17 150));
+    --warning: light-dark(oklch(.68 .16 70), oklch(.8 .16 80));
+    --border: light-dark(oklch(.922 0 0), oklch(1 0 0 / 10%));
+    --input: light-dark(oklch(.922 0 0), oklch(1 0 0 / 15%));
+    --ring: light-dark(oklch(.708 0 0), oklch(.556 0 0));
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --shadow: 0 1px 2px oklch(0 0 0 / 6%);
+    --shadow-lg: 0 10px 38px -10px oklch(0 0 0 / 25%), 0 10px 20px -15px oklch(0 0 0 / 20%);
+    --ease: cubic-bezier(.2, .8, .2, 1);
+    --duration: .18s;
+    --icon-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  }
+
+  /* Theme without JS: data-theme on any subtree, or a control named color-scheme anywhere on the page. */
+  [data-theme=light], :root:has([name=color-scheme] [value=light]:checked, [name=color-scheme][value=light]:checked) { color-scheme: light; }
+  [data-theme=dark], :root:has([name=color-scheme] [value=dark]:checked, [name=color-scheme][value=dark]:checked) { color-scheme: dark; }
+
+  /* One variant vocabulary shared by every component. */
+  [data-variant=secondary] { --_bg: var(--secondary); --_fg: var(--secondary-foreground); }
+  [data-variant=outline] { --_bg: var(--background); --_fg: var(--foreground); --_bd: var(--input); }
+  [data-variant=ghost] { --_bg: transparent; --_fg: var(--foreground); }
+  [data-variant=link] { --_bg: transparent; --_fg: var(--foreground); }
+  [data-variant=destructive] { --_bg: var(--destructive); --_fg: oklch(.985 0 0); --_tone: var(--destructive); }
+  [data-variant=success] { --_bg: var(--success); --_fg: oklch(.985 0 0); --_tone: var(--success); }
+  [data-variant=warning] { --_bg: var(--warning); --_fg: oklch(.2 0 0); --_tone: var(--warning); }
+  [data-size=sm] { --_h: 2rem; --_px: .75rem; --_fs: .8125rem; }
+  [data-size=lg] { --_h: 2.5rem; --_px: 1.5rem; --_fs: .9375rem; }
+  [data-size=icon] { --_px: 0; }
+}

@@ -1,0 +1,43 @@
+@layer nb.components {
+  /* Scroll-snap carousel. Buttons and dots are CSS-generated (::scroll-button / ::scroll-marker). */
+  :where([data-carousel]) {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: var(--slide, 100%);
+    gap: 1rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    anchor-name: --nb-carousel;
+    anchor-scope: --nb-carousel;
+    scroll-marker-group: after;
+
+    & > * { scroll-snap-align: start; }
+
+    &::scroll-button(*) {
+      position: absolute;
+      position-anchor: --nb-carousel;
+      inline-size: 2rem;
+      block-size: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--background);
+      color: var(--foreground);
+      box-shadow: var(--shadow);
+      font: 1.125rem/1 var(--font-sans);
+      cursor: pointer;
+    }
+    &::scroll-button(*):disabled { opacity: .35; cursor: default; }
+    &::scroll-button(inline-start) { content: "‹" / "Previous"; position-area: center inline-start; translate: 50% 0; }
+    &::scroll-button(inline-end) { content: "›" / "Next"; position-area: center inline-end; translate: -50% 0; }
+
+    &::scroll-marker-group { display: flex; justify-content: center; gap: .5rem; padding-block: .75rem; }
+    & > *::scroll-marker { content: ""; inline-size: .5rem; block-size: .5rem; border-radius: 50%; background: var(--border); cursor: pointer; transition: background-color var(--duration), inline-size var(--duration); }
+    & > *::scroll-marker:target-current { inline-size: 1.25rem; border-radius: 999px; background: var(--primary); }
+  }
+  @supports not (scroll-marker-group: after) {
+    :where([data-carousel]) { padding-block-end: .5rem; scrollbar-width: thin; }
+  }
+}

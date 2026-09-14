@@ -1,0 +1,44 @@
+@layer nb.base {
+  *, ::before, ::after { box-sizing: border-box; }
+  :where(html) {
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    interpolate-size: allow-keywords;
+    accent-color: var(--primary);
+    -webkit-tap-highlight-color: transparent;
+  }
+  :where(body) {
+    margin: 0;
+    min-block-size: 100dvh;
+    font: 400 1rem/1.6 var(--font-sans);
+    background: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+  :where(h1, h2, h3, h4, h5, h6) { margin: 0 0 .5em; font-weight: 600; line-height: 1.2; letter-spacing: -.02em; text-wrap: balance; }
+  :where(h1) { font-size: 2.25rem; }
+  :where(h2) { font-size: 1.75rem; }
+  :where(h3) { font-size: 1.375rem; }
+  :where(h4) { font-size: 1.125rem; }
+  :where(h5, h6) { font-size: 1rem; }
+  :where(p) { margin: 0 0 1em; text-wrap: pretty; }
+  :where(a) { color: inherit; text-underline-offset: .2em; text-decoration-thickness: from-font; }
+  :where(img, svg, video, canvas, picture) { max-inline-size: 100%; block-size: auto; }
+  :where(img, video, canvas, picture) { display: block; }
+  :where(small) { font-size: .875em; color: var(--muted-foreground); }
+  :where(ul, ol) { margin: 0 0 1em; padding-inline-start: 1.25rem; }
+  :where(hr) { margin: 1.5rem 0; border: 0; border-block-start: 1px solid var(--border); }
+  :where(blockquote) { margin: 0 0 1em; padding-inline-start: 1rem; border-inline-start: 2px solid var(--border); font-style: italic; }
+  :where(mark) { padding: 0 .15em; border-radius: 2px; background: light-dark(oklch(.95 .12 100), oklch(.45 .1 90)); color: inherit; }
+  :where(code, kbd, samp, pre) { font-family: var(--font-mono); font-size: .875em; }
+  :where(:not(pre) > code) { padding: .15em .35em; border-radius: calc(var(--radius) - 4px); background: var(--muted); }
+  :where(pre) { margin: 0 0 1em; padding: 1rem; overflow: auto; border-radius: var(--radius); background: var(--muted); line-height: 1.5; tab-size: 2; }
+  :where(kbd) { padding: .1em .4em; border: 1px solid var(--border); border-block-end-width: 2px; border-radius: 4px; background: var(--background); }
+  :where(:focus-visible) { outline: 2px solid var(--ring); outline-offset: 2px; }
+  :where(::selection) { background: color-mix(in oklch, var(--primary) 20%, transparent); }
+  :where([hidden]:not([hidden=until-found])) { display: none !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  }
+}

@@ -1,0 +1,18 @@
+@layer nb.components {
+  :where([data-breadcrumb]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .375rem;
+    margin: 0;
+    padding: 0;
+    color: var(--muted-foreground);
+    font-size: .875rem;
+    list-style: none;
+
+    & li { display: inline-flex; align-items: center; gap: .375rem; }
+    & li + li::before { content: "/"; opacity: .6; }
+    & a { text-decoration: none; transition: color var(--duration); &:hover { color: var(--foreground); } }
+    & [aria-current] { color: var(--foreground); }
+  }
+}

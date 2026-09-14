@@ -1,0 +1,16 @@
+@layer nb.components {
+  /* Safari's native `switch` attribute, or role="switch" everywhere else. */
+  :where(input[type=checkbox]:is([switch], [role=switch])) {
+    inline-size: 2rem;
+    block-size: 1.15rem;
+    padding: 0 1px;
+    place-content: center start;
+    border-color: transparent;
+    border-radius: 999px;
+    background: var(--input);
+
+    &::before { inline-size: .95rem; block-size: .95rem; border-radius: 50%; mask: none; background: var(--background); box-shadow: var(--shadow); scale: 1; }
+    &:checked { border-color: transparent; background: var(--primary); &::before { translate: .85rem; background: var(--primary-foreground); } }
+    &:checked:dir(rtl)::before { translate: -.85rem; }
+  }
+}

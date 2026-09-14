@@ -1,0 +1,17 @@
+@layer nb.components {
+  :where([data-badge]) {
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+    padding: .125rem .5rem;
+    border: 1px solid var(--_bd, transparent);
+    border-radius: calc(var(--radius) - 4px);
+    background: var(--_bg, var(--primary));
+    color: var(--_fg, var(--primary-foreground));
+    font-size: .75rem;
+    font-weight: 500;
+    line-height: 1.35;
+    white-space: nowrap;
+    & svg { inline-size: .75rem; block-size: .75rem; }
+  }
+}

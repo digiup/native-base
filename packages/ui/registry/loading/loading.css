@@ -1,0 +1,22 @@
+@layer nb.components {
+  :where([data-skeleton]) {
+    display: block;
+    min-block-size: 1rem;
+    border-radius: calc(var(--radius) - 2px);
+    background: var(--muted);
+    animation: nb-pulse 2s ease-in-out infinite;
+  }
+  :where(button[aria-busy=true], [data-spinner])::before {
+    content: "";
+    inline-size: 1em;
+    block-size: 1em;
+    flex-shrink: 0;
+    border: 2px solid currentColor;
+    border-inline-end-color: transparent;
+    border-radius: 50%;
+    animation: nb-spin .7s linear infinite;
+  }
+  :where([data-spinner]) { display: inline-flex; vertical-align: middle; }
+  @keyframes nb-pulse { 50% { opacity: .5; } }
+  @keyframes nb-spin { to { rotate: 1turn; } }
+}

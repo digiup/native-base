@@ -1,0 +1,42 @@
+@layer nb.components {
+  :where(input:not([type=checkbox], [type=radio], [type=range], [type=color], [type=button], [type=submit], [type=reset], [type=image], [type=hidden]), textarea, select) {
+    inline-size: 100%;
+    min-inline-size: 0;
+    block-size: 2.25rem;
+    padding: 0 .75rem;
+    border: 1px solid var(--input);
+    border-radius: calc(var(--radius) - 2px);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: .875rem;
+    box-shadow: var(--shadow);
+    transition: border-color var(--duration), box-shadow var(--duration);
+
+    &::placeholder { color: var(--muted-foreground); }
+    &:focus-visible { outline: 0; border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent); }
+    &:user-invalid, &[aria-invalid=true] { border-color: var(--destructive); }
+    &:user-invalid:focus-visible, &[aria-invalid=true]:focus-visible { box-shadow: 0 0 0 3px color-mix(in oklch, var(--destructive) 25%, transparent); }
+    &:disabled { opacity: .5; cursor: not-allowed; }
+  }
+  :where(input[type=file]) { padding: 0; line-height: 2.1rem; &::file-selector-button { block-size: 100%; margin-inline-end: .75rem; border: 0; border-inline-end: 1px solid var(--input); border-radius: 0; background: var(--muted); color: var(--foreground); } }
+  :where(input[type=color]) { inline-size: 2.25rem; block-size: 2.25rem; padding: 2px; border: 1px solid var(--input); border-radius: calc(var(--radius) - 2px); background: transparent; }
+  :where(input[type=range]) { inline-size: 100%; margin: 0; }
+  :where(textarea) { block-size: auto; min-block-size: 4.5rem; padding-block: .5rem; field-sizing: content; resize: vertical; }
+
+  :where(label) {
+    display: grid;
+    gap: .5rem;
+    font-size: .875rem;
+    font-weight: 500;
+    & small { font-weight: 400; }
+    /* Hint text flips to the error when the field is invalid after interaction. */
+    & [data-error] { display: none; color: var(--destructive); }
+    &:has(:user-invalid) [data-error] { display: block; }
+    &:has(:user-invalid) [data-hint] { display: none; }
+  }
+  :where(fieldset) { display: grid; gap: 1rem; min-inline-size: 0; margin: 0; padding: 0; border: 0; }
+  :where(legend) { margin-block-end: .5rem; padding: 0; font-weight: 600; }
+  :where(form:not([data-row])) { display: grid; gap: 1rem; }
+  :where(search) { display: block; }
+}

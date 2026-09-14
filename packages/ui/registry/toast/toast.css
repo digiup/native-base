@@ -1,0 +1,17 @@
+@layer nb.components {
+  :where([data-toast]) {
+    position: fixed;
+    inset: auto 1rem 1rem auto;
+    inline-size: min(22rem, calc(100vw - 2rem));
+    margin: 0;
+    gap: .25rem;
+    border-inline-start: 3px solid var(--_tone, var(--border));
+    font-size: .875rem;
+    translate: 0 1rem;
+
+    &:popover-open { display: grid; translate: 0; }
+    @starting-style { &:popover-open { opacity: 0; translate: 0 1rem; } }
+    & > :is(strong, h1, h2, h3, h4) { margin: 0; font-size: .875rem; font-weight: 600; }
+    & > p { margin: 0; color: var(--muted-foreground); }
+  }
+}

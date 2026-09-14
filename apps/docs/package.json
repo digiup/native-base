@@ -1,0 +1,17 @@
+{
+  "name": "@native-base/docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@native-base/css": "workspace:*"
+  },
+  "devDependencies": {
+    "gpt-tokenizer": "^4.0.0",
+    "vite": "^8.3.0"
+  }
+}

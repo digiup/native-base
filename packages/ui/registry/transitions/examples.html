@@ -1,0 +1,15 @@
+<!-- @example: Try it -->
+<nav data-row>
+  <a href="/docs/" data-variant="outline">Go to Docs</a>
+  <a href="/kitchen-sink/" data-variant="outline">Go to Kitchen sink</a>
+</nav>
+<!-- @example: Slide instead of crossfade [code] -->
+<html data-transition="slide">
+<!-- @example: Morph an element between pages [code] -->
+<img src="/cover.jpg" alt="" style="view-transition-name: cover">
+<!-- @example: Slide backwards on back navigation [code] -->
+<script>
+  addEventListener("pagereveal", (e) => {
+    if (e.viewTransition && navigation.activation?.navigationType === "traverse") e.viewTransition.types.add("back");
+  });
+</script>

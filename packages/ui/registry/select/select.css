@@ -1,0 +1,55 @@
+@layer nb.components {
+  :where(select) {
+    padding-inline-end: 2rem;
+    appearance: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right .6rem center / 1rem;
+    cursor: pointer;
+  }
+  :where(select:is([multiple], [size])) { block-size: auto; padding: .25rem; background-image: none; }
+
+  /* Customizable select: same markup, rich options, styled picker. Older browsers keep the native select above. */
+  @supports (appearance: base-select) {
+    :where(select:not([multiple], [size])) {
+      &, &::picker(select) { appearance: base-select; }
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding-inline-end: .75rem;
+      background-image: none;
+
+      &::picker-icon { content: ""; inline-size: 1rem; block-size: 1rem; margin-inline-start: auto; background: currentColor; mask: var(--icon-chevron) center / contain no-repeat; opacity: .5; transition: rotate var(--duration) var(--ease); }
+      &:open::picker-icon { rotate: 180deg; }
+      & > button { display: contents; color: inherit; font: inherit; }
+      & selectedcontent { display: flex; align-items: center; gap: .5rem; min-inline-size: 0; overflow: hidden; white-space: nowrap; }
+
+      &::picker(select) {
+        margin-block: .25rem;
+        padding: .25rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--popover);
+        color: var(--popover-foreground);
+        box-shadow: var(--shadow-lg);
+        opacity: 0;
+        translate: 0 -.25rem;
+        transition: opacity var(--duration), translate var(--duration) var(--ease), display var(--duration) allow-discrete, overlay var(--duration) allow-discrete;
+      }
+      &:open::picker(select) { opacity: 1; translate: 0; }
+      @starting-style { &:open::picker(select) { opacity: 0; translate: 0 -.25rem; } }
+
+      & option {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        padding: .375rem .5rem;
+        border-radius: calc(var(--radius) - 4px);
+        font-size: .875rem;
+        outline: 0;
+        &:is(:hover, :focus-visible) { background: var(--accent); color: var(--accent-foreground); }
+        &::checkmark { order: 1; content: ""; inline-size: 1rem; block-size: 1rem; margin-inline-start: auto; background: currentColor; mask: var(--icon-check) center / .875rem no-repeat; }
+      }
+      & legend { padding: .375rem .5rem; color: var(--muted-foreground); font-size: .75rem; }
+      & hr { margin: .25rem -.25rem; }
+    }
+  }
+}

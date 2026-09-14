@@ -1,0 +1,17 @@
+@layer nb.components {
+  :where([data-alert]) {
+    display: grid;
+    gap: .125rem .75rem;
+    padding: .75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--_tone, var(--card-foreground));
+    font-size: .875rem;
+
+    &:has(> svg) { grid-template-columns: 1rem 1fr; }
+    & > svg { grid-row: span 2; inline-size: 1rem; block-size: 1rem; translate: 0 .2rem; }
+    & > :is(strong, h1, h2, h3, h4, h5, h6) { margin: 0; font-size: .875rem; font-weight: 500; }
+    & > p { margin: 0; color: var(--_tone, var(--muted-foreground)); opacity: .9; }
+  }
+}

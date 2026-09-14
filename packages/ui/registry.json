@@ -1,0 +1,339 @@
+{
+  "name": "native-base",
+  "rules": [
+    "Write semantic HTML. button, input, select, textarea, dialog, details, table, progress and meter are styled with no classes.",
+    "Composite components use one data attribute as their hook: data-card, data-badge, data-alert, data-avatar, data-tabs, data-carousel, data-toast, data-tooltip, data-breadcrumb.",
+    "Variants on any component: data-variant=\"secondary|outline|ghost|link|destructive|success|warning\". Sizes: data-size=\"sm|lg|icon\".",
+    "Open overlays with invoker commands, not JS: <button commandfor=\"id\" command=\"show-modal|close|toggle-popover|show-popover\">, or popovertarget=\"id\".",
+    "Layout: data-row (wrapping flex, =between|end|center), data-stack (vertical), data-grid (responsive columns). Tune with style=\"--gap:…\" or \"--min:…\".",
+    "Theme with shadcn/ui CSS variables (--primary, --background, --radius, …). Everything lives in @layer nb.*, so unlayered CSS always wins."
+  ],
+  "items": [
+    {
+      "name": "tokens",
+      "title": "Tokens",
+      "category": "Foundations",
+      "description": "Theme variables (shadcn/ui names), automatic light/dark with light-dark(), and the shared variant vocabulary.",
+      "native": ["light-dark()", "@property", "cascade layers", ":has()"],
+      "api": {
+        "--primary, --background, --radius, …": "shadcn/ui-compatible theme variables",
+        "data-theme": "light | dark on any subtree",
+        "[name=color-scheme]": "Any select or radio group with this name switches the page theme, no JS",
+        "data-variant": "secondary | outline | ghost | link | destructive | success | warning",
+        "data-size": "sm | lg | icon"
+      }
+    },
+    {
+      "name": "base",
+      "title": "Base",
+      "category": "Foundations",
+      "description": "A small reset plus typography for headings, paragraphs, lists, code, kbd, mark and focus rings.",
+      "registryDependencies": ["tokens"],
+      "native": ["interpolate-size", "text-wrap: balance", ":focus-visible"],
+      "api": {
+        "h1–h6, p, a, ul, ol, code, pre, kbd, mark, hr, blockquote": "Styled as-is"
+      }
+    },
+    {
+      "name": "layout",
+      "title": "Layout",
+      "category": "Foundations",
+      "description": "Three layout primitives that cover most screens: row, stack and grid.",
+      "registryDependencies": ["tokens"],
+      "native": ["flex gap", "auto-fit grid"],
+      "api": {
+        "data-row": "Wrapping flex row. Values: between | end | center",
+        "data-stack": "Vertical rhythm",
+        "data-grid": "Responsive columns",
+        "--gap / --min": "Spacing and minimum column width"
+      }
+    },
+    {
+      "name": "transitions",
+      "title": "Page transitions",
+      "category": "Foundations",
+      "description": "Cross-document view transitions for every same-origin navigation. Crossfade by default, slide on request.",
+      "registryDependencies": ["tokens"],
+      "native": ["@view-transition", ":active-view-transition-type()", "view-transition-name"],
+      "api": {
+        "@view-transition": "Enabled by including this file",
+        "html[data-transition]": "slide | none. Also pins body > header in place",
+        "view-transition-name": "Set on any element to morph it between pages"
+      }
+    },
+    {
+      "name": "button",
+      "title": "Button",
+      "category": "Forms",
+      "description": "Plain <button> elements. Variants and sizes are data attributes; links become buttons with data-variant.",
+      "registryDependencies": ["tokens"],
+      "native": ["color-mix()", "::file-selector-button"],
+      "api": {
+        "<button>": "Primary by default. Also input[type=submit|button|reset]",
+        "<a data-variant>": "A link styled as a button",
+        "data-variant": "secondary | outline | ghost | link | destructive",
+        "data-size": "sm | lg | icon",
+        "data-group": "Wrap buttons or inputs to join their edges"
+      }
+    },
+    {
+      "name": "input",
+      "title": "Input",
+      "category": "Forms",
+      "description": "Text inputs, textarea, file and range. Labels wrap fields, and validation messages appear without JS.",
+      "registryDependencies": ["tokens"],
+      "native": [":user-invalid", "field-sizing: content", "<search>", ":has()"],
+      "api": {
+        "<label>Text <input></label>": "Label wraps the field, no for/id needed",
+        "<small data-hint>": "Shown until the field is invalid",
+        "<small data-error>": "Shown only after the user makes the field invalid",
+        "aria-invalid=\"true\"": "Force the invalid style (server errors)",
+        "<textarea>": "Grows with its content"
+      }
+    },
+    {
+      "name": "checkbox",
+      "title": "Checkbox & Radio",
+      "category": "Forms",
+      "description": "Custom-drawn checkboxes and radios that keep native semantics, keyboard support and form participation.",
+      "registryDependencies": ["tokens"],
+      "native": ["appearance: none", ":indeterminate", ":has()"],
+      "api": {
+        "<label><input type=checkbox> Text</label>": "Inline label",
+        "<input type=radio>": "Group with a shared name inside <fieldset>"
+      }
+    },
+    {
+      "name": "switch",
+      "title": "Switch",
+      "category": "Forms",
+      "description": "A checkbox that looks like a switch.",
+      "registryDependencies": ["checkbox"],
+      "native": ["<input switch>", "role=switch"],
+      "api": {
+        "<input type=checkbox role=switch>": "Switch in every browser (Safari also accepts the switch attribute)"
+      }
+    },
+    {
+      "name": "select",
+      "title": "Select",
+      "category": "Forms",
+      "description": "The native select, upgraded to a fully styleable picker where appearance: base-select is supported.",
+      "registryDependencies": ["input"],
+      "native": ["appearance: base-select", "::picker(select)", "<selectedcontent>", "::checkmark", ":open"],
+      "api": {
+        "<select>": "Works everywhere, styled picker where supported",
+        "<button><selectedcontent></selectedcontent></button>": "Optional: mirror rich option HTML into the closed select"
+      }
+    },
+    {
+      "name": "progress",
+      "title": "Progress & Meter",
+      "category": "Display",
+      "description": "Determinate, indeterminate and threshold-colored bars from <progress> and <meter>.",
+      "registryDependencies": ["tokens"],
+      "native": ["<progress>", "<meter>", ":indeterminate"],
+      "api": {
+        "<progress value max>": "Omit value for indeterminate",
+        "<meter value low high optimum>": "Colors itself green, amber or red"
+      }
+    },
+    {
+      "name": "card",
+      "title": "Card",
+      "category": "Display",
+      "description": "A surface with optional header and footer slots.",
+      "registryDependencies": ["tokens"],
+      "native": ["child combinator slots"],
+      "api": {
+        "data-card": "On any element",
+        "> header": "Title (h1–h6) and description (p)",
+        "> footer": "Actions row",
+        "> img:first-child": "Bleeds to the card edges"
+      }
+    },
+    {
+      "name": "badge",
+      "title": "Badge",
+      "category": "Display",
+      "description": "Small status labels.",
+      "registryDependencies": ["tokens"],
+      "native": [],
+      "api": {
+        "data-badge": "On a span",
+        "data-variant": "secondary | outline | destructive | success | warning"
+      }
+    },
+    {
+      "name": "alert",
+      "title": "Alert",
+      "category": "Display",
+      "description": "Callouts for important messages, with an optional icon.",
+      "registryDependencies": ["tokens"],
+      "native": [":has()"],
+      "api": {
+        "data-alert": "Container. Children: optional svg, strong, p",
+        "data-variant": "destructive | success | warning",
+        "role=\"alert\"": "Add when the message appears dynamically"
+      }
+    },
+    {
+      "name": "avatar",
+      "title": "Avatar",
+      "category": "Display",
+      "description": "Round image or initials, with overlapping groups.",
+      "registryDependencies": ["tokens"],
+      "native": ["object-fit"],
+      "api": {
+        "<img data-avatar>": "Image avatar",
+        "<span data-avatar>AB</span>": "Initials fallback",
+        "data-size": "sm | lg",
+        "data-group": "Overlap a row of avatars"
+      }
+    },
+    {
+      "name": "table",
+      "title": "Table",
+      "category": "Display",
+      "description": "Readable data tables straight from <table> markup.",
+      "registryDependencies": ["tokens"],
+      "native": ["<caption>", "caption-side"],
+      "api": {
+        "<table>": "thead, tbody, tfoot and caption are styled",
+        "data-numeric": "Right-aligned tabular numbers on th or td",
+        "aria-selected=\"true\"": "Highlight a row"
+      }
+    },
+    {
+      "name": "loading",
+      "title": "Skeleton & Spinner",
+      "category": "Display",
+      "description": "Placeholders and busy states.",
+      "registryDependencies": ["tokens"],
+      "native": ["aria-busy"],
+      "api": {
+        "data-skeleton": "Pulsing placeholder block",
+        "<button aria-busy=\"true\">": "Button with spinner",
+        "data-spinner": "Standalone spinner"
+      }
+    },
+    {
+      "name": "breadcrumb",
+      "title": "Breadcrumb",
+      "category": "Display",
+      "description": "Where you are in the site hierarchy.",
+      "registryDependencies": ["tokens"],
+      "native": ["aria-current"],
+      "api": {
+        "<ol data-breadcrumb>": "Inside nav[aria-label=Breadcrumb]",
+        "aria-current=\"page\"": "The current page"
+      }
+    },
+    {
+      "name": "dialog",
+      "title": "Dialog & Sheet",
+      "category": "Overlays",
+      "description": "Modal dialogs and edge sheets on <dialog>. Opened with invoker commands, animated in and out with CSS.",
+      "registryDependencies": ["button"],
+      "native": ["<dialog>", "commandfor / command", "closedby", "@starting-style", "transition-behavior: allow-discrete"],
+      "api": {
+        "<button commandfor=id command=show-modal>": "Opens it",
+        "command=close": "Closes it. As the dialog's first child it becomes the corner ✕",
+        "closedby=\"any\"": "Close on backdrop click and Esc",
+        "<form method=dialog>": "Submitting closes the dialog",
+        "> header, footer": "Title/description and actions",
+        "data-side": "left | right | bottom turns it into a sheet"
+      }
+    },
+    {
+      "name": "popover",
+      "title": "Popover",
+      "category": "Overlays",
+      "description": "Light-dismiss floating panels anchored to their trigger with CSS anchor positioning. No ids in CSS, no JS.",
+      "registryDependencies": ["tokens"],
+      "native": ["popover", "popovertarget", "anchor positioning", "position-try-fallbacks", "interestfor", "popover=hint"],
+      "api": {
+        "<button popovertarget=id>": "Toggles it",
+        "<div popover id>": "The panel, positioned under its trigger",
+        "popover=\"hint\"": "Tooltip-style hint, pair with interestfor"
+      }
+    },
+    {
+      "name": "menu",
+      "title": "Dropdown menu",
+      "category": "Overlays",
+      "description": "A <menu> popover of buttons and links.",
+      "registryDependencies": ["popover", "button"],
+      "native": ["<menu>", "popover", "anchor positioning"],
+      "api": {
+        "<menu popover id>": "The menu",
+        "<li><button>": "Item. data-variant=destructive for dangerous actions",
+        "<li><small>": "Group label",
+        "<li><hr>": "Separator",
+        "<kbd>": "Right-aligned shortcut"
+      }
+    },
+    {
+      "name": "tooltip",
+      "title": "Tooltip",
+      "category": "Overlays",
+      "description": "One-attribute tooltips drawn with attr(). For richer content use popover=hint.",
+      "registryDependencies": ["tokens"],
+      "native": ["attr()", ":focus-visible"],
+      "api": {
+        "data-tooltip=\"text\"": "Shows on hover and keyboard focus (not on void elements like input)",
+        "data-side=\"bottom\"": "Show below"
+      }
+    },
+    {
+      "name": "toast",
+      "title": "Toast",
+      "category": "Overlays",
+      "description": "A corner notification built from <output popover>.",
+      "registryDependencies": ["popover"],
+      "native": ["<output>", "popover", "command=show-popover"],
+      "api": {
+        "<output popover data-toast id>": "The toast, announced by screen readers",
+        "command=show-popover": "Show it from a button, or call showPopover()",
+        "data-variant": "destructive | success | warning accent"
+      }
+    },
+    {
+      "name": "accordion",
+      "title": "Accordion",
+      "category": "Disclosure",
+      "description": "Animated <details>. Share a name to allow only one open at a time.",
+      "registryDependencies": ["tokens"],
+      "native": ["<details name>", "::details-content", "interpolate-size"],
+      "api": {
+        "<details><summary>": "One item",
+        "name=\"group\"": "Exclusive: opening one closes the others",
+        "open": "Initially expanded"
+      }
+    },
+    {
+      "name": "tabs",
+      "title": "Tabs",
+      "category": "Disclosure",
+      "description": "Exclusive <details> laid out as tabs. Falls back to an accordion.",
+      "registryDependencies": ["tokens"],
+      "native": ["<details name>", "::details-content", "display: contents"],
+      "api": {
+        "data-tabs": "Container",
+        "<details name open><summary>": "One tab, all sharing a name"
+      }
+    },
+    {
+      "name": "carousel",
+      "title": "Carousel",
+      "category": "Disclosure",
+      "description": "Scroll-snap slides with CSS-generated prev/next buttons and dots.",
+      "registryDependencies": ["tokens"],
+      "native": ["scroll-snap", "::scroll-button()", "::scroll-marker", "anchor positioning"],
+      "api": {
+        "data-carousel": "Every child is a slide",
+        "--slide": "Slide width, e.g. 50% to show two"
+      }
+    }
+  ]
+}

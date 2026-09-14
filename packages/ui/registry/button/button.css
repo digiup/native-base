@@ -1,0 +1,43 @@
+@layer nb.components {
+  :where(button, input:is([type=button], [type=submit], [type=reset]), a[data-variant]), ::file-selector-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    block-size: var(--_h, 2.25rem);
+    padding: 0 var(--_px, 1rem);
+    border: 1px solid var(--_bd, transparent);
+    border-radius: calc(var(--radius) - 2px);
+    background: var(--_bg, var(--primary));
+    color: var(--_fg, var(--primary-foreground));
+    font: inherit;
+    font-size: var(--_fs, .875rem);
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color var(--duration), color var(--duration), box-shadow var(--duration), scale var(--duration);
+  }
+  :where(button, input:is([type=button], [type=submit], [type=reset]), a[data-variant]) {
+    &:hover { background: color-mix(in oklch, var(--_bg, var(--primary)) 88%, var(--_fg, var(--primary-foreground))); }
+    &:active { scale: .98; }
+    &:disabled, &[aria-disabled=true] { opacity: .5; pointer-events: none; }
+    &[data-variant=outline] { box-shadow: var(--shadow); }
+    &[data-variant=link] { text-decoration: underline transparent; text-underline-offset: .25em; &:hover { background: transparent; text-decoration-color: currentColor; } }
+    &[data-size=icon] { inline-size: var(--_h, 2.25rem); }
+    & svg { inline-size: 1em; block-size: 1em; flex-shrink: 0; }
+  }
+
+  /* Group: joined edges for buttons and inputs. Real specificity so it beats element styles. */
+  [data-group] {
+    display: inline-flex;
+    &:has(> input) { display: flex; }
+    & > * { border-radius: 0; }
+    & > :first-child { border-start-start-radius: calc(var(--radius) - 2px); border-end-start-radius: calc(var(--radius) - 2px); }
+    & > :last-child { border-start-end-radius: calc(var(--radius) - 2px); border-end-end-radius: calc(var(--radius) - 2px); }
+    & > * + * { margin-inline-start: -1px; }
+    & > :focus-visible { z-index: 1; }
+  }
+}

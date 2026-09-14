@@ -1,0 +1,20 @@
+<!-- @example: Validated field -->
+<label>
+  Email
+  <input type="email" placeholder="you@example.com" required>
+  <small data-hint>Type something invalid, then tab away.</small>
+  <small data-error>Enter a valid email address.</small>
+</label>
+<!-- @example: Form -->
+<form>
+  <label>Name <input autocomplete="name" placeholder="Ada Lovelace"></label>
+  <label>Bio <textarea placeholder="I grow with my content"></textarea></label>
+  <label>Resume <input type="file"></label>
+  <label>Volume <input type="range"></label>
+  <button>Save</button>
+</form>
+<!-- @example: Search group -->
+<search data-group>
+  <input type="search" placeholder="Search components…" aria-label="Search">
+  <button data-variant="outline">Search</button>
+</search>

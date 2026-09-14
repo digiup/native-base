@@ -1,0 +1,15 @@
+{
+  "name": "native-base-monorepo",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.4.0",
+  "scripts": {
+    "build": "pnpm --filter @native-base/css build && pnpm --filter @native-base/docs build",
+    "dev": "pnpm --filter @native-base/css build && pnpm --parallel --filter @native-base/css --filter @native-base/docs dev",
+    "preview": "pnpm --filter @native-base/docs preview"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ]
+}
