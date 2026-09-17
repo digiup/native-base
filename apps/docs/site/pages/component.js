@@ -1,5 +1,20 @@
 import { codeBlock, esc, kb, resolveItems, slug } from '../html.js';
 import { docsPage } from '../layout.js';
+import { FRAMEWORK_LABELS, translatable, translate } from '../translate.js';
+
+/** "Destructive with icon" → DestructiveWithIcon, so the generated component has a name to export. */
+const componentName = (title) => title.replace(/(?:^|[^a-z0-9])([a-z0-9])/gi, (_, character) => character.toUpperCase()).replace(/[^A-Za-z0-9]/g, '');
+
+/** The same example in every framework, switched by the picker in the code bar. */
+function variants(ex) {
+  if (!translatable(ex.code)) return codeBlock(ex.code, 'html', { tokens: ex.tokens });
+  const translated = translate(ex.code, componentName(ex.title));
+  const blocks = Object.keys(FRAMEWORK_LABELS).map((framework) => {
+    const { code, language, file } = translated[framework];
+    return codeBlock(code, language, { label: file, framework, tokens: framework === 'html' ? ex.tokens : undefined });
+  });
+  return `<div data-variants>${blocks.join('')}</div>`;
+}
 
 function example(ex) {
   const id = slug(ex.title);
@@ -7,7 +22,7 @@ function example(ex) {
   <h2 id="${id}">${esc(ex.title)}</h2>
   <figure data-demo>
     ${ex.live ? `<div data-preview>${ex.code}</div>` : ''}
-    ${codeBlock(ex.code, 'html', { tokens: ex.tokens })}
+    ${variants(ex)}
   </figure>
 </section>`;
 }

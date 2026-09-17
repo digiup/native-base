@@ -1,0 +1,14 @@
+/* Page chrome only. Unlayered, so it beats every nb.* layer without !important. */
+body {
+  max-inline-size: 60rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 6rem;
+}
+
+header[data-row] {
+  margin-block-end: 2rem;
+}
+
+section {
+  margin-block-start: 3rem;
+}

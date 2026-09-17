@@ -11,6 +11,13 @@ document.addEventListener('click', async (event) => {
   setTimeout(() => (button.textContent = 'Copy'), 1400);
 });
 
+// The framework picker is CSS too (:has on a radio group named framework). This just remembers it.
+document.addEventListener('change', (event) => {
+  if (event.target.name !== 'framework') return;
+  document.documentElement.dataset.framework = event.target.value;
+  localStorage.setItem('framework', event.target.value);
+});
+
 // The theme switch itself is CSS (:has on a select named color-scheme). This just remembers it.
 document.querySelector('select[name=color-scheme]')?.addEventListener('change', (event) => {
   localStorage.setItem('color-scheme', event.target.value);

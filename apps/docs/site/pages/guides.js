@@ -54,6 +54,9 @@ npx native-base add dialog select tabs`, 'sh')}
 <p>A complete page with a validated field and a working modal, in ${countTokens(firstPage)} tokens.</p>
 ${codeBlock(firstPage, 'html', { tokens: countTokens(firstPage) })}
 
+<h2 id="frameworks">With a framework</h2>
+<p>There is nothing to adapt: a Vue template and a Svelte component are HTML already, and JSX only renames a handful of attributes. Every example on the component pages can be shown as <a href="/docs/react/">React</a>, <a href="/docs/vue/">Vue</a>, <a href="/docs/svelte/">Svelte</a> or <a href="/docs/solid/">Solid</a> — pick one in any code block and the whole site follows.</p>
+
 <h2 id="rules">The rules</h2>
 <ol data-rules>${registry.rules.map((rule) => `<li>${esc(rule)}</li>`).join('')}</ol>
 

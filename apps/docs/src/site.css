@@ -51,6 +51,40 @@
   & small { font-family: var(--font-mono); font-size: .75rem; }
   & small span::before { content: "· "; }
 }
+/* Framework picker. Every picker on the page is one radio group, so the browser keeps them in
+   sync; data-framework on <html> carries the choice to the next page. CSS does the switching. */
+[data-variants] > [data-code] { display: none; }
+[data-picker] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .125rem;
+  margin-inline-end: auto;
+  & label { padding: .25rem .5rem; border-radius: calc(var(--radius) - 4px); color: var(--muted-foreground); font-size: .75rem; cursor: pointer; }
+  & label:hover { color: var(--foreground); }
+  & label:has(:focus-visible) { outline: 2px solid var(--ring); outline-offset: 1px; }
+  & input { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
+}
+:is(:root[data-framework=html], :root:not([data-framework]):not(:has([name=framework]:checked))) {
+  & [data-variants] > [data-code][data-framework=html] { display: block; }
+  & [data-picker] label[data-value=html] { background: var(--muted); color: var(--foreground); }
+}
+:is(:root[data-framework=react], :root:not([data-framework]):has([name=framework][value=react]:checked)) {
+  & [data-variants] > [data-code][data-framework=react] { display: block; }
+  & [data-picker] label[data-value=react] { background: var(--muted); color: var(--foreground); }
+}
+:is(:root[data-framework=vue], :root:not([data-framework]):has([name=framework][value=vue]:checked)) {
+  & [data-variants] > [data-code][data-framework=vue] { display: block; }
+  & [data-picker] label[data-value=vue] { background: var(--muted); color: var(--foreground); }
+}
+:is(:root[data-framework=svelte], :root:not([data-framework]):has([name=framework][value=svelte]:checked)) {
+  & [data-variants] > [data-code][data-framework=svelte] { display: block; }
+  & [data-picker] label[data-value=svelte] { background: var(--muted); color: var(--foreground); }
+}
+:is(:root[data-framework=solid], :root:not([data-framework]):has([name=framework][value=solid]:checked)) {
+  & [data-variants] > [data-code][data-framework=solid] { display: block; }
+  & [data-picker] label[data-value=solid] { background: var(--muted); color: var(--foreground); }
+}
+
 [data-code][data-inline] {
   display: flex;
   align-items: center;

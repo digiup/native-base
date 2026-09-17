@@ -20,6 +20,7 @@ A classless, registry-driven UI kit built on native HTML. Inspired by shadcn/ui'
 ```
 packages/ui     @native-base/css: registry source, rolldown build, CLI
 apps/docs       landing page, docs, kitchen sink (Vite 8, real multi-page HTML)
+examples/*      the kit used from React, Vue, Svelte and Solid: no wrapper components
 ```
 
 ```sh
@@ -48,3 +49,7 @@ Each registry item is a folder: `packages/ui/registry/<name>/<name>.css` plus `e
 ## The docs
 
 `apps/docs/site/plugin.js` renders every route to a real HTML document (in dev through middleware, in build as virtual HTML inputs), so navigation uses cross-document view transitions instead of a client router. It also serves the library's registry at `/r/*`, `/native-base.css` and `/llms.txt`.
+
+Every component example can be shown as HTML, React, Vue, Svelte or Solid: `site/translate.js` converts the registry's HTML, and the picker in each code bar is one radio group plus CSS, so the whole site follows one choice. `pnpm --filter @native-base/docs check` renders every generated React example and compares it with the HTML it came from, and compiles the Solid, Vue and Svelte versions.
+
+The four framework guides (`/docs/react/`, `/docs/vue/`, `/docs/svelte/`, `/docs/solid/`) read their demo components off disk and mount them on the page, so the code shown is the code running. They are the only pages that load a framework.

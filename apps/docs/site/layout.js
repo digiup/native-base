@@ -1,4 +1,5 @@
 import { esc } from './html.js';
+import { FRAMEWORK_LINKS } from './pages/frameworks.js';
 
 const MAIN_NAV = [
   ['/docs/', 'Docs'],
@@ -13,13 +14,17 @@ const GUIDES = [
   ['/docs/theming/', 'Theming'],
 ];
 
+const FRAMEWORKS = FRAMEWORK_LINKS;
+
+const GUIDE_PATHS = [...GUIDES, ...FRAMEWORKS].map(([href]) => href);
+
 const LOGO = `<svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--mark)"/><path d="m12.5 10-6 6 6 6m7-12 6 6-6 6" fill="none" stroke="var(--mark-ink)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
 const current = (path, href) => (path === href ? ' aria-current="page"' : '');
 
-export function page({ path, title, description, body }) {
+export function page({ path, title, description, body, modules = [] }) {
   const nav = MAIN_NAV.map(([href, label]) => {
-    const active = href === '/docs/button/' ? path.startsWith('/docs/') && !['/docs/', '/docs/registry/', '/docs/theming/'].includes(path) : path === href;
+    const active = href === '/docs/button/' ? path.startsWith('/docs/') && !GUIDE_PATHS.includes(path) : path === href;
     return `<a href="${href}"${active ? ' aria-current="page"' : ''}>${label}</a>`;
   }).join('');
 
@@ -33,8 +38,10 @@ export function page({ path, title, description, body }) {
 <link rel="icon" href="/favicon.svg">
 <link rel="stylesheet" href="/src/site.css">
 <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
+<script>document.documentElement.dataset.framework=localStorage.getItem("framework")||"html"</script>
 <script>addEventListener("pagereveal",(e)=>{if(e.viewTransition&&window.navigation?.activation?.navigationType==="traverse")e.viewTransition.types.add("back")})</script>
 <script type="module" src="/src/main.js"></script>
+${modules.map((src) => `<script type="module" src="${src}"></script>`).join('')}
 </head>
 <body>
 <header>
@@ -53,7 +60,7 @@ export function page({ path, title, description, body }) {
 </header>
 ${body}
 <footer data-wrap data-footer>
-  <p>MIT licensed. Built with native-base, Vite and rolldown. This site loads no web fonts, no framework and no client router.</p>
+  <p>MIT licensed. Built with native-base, Vite and rolldown. This site loads no web fonts and no client router. Only the framework guides load a framework, to run their demos.</p>
   <p><a href="/llms.txt">llms.txt</a> · <a href="/r/index.json">registry</a> · <a href="/native-base.css">native-base.css</a></p>
 </footer>
 </body>
@@ -66,15 +73,16 @@ function sidebar(registry, path) {
   const groups = [...categories].map(
     ([category, items]) => `<h2>${category}</h2><ul>${items.map((item) => link([`/docs/${item.name}/`, item.title])).join('')}</ul>`,
   );
-  return `<nav data-sidebar aria-label="Documentation"><h2>Guides</h2><ul>${GUIDES.map(link).join('')}</ul>${groups.join('')}</nav>`;
+  return `<nav data-sidebar aria-label="Documentation"><h2>Guides</h2><ul>${GUIDES.map(link).join('')}</ul><h2>Frameworks</h2><ul>${FRAMEWORKS.map(link).join('')}</ul>${groups.join('')}</nav>`;
 }
 
-export function docsPage({ site, path, title, description, content }) {
+export function docsPage({ site, path, title, description, content, modules }) {
   const nav = sidebar(site.registry, path);
   return page({
     path,
     title,
     description,
+    modules,
     body: `<div data-wrap data-docs>
   <aside>${nav}</aside>
   <dialog id="docs-nav" data-side="left" closedby="any" aria-label="Documentation">
