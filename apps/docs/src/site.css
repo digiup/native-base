@@ -91,7 +91,7 @@ body > header { position: sticky; inset-block-start: 0; z-index: 20; border-bloc
 
 /* Docs */
 [data-docs] { display: grid; grid-template-columns: 13.5rem minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); padding-block: 2rem 5rem; }
-[data-docs] > aside { position: sticky; inset-block-start: 3.75rem; align-self: start; max-block-size: calc(100dvh - 3.75rem); overflow-y: auto; padding-block-end: 2rem; scrollbar-width: thin; }
+[data-docs] > aside { position: sticky; inset-block-start: 3.75rem; align-self: start; max-block-size: calc(100dvh - 3.75rem); overflow-y: auto; overscroll-behavior: contain; margin-inline: -.625rem; padding-inline: .625rem; padding-block-end: 2rem; scrollbar-gutter: stable; scrollbar-width: thin; }
 [data-sidebar] {
   & h2 { margin: 1.5rem 0 .375rem; color: var(--muted-foreground); font-size: .75rem; font-weight: 600; letter-spacing: 0; }
   & ul { margin: 0; padding: 0; list-style: none; }
