@@ -3,7 +3,6 @@
  * HTML it came from, and Solid, Vue and Svelte's versions are put through their own compilers.
  *
  *   node check-frameworks.js
- *
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
