@@ -3,11 +3,12 @@
  * HTML it came from, and Solid, Vue and Svelte's versions are put through their own compilers.
  *
  *   node check-frameworks.js
+ *
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
-import { translate, translatable } from './site/translate.js';
+import { translatable, translate } from './site/translate.js';
 
 const require = createRequire(import.meta.url);
 const { registry } = await import(pathToFileURL(require.resolve('@native-base/css')).href);
