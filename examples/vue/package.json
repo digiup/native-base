@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@native-base/css": "workspace:*",
+    "@digiup/native-base": "workspace:*",
     "vue": "^3.5.42"
   },
   "devDependencies": {

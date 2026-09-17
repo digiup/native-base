@@ -10,7 +10,7 @@ importers:
 
   apps/docs:
     dependencies:
-      '@native-base/css':
+      '@digiup/native-base':
         specifier: workspace:*
         version: link:../../packages/ui
       react:
@@ -56,7 +56,7 @@ importers:
 
   examples/react:
     dependencies:
-      '@native-base/css':
+      '@digiup/native-base':
         specifier: workspace:*
         version: link:../../packages/ui
       react:
@@ -75,7 +75,7 @@ importers:
 
   examples/solid:
     dependencies:
-      '@native-base/css':
+      '@digiup/native-base':
         specifier: workspace:*
         version: link:../../packages/ui
       solid-js:
@@ -91,7 +91,7 @@ importers:
 
   examples/svelte:
     dependencies:
-      '@native-base/css':
+      '@digiup/native-base':
         specifier: workspace:*
         version: link:../../packages/ui
       svelte:
@@ -107,7 +107,7 @@ importers:
 
   examples/vue:
     dependencies:
-      '@native-base/css':
+      '@digiup/native-base':
         specifier: workspace:*
         version: link:../../packages/ui
       vue:

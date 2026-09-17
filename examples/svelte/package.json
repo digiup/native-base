@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@native-base/css": "workspace:*",
+    "@digiup/native-base": "workspace:*",
     "svelte": "^5.57.0"
   },
   "devDependencies": {

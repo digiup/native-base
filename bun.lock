@@ -8,7 +8,7 @@
     "apps/docs": {
       "name": "@native-base/docs",
       "dependencies": {
-        "@native-base/css": "workspace:*",
+        "@digiup/native-base": "workspace:*",
       },
       "devDependencies": {
         "gpt-tokenizer": "^4.0.0",
@@ -16,7 +16,7 @@
       },
     },
     "packages/ui": {
-      "name": "@native-base/css",
+      "name": "@digiup/native-base",
       "version": "0.1.0",
       "bin": {
         "native-base": "./dist/cli.js",
@@ -29,7 +29,7 @@
     },
   },
   "packages": {
-    "@native-base/css": ["@native-base/css@workspace:packages/ui"],
+    "@digiup/native-base": ["@digiup/native-base@workspace:packages/ui"],
 
     "@native-base/docs": ["@native-base/docs@workspace:apps/docs"],
 

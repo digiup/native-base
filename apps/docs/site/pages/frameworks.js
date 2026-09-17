@@ -134,24 +134,24 @@ const GUIDES = {
 };
 
 const INSTALL = {
-  react: `import '@native-base/css/native-base.css';
+  react: `import '@digiup/native-base/native-base.css';
 
 // or only what you use, in cascade order
-import '@native-base/css/components/tokens.css';
-import '@native-base/css/components/button.css';`,
+import '@digiup/native-base/components/tokens.css';
+import '@digiup/native-base/components/button.css';`,
   vue: `import { createApp } from 'vue';
 import App from './App.vue';
-import '@native-base/css/native-base.css';
+import '@digiup/native-base/native-base.css';
 
 createApp(App).mount('#app');`,
   svelte: `import { mount } from 'svelte';
 import App from './App.svelte';
-import '@native-base/css/native-base.css';
+import '@digiup/native-base/native-base.css';
 
 mount(App, { target: document.querySelector('#app') });`,
   solid: `import { render } from 'solid-js/web';
 import App from './App.jsx';
-import '@native-base/css/native-base.css';
+import '@digiup/native-base/native-base.css';
 
 render(() => <App />, document.querySelector('#app'));`,
 };
@@ -173,7 +173,7 @@ export function guide(name) {
 
 <h2 id="install">Install</h2>
 <p>${INSTALL_NOTE[name]}</p>
-${codeBlock('npm i @native-base/css', 'sh')}
+${codeBlock('npm i @digiup/native-base', 'sh')}
 ${codeBlock(INSTALL[name], name === 'vue' || name === 'svelte' ? 'js' : 'jsx', { label: config.entry })}
 
 ${config.sections.map(([title, component, intro]) => demo(name, config.ext, { title, component, intro })).join('\n')}

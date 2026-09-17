@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 import { routes } from './routes.js';
 
 const require = createRequire(import.meta.url);
-const libEntry = require.resolve('@native-base/css');
+const libEntry = require.resolve('@digiup/native-base');
 const libDist = dirname(libEntry);
 
 // Files the library build produces that the site serves verbatim: the registry over plain GET.

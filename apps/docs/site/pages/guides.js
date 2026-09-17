@@ -37,13 +37,13 @@ ${codeBlock('<link rel="stylesheet" href="{origin}/native-base.css">', 'html')}
 
 <h2 id="npm">Install from npm</h2>
 <p>Import the whole bundle or individual components. Per-component files expect their dependencies (listed on each page) to be imported first.</p>
-${codeBlock(`npm i @native-base/css`, 'sh')}
-${codeBlock(`@import "@native-base/css/native-base.css";
+${codeBlock(`npm i @digiup/native-base`, 'sh')}
+${codeBlock(`@import "@digiup/native-base/native-base.css";
 
 /* or only what you use */
-@import "@native-base/css/components/tokens.css";
-@import "@native-base/css/components/button.css";
-@import "@native-base/css/components/dialog.css";`, 'css')}
+@import "@digiup/native-base/components/tokens.css";
+@import "@digiup/native-base/components/button.css";
+@import "@digiup/native-base/components/dialog.css";`, 'css')}
 
 <h2 id="registry">Copy it into your project</h2>
 <p>Like shadcn/ui, you can own the source. The CLI copies each component’s CSS and its dependencies, then keeps an <code>index.css</code> in cascade order. <a href="/docs/registry/">More on the registry</a>.</p>

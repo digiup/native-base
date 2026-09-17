@@ -42,7 +42,7 @@ export default function component(site, item) {
   const install = [
     ['CLI', codeBlock(`npx native-base add ${item.name}`, 'sh')],
     ['URL', codeBlock(deps.map((dep) => `<link rel="stylesheet" href="{origin}/r/${dep.name}.css">`).join('\n'), 'html')],
-    ['npm', codeBlock(deps.map((dep) => `@import "@native-base/css/components/${dep.name}.css";`).join('\n'), 'css')],
+    ['npm', codeBlock(deps.map((dep) => `@import "@digiup/native-base/components/${dep.name}.css";`).join('\n'), 'css')],
     ['shadcn', codeBlock(`npx shadcn add {origin}/r/${item.name}.json`, 'sh')],
   ];
 

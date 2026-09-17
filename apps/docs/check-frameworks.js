@@ -10,7 +10,7 @@ import { pathToFileURL } from 'node:url';
 import { translatable, translate } from './site/translate.js';
 
 const require = createRequire(import.meta.url);
-const { registry } = await import(pathToFileURL(require.resolve('@native-base/css')).href);
+const { registry } = await import(pathToFileURL(require.resolve('@digiup/native-base')).href);
 const { compile: compileSvelte } = await import('svelte/compiler');
 const { parse: parseSfc, compileScript, compileTemplate } = await import('vue/compiler-sfc');
 const { transformAsync } = await import('@babel/core');

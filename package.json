@@ -5,8 +5,8 @@
   "type": "module",
   "packageManager": "pnpm@11.4.0",
   "scripts": {
-    "build": "pnpm --filter @native-base/css build && pnpm --filter @native-base/docs build",
-    "dev": "pnpm --filter @native-base/css build && pnpm --parallel --filter @native-base/css --filter @native-base/docs dev",
+    "build": "pnpm --filter @digiup/native-base build && pnpm --filter @native-base/docs build",
+    "dev": "pnpm --filter @digiup/native-base build && pnpm --parallel --filter @digiup/native-base --filter @native-base/docs dev",
     "preview": "pnpm --filter @native-base/docs preview"
   },
   "workspaces": [

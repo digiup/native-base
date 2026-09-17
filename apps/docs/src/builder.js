@@ -1,4 +1,4 @@
-import { css, resolve } from '@native-base/css';
+import { css, resolve } from '@digiup/native-base';
 
 const form = document.querySelector('[data-builder]');
 const summary = form.querySelector('[data-builder-summary]');

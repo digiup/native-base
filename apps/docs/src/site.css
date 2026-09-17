@@ -1,4 +1,4 @@
-@import "@native-base/css/native-base.css";
+@import "@digiup/native-base/native-base.css";
 
 /* The site is also a theming demo: tinted neutrals and a highlighter accent, as plain unlayered overrides. */
 :root {

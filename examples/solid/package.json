@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@native-base/css": "workspace:*",
+    "@digiup/native-base": "workspace:*",
     "solid-js": "^1.9.15"
   },
   "devDependencies": {

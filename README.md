@@ -18,7 +18,7 @@ A classless, registry-driven UI kit built on native HTML. Inspired by shadcn/ui'
 ## Repo
 
 ```
-packages/ui     @native-base/css: registry source, rolldown build, CLI
+packages/ui     @digiup/native-base: registry source, rolldown build, CLI
 apps/docs       landing page, docs, kitchen sink (Vite 8, real multi-page HTML)
 examples/*      the kit used from React, Vue, Svelte and Solid: no wrapper components
 ```

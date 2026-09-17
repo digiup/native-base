@@ -72,7 +72,7 @@ const features = [
 
 const install = [
   ['Everything, one tag', '<link rel="stylesheet" href="{origin}/native-base.css">', 'html'],
-  ['Just what you use, from npm', '@import "@native-base/css/components/dialog.css";', 'css'],
+  ['Just what you use, from npm', '@import "@digiup/native-base/components/dialog.css";', 'css'],
   ['Own the source', 'npx native-base add dialog select', 'sh'],
   ['Or with the shadcn CLI', 'npx shadcn add {origin}/r/dialog.json', 'sh'],
 ];

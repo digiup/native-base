@@ -9,7 +9,7 @@
     "check": "node check-frameworks.js"
   },
   "dependencies": {
-    "@native-base/css": "workspace:*",
+    "@digiup/native-base": "workspace:*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "solid-js": "^1.9.15",
