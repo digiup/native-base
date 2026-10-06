@@ -1,5 +1,7 @@
 import registry from 'virtual:native-base/registry';
 
+export * from './presets.js';
+
 export { registry };
 export const items = registry.items;
 

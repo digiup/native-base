@@ -6,18 +6,21 @@
     "Variants on any component: data-variant=\"secondary|outline|ghost|link|destructive|success|warning\". Sizes: data-size=\"sm|lg|icon\".",
     "Open overlays with invoker commands, not JS: <button commandfor=\"id\" command=\"show-modal|close|toggle-popover|show-popover\">, or popovertarget=\"id\".",
     "Layout: data-row (wrapping flex, =between|end|center), data-stack (vertical), data-grid (responsive columns). Tune with style=\"--gap:…\" or \"--min:…\".",
-    "Theme with shadcn/ui CSS variables (--primary, --background, --radius, …). Everything lives in @layer nb.*, so unlayered CSS always wins."
+    "Theme with shadcn/ui CSS variables: colors (--primary, --background, …) are the theme; --spacing, --radius, --corner-shape, --font-sans, --text-sm, --weight, --shadow, --duration and friends are the style. Install one of each with npx native-base theme <theme> --style <style> (see `native-base list themes`). Everything lives in @layer nb.*, so unlayered CSS always wins."
   ],
   "items": [
     {
       "name": "tokens",
       "title": "Tokens",
       "category": "Foundations",
-      "description": "Theme variables (shadcn/ui names), one spacing unit, automatic light/dark with light-dark(), and the shared variant vocabulary.",
+      "description": "Theme variables (shadcn/ui names) for color, style variables for spacing, shape, type and motion, automatic light/dark with light-dark(), and the shared variant vocabulary.",
       "native": ["light-dark()", "@property", "cascade layers", ":has()"],
       "api": {
         "--primary, --background, --radius, …": "shadcn/ui-compatible theme variables",
         "--spacing": "Base unit (.25rem); every padding, gap and control height is a multiple of it",
+        "--radius, --corner-shape, --border-width, --shadow, --shadow-lg": "Shape. --corner-shape: round | squircle | superellipse(n) | bevel | notch | scoop | square",
+        "--font-sans, --font-heading, --font-mono, --text-xs|sm|base|lg, --leading, --tracking, --weight, --weight-heading": "Type",
+        "--duration, --ease": "Motion",
         "data-theme": "light | dark on any subtree",
         "[name=color-scheme]": "Any select or radio group with this name switches the page theme, no JS",
         "data-variant": "secondary | outline | ghost | link | destructive | success | warning",

@@ -7,7 +7,7 @@
     margin: 0;
     padding: 0;
     color: var(--muted-foreground);
-    font-size: .875rem;
+    font-size: var(--text-sm);
     list-style: none;
 
     & li { display: inline-flex; align-items: center; gap: calc(var(--spacing) * 1.5); }

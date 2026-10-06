@@ -47,3 +47,5 @@ export declare const items: RegistryItem[];
 export declare function getItem(name: string): RegistryItem | undefined;
 export declare function resolve(names: string[]): RegistryItem[];
 export declare function css(names: string[]): string;
+
+export * from './presets';

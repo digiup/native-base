@@ -8,8 +8,8 @@
       justify-content: space-between;
       gap: calc(var(--spacing) * 4);
       padding-block: calc(var(--spacing) * 4);
-      font-size: .875rem;
-      font-weight: 500;
+      font-size: var(--text-sm);
+      font-weight: var(--weight);
       list-style: none;
       cursor: pointer;
       &::-webkit-details-marker { display: none; }
@@ -21,6 +21,6 @@
     /* Animates to height: auto thanks to interpolate-size in base. */
     &::details-content { block-size: 0; overflow: clip; transition: block-size var(--duration) var(--ease), content-visibility var(--duration) allow-discrete; }
     &[open]::details-content { block-size: auto; }
-    & > :not(summary) { margin-block: 0 calc(var(--spacing) * 4); color: var(--muted-foreground); font-size: .875rem; }
+    & > :not(summary) { margin-block: 0 calc(var(--spacing) * 4); color: var(--muted-foreground); font-size: var(--text-sm); }
   }
 }

@@ -9,7 +9,7 @@
     border-radius: 50%;
     background: var(--muted);
     font-size: calc(var(--_h, calc(var(--spacing) * 10)) * .36);
-    font-weight: 500;
+    font-weight: var(--weight);
     object-fit: cover;
     & img { inline-size: 100%; block-size: 100%; object-fit: cover; }
   }

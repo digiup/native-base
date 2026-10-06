@@ -3,7 +3,7 @@ import { nativeBaseRegistry } from './build/registry.js';
 
 export default defineConfig([
   {
-    input: { index: 'src/index.js' },
+    input: { index: 'src/index.js', presets: 'src/presets.js' },
     platform: 'neutral',
     plugins: [nativeBaseRegistry()],
     output: { dir: 'dist', format: 'esm' },

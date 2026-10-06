@@ -3,11 +3,11 @@
     min-inline-size: 11rem;
     margin-block: calc(var(--spacing) * 1);
     padding: calc(var(--spacing) * 1);
-    font-size: .875rem;
+    font-size: var(--text-sm);
     list-style: none;
 
     & li { list-style: none; }
-    & li > small { display: block; padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2); color: var(--foreground); font-weight: 500; }
+    & li > small { display: block; padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2); color: var(--foreground); font-weight: var(--weight); }
     & hr { margin: calc(var(--spacing) * 1) calc(var(--spacing) * -1); }
     & :where(button, a) {
       display: flex;
@@ -17,7 +17,7 @@
       gap: calc(var(--spacing) * 2);
       padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
       border: 0;
-      border-radius: calc(var(--radius) - 4px);
+      border-radius: calc(var(--radius) - 4px); corner-shape: var(--corner-shape);
       background: transparent;
       color: var(--_tone, var(--popover-foreground));
       font-size: inherit;
@@ -28,6 +28,6 @@
       &:is(:hover, :focus-visible) { outline: 0; background: var(--accent); }
       &:active { scale: 1; }
     }
-    & kbd { margin-inline-start: auto; padding: 0; border: 0; background: none; color: var(--muted-foreground); font-size: .75rem; letter-spacing: .1em; }
+    & kbd { margin-inline-start: auto; padding: 0; border: 0; background: none; color: var(--muted-foreground); font-size: var(--text-xs); letter-spacing: .1em; }
   }
 }

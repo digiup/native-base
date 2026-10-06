@@ -25,8 +25,8 @@
       &::picker(select) {
         margin-block: calc(var(--spacing) * 1);
         padding: calc(var(--spacing) * 1);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
+        border: var(--border-width) solid var(--border);
+        border-radius: var(--radius); corner-shape: var(--corner-shape);
         background: var(--popover);
         color: var(--popover-foreground);
         box-shadow: var(--shadow-lg);
@@ -42,13 +42,13 @@
         align-items: center;
         gap: calc(var(--spacing) * 2);
         padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
-        border-radius: calc(var(--radius) - 4px);
-        font-size: .875rem;
+        border-radius: calc(var(--radius) - 4px); corner-shape: var(--corner-shape);
+        font-size: var(--text-sm);
         outline: 0;
         &:is(:hover, :focus-visible) { background: var(--accent); color: var(--accent-foreground); }
         &::checkmark { order: 1; content: ""; inline-size: 1rem; block-size: 1rem; margin-inline-start: auto; background: currentColor; mask: var(--icon-check) center / .875rem no-repeat; }
       }
-      & legend { padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2); color: var(--muted-foreground); font-size: .75rem; }
+      & legend { padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2); color: var(--muted-foreground); font-size: var(--text-xs); }
       & hr { margin: calc(var(--spacing) * 1) calc(var(--spacing) * -1); }
     }
   }

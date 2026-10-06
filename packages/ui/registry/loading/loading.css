@@ -2,7 +2,7 @@
   :where([data-skeleton]) {
     display: block;
     min-block-size: 1rem;
-    border-radius: calc(var(--radius) - 2px);
+    border-radius: calc(var(--radius) - 2px); corner-shape: var(--corner-shape);
     background: var(--muted);
     animation: nb-pulse 2s ease-in-out infinite;
   }

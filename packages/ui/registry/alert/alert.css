@@ -3,15 +3,15 @@
     display: grid;
     gap: calc(var(--spacing) * 0.5) calc(var(--spacing) * 3);
     padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius); corner-shape: var(--corner-shape);
     background: var(--card);
     color: var(--_tone, var(--card-foreground));
-    font-size: .875rem;
+    font-size: var(--text-sm);
 
     &:has(> svg) { grid-template-columns: 1rem 1fr; }
     & > svg { grid-row: span 2; inline-size: 1rem; block-size: 1rem; translate: 0 .2rem; }
-    & > :is(strong, h1, h2, h3, h4, h5, h6) { margin: 0; font-size: .875rem; font-weight: 500; }
+    & > :is(strong, h1, h2, h3, h4, h5, h6) { margin: 0; font-size: var(--text-sm); font-weight: var(--weight); }
     & > p { margin: 0; color: var(--_tone, var(--muted-foreground)); opacity: .9; }
   }
 }

@@ -5,6 +5,7 @@ const MAIN_NAV = [
   ['/docs/', 'Docs'],
   ['/docs/button/', 'Components'],
   ['/kitchen-sink/', 'Kitchen sink'],
+  ['/playground/', 'Playground'],
   ['/docs/registry/', 'Registry'],
 ];
 
@@ -22,7 +23,7 @@ const LOGO = `<svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"
 
 const current = (path, href) => (path === href ? ' aria-current="page"' : '');
 
-export function page({ path, title, description, body, modules = [] }) {
+export function page({ path, title, description, body, modules = [], styles = [] }) {
   const nav = MAIN_NAV.map(([href, label]) => {
     const active = href === '/docs/button/' ? path.startsWith('/docs/') && !GUIDE_PATHS.includes(path) : path === href;
     return `<a href="${href}"${active ? ' aria-current="page"' : ''}>${label}</a>`;
@@ -37,6 +38,7 @@ export function page({ path, title, description, body, modules = [] }) {
 <meta name="description" content="${esc(description)}">
 <link rel="icon" href="/favicon.svg">
 <link rel="stylesheet" href="/src/site.css">
+${styles.map((href) => `<link rel="stylesheet" href="${href}">`).join('')}
 <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 <script>document.documentElement.dataset.framework=localStorage.getItem("framework")||"html"</script>
 <script>addEventListener("pagereveal",(e)=>{if(e.viewTransition&&window.navigation?.activation?.navigationType==="traverse")e.viewTransition.types.add("back")})</script>

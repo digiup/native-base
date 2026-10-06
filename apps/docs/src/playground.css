@@ -1,0 +1,159 @@
+/* Playground: a two-column workbench. The panel edits variables; the stage is where they land. */
+[data-pg] { padding-block: 2.5rem 5rem; }
+[data-pg-head] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  margin-block-end: 2rem;
+  & h1 { margin-block-end: .5rem; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; letter-spacing: -.05em; }
+  & [data-lead] { max-inline-size: 58ch; margin: 0; }
+}
+[data-pg-tools] { gap: .75rem; }
+[data-pg-scheme] {
+  gap: .125rem;
+  padding: .25rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  & label { padding: .3rem .75rem; border-radius: 999px; font-size: .8125rem; font-weight: 500; cursor: pointer; }
+  & label:has(:checked) { background: var(--mark); color: var(--mark-ink); }
+  & input { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
+}
+
+[data-pg-layout] { display: grid; grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); gap: 2rem; align-items: start; }
+@media (width < 64rem) { [data-pg-layout] { grid-template-columns: minmax(0, 1fr); } }
+
+/* Panel */
+[data-pg-panel] {
+  position: sticky;
+  inset-block-start: 4.75rem;
+  display: grid;
+  gap: 2rem;
+  max-block-size: calc(100dvh - 5.75rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  background: var(--card);
+  scrollbar-width: thin;
+}
+@media (width < 64rem) { [data-pg-panel] { position: static; max-block-size: none; } }
+[data-pg-section] {
+  display: grid;
+  gap: 1rem;
+  & > header h2 { margin: 0 0 .25rem; font-size: 1.125rem; letter-spacing: -.02em; }
+  & > header p { margin: 0; color: var(--muted-foreground); font-size: .8125rem; }
+  & fieldset { gap: .875rem; padding-block-start: .75rem; border-block-start: 1px solid var(--border); }
+  & legend { margin: 0; color: var(--muted-foreground); font-size: .75rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  & legend[data-row] { display: flex; inline-size: 100%; }
+}
+[data-pg-chips] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .375rem;
+  & button { --_h: 1.75rem; --_px: .625rem; --_fs: .75rem; --_bg: var(--background); --_fg: var(--foreground); --_bd: var(--border); }
+  & button[aria-pressed=true] { --_bg: var(--mark); --_fg: var(--mark-ink); --_bd: transparent; }
+  & [data-saved] { display: inline-flex; }
+  & [data-saved] > :first-child { border-start-end-radius: 0; border-end-end-radius: 0; }
+  & [data-delete] { margin-inline-start: -1px; border-start-start-radius: 0; border-end-start-radius: 0; color: var(--muted-foreground); }
+  & [data-delete]:hover { --_fg: var(--destructive); }
+}
+[data-pg-note] { margin: -.25rem 0 0; & small { font-size: .75rem; } }
+[data-pg-save] { gap: .5rem; & input { flex: 1; min-inline-size: 0; block-size: 2rem; } & button { --_h: 2rem; } }
+
+/* One variable row: label with hint, the typed control, and the raw value underneath. */
+[data-pg-var] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .375rem .75rem;
+  font-size: .8125rem;
+  & > [data-pg-label] { grid-column: 1 / -1; }
+  & input[type=range] { grid-column: 1 / -1; }
+  & select { grid-column: 1 / -1; block-size: 2rem; font-size: .8125rem; }
+  & [data-raw] { grid-column: 1 / -1; block-size: 1.75rem; padding-inline: .5rem; font-family: var(--font-mono); font-size: .75rem; box-shadow: none; }
+}
+[data-pg-label] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .25rem .5rem;
+  font-weight: 500;
+  & code { padding: 0; background: none; font-size: .75rem; }
+  & output { margin-inline-start: auto; color: var(--muted-foreground); font-family: var(--font-mono); font-size: .75rem; font-weight: 400; }
+  & small { flex-basis: 100%; font-weight: 400; }
+}
+[data-pg-seed] { gap: 1rem; }
+[data-pg-seed] [data-pg-var] { display: grid; gap: .375rem; }
+[data-pg-imported] { margin: 0; }
+
+/* All colors: light and dark side by side. */
+[data-pg-all] {
+  border: 0;
+  & > summary { padding-block: .25rem; font-size: .8125rem; }
+  & > summary small { margin-inline-start: .375rem; }
+  & > p { margin: 0 0 .75rem; }
+  & h3 { grid-column: 1 / -1; margin: .75rem 0 .25rem; color: var(--muted-foreground); font-size: .6875rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+}
+[data-pg-colors] { display: grid; grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+[data-pg-colhead], [data-pg-color] { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .25rem .5rem; align-items: center; }
+[data-pg-colhead] { position: sticky; inset-block-start: 0; padding-block: .25rem; background: var(--card); color: var(--muted-foreground); font-size: .6875rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+[data-pg-colhead] > :first-child { display: none; }
+[data-pg-color] {
+  padding-block-start: .25rem;
+  & [data-pg-label] { grid-column: 1 / -1; display: flex; align-items: baseline; gap: .375rem; font-size: .75rem; }
+  & [data-pg-label] small { flex-basis: auto; font-size: .6875rem; }
+  & [data-reset] { --_h: 1.125rem; --_px: .25rem; --_fs: .6875rem; margin-inline-start: auto; }
+}
+[data-pg-swatch] {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+  min-inline-size: 0;
+  & input[type=color] { flex-shrink: 0; inline-size: 1.5rem; block-size: 1.5rem; padding: 1px; border-color: var(--border); border-radius: 4px; }
+  & input[type=color]::-webkit-color-swatch-wrapper { padding: 0; }
+  & input[type=color]::-webkit-color-swatch { border: 0; border-radius: 3px; }
+  & input[type=text] { min-inline-size: 0; block-size: 1.5rem; padding-inline: .375rem; font-family: var(--font-mono); font-size: .6875rem; box-shadow: none; }
+}
+
+/* Stage: one preview per scheme; the radio group hides the other. */
+[data-pg-stage] { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 1.5rem; }
+[data-pg]:has([name=pg-scheme][value=light]:checked) [data-pg-preview][data-theme=dark],
+[data-pg]:has([name=pg-scheme][value=dark]:checked) [data-pg-preview][data-theme=light] { display: none; }
+[data-pg]:has([name=pg-scheme]:not([value=both]):checked) [data-pg-stage] { grid-template-columns: minmax(0, 1fr); }
+
+/* Everything below here is the kit's own variables, scoped by the stage's inline style. */
+[data-pg-preview] {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  corner-shape: var(--corner-shape);
+  background: var(--background);
+  color: var(--foreground);
+  font: 400 var(--text-base)/var(--leading) var(--font-sans);
+}
+[data-pg-app] {
+  display: grid;
+  gap: calc(var(--spacing) * 6);
+  & > header [data-group] { gap: 0; }
+  & h2 { margin-block-end: .25em; }
+  & > div > p:last-child { margin: 0; }
+  & [data-row] > fieldset { border: 0; padding: 0; }
+  & table { font-size: var(--text-sm); }
+  & [data-tabs] > details > div { padding-block-end: calc(var(--spacing) * 2); }
+}
+
+/* Export */
+[data-pg-export] {
+  margin-block-start: 3rem;
+  & > header { margin-block-end: .25rem; }
+  & > header h2 { margin: 0; font-size: 1.5rem; letter-spacing: -.025em; }
+  & > p { max-inline-size: 68ch; color: var(--muted-foreground); }
+  & [data-tabs] > details > div { display: grid; gap: .75rem; padding-block-end: .5rem; }
+  & [data-code] { margin: 0; }
+  & pre { max-block-size: 28rem; }
+  & textarea { min-block-size: 8rem; font-family: var(--font-mono); font-size: .8125rem; }
+  & output { color: var(--muted-foreground); font-size: .875rem; }
+}
+[data-pg-include] label { font-size: .875rem; }
