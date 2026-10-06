@@ -1,8 +1,8 @@
 @layer nb.components {
   :where(table) { inline-size: 100%; border-collapse: collapse; font-size: .875rem; caption-side: bottom; }
-  :where(caption) { margin-block-start: 1rem; color: var(--muted-foreground); }
-  :where(th) { block-size: 2.5rem; padding: 0 .5rem; font-weight: 500; text-align: start; white-space: nowrap; }
-  :where(td) { padding: .5rem; }
+  :where(caption) { margin-block-start: calc(var(--spacing) * 4); color: var(--muted-foreground); }
+  :where(th) { block-size: calc(var(--spacing) * 10); padding: 0 calc(var(--spacing) * 2); font-weight: 500; text-align: start; white-space: nowrap; }
+  :where(td) { padding: calc(var(--spacing) * 2); }
   :where(tr) { border-block-end: 1px solid var(--border); transition: background-color var(--duration); }
   :where(tbody tr:last-child) { border-block-end: 0; }
   :where(tbody tr:hover, tr[aria-selected=true]) { background: color-mix(in oklch, var(--muted) 60%, transparent); }

@@ -1,8 +1,8 @@
 @layer nb.components {
   :where([data-alert]) {
     display: grid;
-    gap: .125rem .75rem;
-    padding: .75rem 1rem;
+    gap: calc(var(--spacing) * 0.5) calc(var(--spacing) * 3);
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--card);

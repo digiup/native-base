@@ -4,7 +4,7 @@
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: var(--slide, 100%);
-    gap: 1rem;
+    gap: calc(var(--spacing) * 4);
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
@@ -19,8 +19,8 @@
     &::scroll-button(*) {
       position: absolute;
       position-anchor: --nb-carousel;
-      inline-size: 2rem;
-      block-size: 2rem;
+      inline-size: calc(var(--spacing) * 8);
+      block-size: calc(var(--spacing) * 8);
       border: 1px solid var(--border);
       border-radius: 50%;
       background: var(--background);
@@ -33,11 +33,11 @@
     &::scroll-button(inline-start) { content: "‹" / "Previous"; position-area: center inline-start; translate: 50% 0; }
     &::scroll-button(inline-end) { content: "›" / "Next"; position-area: center inline-end; translate: -50% 0; }
 
-    &::scroll-marker-group { display: flex; justify-content: center; gap: .5rem; padding-block: .75rem; }
+    &::scroll-marker-group { display: flex; justify-content: center; gap: calc(var(--spacing) * 2); padding-block: calc(var(--spacing) * 3); }
     & > *::scroll-marker { content: ""; inline-size: .5rem; block-size: .5rem; border-radius: 50%; background: var(--border); cursor: pointer; transition: background-color var(--duration), inline-size var(--duration); }
     & > *::scroll-marker:target-current { inline-size: 1.25rem; border-radius: 999px; background: var(--primary); }
   }
   @supports not (scroll-marker-group: after) {
-    :where([data-carousel]) { padding-block-end: .5rem; scrollbar-width: thin; }
+    :where([data-carousel]) { padding-block-end: calc(var(--spacing) * 2); scrollbar-width: thin; }
   }
 }

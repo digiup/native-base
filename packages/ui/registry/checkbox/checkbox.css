@@ -26,6 +26,6 @@
     &::before { inline-size: .5rem; block-size: .5rem; border-radius: 50%; mask: none; background: var(--primary); }
     &:checked { background: var(--background); }
   }
-  label:has(> :is([type=checkbox], [type=radio])) { display: flex; align-items: center; gap: .5rem; font-weight: 400; cursor: pointer; }
-  fieldset:has(> label > [type=radio]) { gap: .75rem; }
+  label:has(> :is([type=checkbox], [type=radio])) { display: flex; align-items: center; gap: calc(var(--spacing) * 2); font-weight: 400; cursor: pointer; }
+  fieldset:has(> label > [type=radio]) { gap: calc(var(--spacing) * 3); }
 }

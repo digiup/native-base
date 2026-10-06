@@ -2,8 +2,8 @@
   :where(input:not([type=checkbox], [type=radio], [type=range], [type=color], [type=button], [type=submit], [type=reset], [type=image], [type=hidden]), textarea, select) {
     inline-size: 100%;
     min-inline-size: 0;
-    block-size: 2.25rem;
-    padding: 0 .75rem;
+    block-size: calc(var(--spacing) * 9);
+    padding: 0 calc(var(--spacing) * 3);
     border: 1px solid var(--input);
     border-radius: calc(var(--radius) - 2px);
     background: transparent;
@@ -19,14 +19,14 @@
     &:user-invalid:focus-visible, &[aria-invalid=true]:focus-visible { box-shadow: 0 0 0 3px color-mix(in oklch, var(--destructive) 25%, transparent); }
     &:disabled { opacity: .5; cursor: not-allowed; }
   }
-  :where(input[type=file]) { padding: 0; line-height: 2.1rem; &::file-selector-button { block-size: 100%; margin-inline-end: .75rem; border: 0; border-inline-end: 1px solid var(--input); border-radius: 0; background: var(--muted); color: var(--foreground); } }
-  :where(input[type=color]) { inline-size: 2.25rem; block-size: 2.25rem; padding: 2px; border: 1px solid var(--input); border-radius: calc(var(--radius) - 2px); background: transparent; }
+  :where(input[type=file]) { padding: 0; line-height: calc(var(--spacing) * 9 - 2px); &::file-selector-button { block-size: 100%; margin-inline-end: calc(var(--spacing) * 3); border: 0; border-inline-end: 1px solid var(--input); border-radius: 0; background: var(--muted); color: var(--foreground); } }
+  :where(input[type=color]) { inline-size: calc(var(--spacing) * 9); block-size: calc(var(--spacing) * 9); padding: 2px; border: 1px solid var(--input); border-radius: calc(var(--radius) - 2px); background: transparent; }
   :where(input[type=range]) { inline-size: 100%; margin: 0; }
-  :where(textarea) { block-size: auto; min-block-size: 4.5rem; padding-block: .5rem; field-sizing: content; resize: vertical; }
+  :where(textarea) { block-size: auto; min-block-size: calc(var(--spacing) * 18); padding-block: calc(var(--spacing) * 2); field-sizing: content; resize: vertical; }
 
   :where(label) {
     display: grid;
-    gap: .5rem;
+    gap: calc(var(--spacing) * 2);
     font-size: .875rem;
     font-weight: 500;
     & small { font-weight: 400; }
@@ -35,8 +35,8 @@
     &:has(:user-invalid) [data-error] { display: block; }
     &:has(:user-invalid) [data-hint] { display: none; }
   }
-  :where(fieldset) { display: grid; gap: 1rem; min-inline-size: 0; margin: 0; padding: 0; border: 0; }
-  :where(legend) { margin-block-end: .5rem; padding: 0; font-weight: 600; }
-  :where(form:not([data-row])) { display: grid; gap: 1rem; }
+  :where(fieldset) { display: grid; gap: calc(var(--spacing) * 4); min-inline-size: 0; margin: 0; padding: 0; border: 0; }
+  :where(legend) { margin-block-end: calc(var(--spacing) * 2); padding: 0; font-weight: 600; }
+  :where(form:not([data-row])) { display: grid; gap: calc(var(--spacing) * 4); }
   :where(search) { display: block; }
 }

@@ -151,6 +151,7 @@ export function theming(site) {
     ['--destructive, --success, --warning', 'Status colors for data-variant'],
     ['--border, --input, --ring', 'Lines, field borders, focus rings'],
     ['--radius', 'Base corner radius; components derive from it'],
+    ['--spacing', 'Base spacing unit; every padding, gap and control height is a multiple of it'],
     ['--font-sans, --font-mono', 'Font stacks'],
     ['--duration, --ease', 'Motion'],
   ];
@@ -164,6 +165,7 @@ export function theming(site) {
     <label>Hue <input type="range" min="0" max="360" value="265" name="hue"></label>
     <label>Chroma <input type="range" min="0" max="0.3" step="0.01" value="0.18" name="chroma"></label>
     <label>Radius <input type="range" min="0" max="1.25" step="0.125" value="0.625" name="radius"></label>
+    <label>Spacing <input type="range" min="0.15" max="0.35" step="0.025" value="0.25" name="spacing"></label>
     <fieldset data-row>
       <legend>Scheme</legend>
       <label><input type="radio" name="editor-scheme" value="light" checked> Light</label>
@@ -181,11 +183,20 @@ ${codeBlock(`:root {
   --primary: light-dark(oklch(.55 .18 265), oklch(.72 .18 265));
   --primary-foreground: oklch(.985 0 0);
   --radius: .625rem;
+  --spacing: .25rem;
 }`, 'css', { label: 'your.css' })}
 
 <h2 id="variables">Variables</h2>
 <table data-api><thead><tr><th>Variable</th><th>Used for</th></tr></thead>
 <tbody>${variables.map(([name, use]) => `<tr><td><code>${name}</code></td><td>${use}</td></tr>`).join('')}</tbody></table>
+
+<h2 id="spacing">Spacing</h2>
+<p>One unit, <code>--spacing</code>, sets the rhythm. Every padding, gap, margin and control height is a multiple of it, so a button, the dialog around it and the card inside it stay in proportion when you change it. Set it on <code>:root</code> for the whole page, or on any element for a denser or roomier subtree.</p>
+${codeBlock(`:root { --spacing: .3rem; }              /* roomier everywhere */
+[data-card][data-compact] { --spacing: .2rem; }  /* tighter in one place */
+
+/* Your own CSS can follow the same rhythm. */
+.panel { padding: calc(var(--spacing) * 6); }`, 'css')}
 
 <h2 id="shadcn-themes">Using a shadcn/ui theme</h2>
 <p>Paste the <code>:root</code> block as-is. shadcn themes put dark colors under <code>.dark</code>; rename that selector to <code>[data-theme=dark]</code>, or wrap it in <code>@media (prefers-color-scheme: dark)</code>.</p>
