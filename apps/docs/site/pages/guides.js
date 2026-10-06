@@ -1,5 +1,6 @@
 import { countTokens } from 'gpt-tokenizer';
 import { codeBlock, esc, kb } from '../html.js';
+import { STYLE_PRESETS, THEME_PRESETS, slug } from '@digiup/native-base/presets';
 import { docsPage } from '../layout.js';
 
 const firstPage = `<!doctype html>
@@ -79,6 +80,8 @@ export function registryGuide(site) {
     ['/r/index.json', 'Every item, without file contents'],
     ['/r/{name}.json', 'One item: metadata, API, examples and CSS source'],
     ['/r/{name}.css', 'One item’s minified CSS, ready for a link tag'],
+    ['/r/theme-{name}.json', 'A theme: colors for light and dark, plus the seed that generated them'],
+    ['/r/style-{name}.json', 'A style: spacing, radius, corner shape, borders, type and motion'],
     ['/native-base.css', 'Everything, minified'],
     ['/llms.txt', 'The markup API for language models'],
   ];
@@ -112,6 +115,48 @@ ${codeBlock(`{
   "registry": "{origin}/r"
 }`, 'json', { label: 'native-base.json' })}
 
+<h2 id="themes">Themes and styles</h2>
+<p>Every theme and style in the <a href="/playground/">playground</a> is a registry item too. A theme always lands in <code>theme.css</code> and a style in <code>style.css</code>, so adding another one swaps it instead of stacking. Both are unlayered <code>:root</code> blocks, so they win over the kit’s defaults.</p>
+<table data-api>
+  <thead><tr><th>Theme</th><th>Colors</th></tr></thead>
+  <tbody>${THEME_PRESETS.map((p) => `<tr><td><a href="/r/theme-${slug(p.name)}.css"><code>theme-${slug(p.name)}</code></a></td><td>${esc(p.note)}</td></tr>`).join('')}</tbody>
+</table>
+<table data-api>
+  <thead><tr><th>Style</th><th>Feel</th></tr></thead>
+  <tbody>${STYLE_PRESETS.map((p) => `<tr><td><a href="/r/style-${slug(p.name)}.css"><code>style-${slug(p.name)}</code></a></td><td>${esc(p.note)}</td></tr>`).join('')}</tbody>
+</table>
+<p><code>native-base theme</code> composes one of each, generates a theme from a hue, or takes a custom one straight from a playground link or an exported file.</p>
+${codeBlock(`# presets, from the registry
+npx native-base add theme-indigo style-mochi
+
+# the same, composed in one command
+npx native-base theme indigo --style mochi
+
+# generate colors from a hue, keep a preset style
+npx native-base theme --hue 200 --chroma .14 --tint .3 --style ledger
+
+# exactly what you built in the playground
+npx native-base theme "{origin}/playground/#s=…"
+
+# a shadcn/ui theme or a playground export, printed instead of written
+npx native-base theme ./brand.json --print > brand.css
+
+# start a project with both
+npx native-base init --theme rose --style hygge
+
+npx native-base list themes
+npx native-base view style-gatsby`, 'sh')}
+<p>Without the CLI, link the CSS straight from the registry, or import it from npm.</p>
+${codeBlock(`<link rel="stylesheet" href="{origin}/native-base.css">
+<link rel="stylesheet" href="{origin}/r/theme-indigo.css">
+<link rel="stylesheet" href="{origin}/r/style-mochi.css">`, 'html')}
+${codeBlock(`@import "@digiup/native-base/native-base.css";
+@import "@digiup/native-base/themes/indigo.css";
+@import "@digiup/native-base/styles/mochi.css";`, 'css')}
+${codeBlock(`import { THEME_PRESETS, findStyle, findTheme, styleFrom, themeFrom, toCSS } from '@digiup/native-base/presets';
+
+const css = toCSS({ theme: themeFrom(findTheme('indigo')), style: styleFrom(findStyle('mochi')) });`, 'js', { label: 'build-theme.js' })}
+
 <h2 id="shadcn">shadcn CLI</h2>
 <p>Items are universal <code>registry:item</code>s with explicit targets, so shadcn can install them by URL. Add the namespace to <code>components.json</code> to resolve dependencies by name.</p>
 ${codeBlock(`npx shadcn add {origin}/r/dialog.json`, 'sh')}
@@ -143,21 +188,38 @@ ${codeBlock(`{
 }
 
 export function theming(site) {
-  const variables = [
+  const colors = [
     ['--background, --foreground', 'Page surface and text'],
     ['--card, --popover (+ -foreground)', 'Raised surfaces'],
     ['--primary, --primary-foreground', 'Default buttons, badges, checked controls'],
     ['--secondary, --muted, --accent (+ -foreground)', 'Quiet surfaces and hover states'],
     ['--destructive, --success, --warning', 'Status colors for data-variant'],
     ['--border, --input, --ring', 'Lines, field borders, focus rings'],
+  ];
+  const styles = [
+    ['--spacing', 'The unit; every padding, gap and control height is a multiple of it'],
     ['--radius', 'Base corner radius; components derive from it'],
-    ['--spacing', 'Base spacing unit; every padding, gap and control height is a multiple of it'],
-    ['--font-sans, --font-mono', 'Font stacks'],
+    ['--corner-shape', 'round, squircle, superellipse(n), bevel, notch, scoop or square. Circles and pills stay round'],
+    ['--border-width', 'Boxes: buttons, fields, cards, overlays'],
+    ['--font-sans, --font-heading, --font-mono', 'Font stacks'],
+    ['--text-xs, --text-sm, --text-base, --text-lg', 'Type scale: hints, controls, body, dialog titles. Headings scale from --text-base'],
+    ['--leading, --tracking', 'Body line height, heading letter spacing'],
+    ['--weight, --weight-heading', 'Controls and labels, headings'],
+    ['--shadow, --shadow-lg', 'Fields and cards, overlays'],
     ['--duration, --ease', 'Motion'],
   ];
 
+
   const content = `<h1>Theming</h1>
 <p data-lead>Themes are CSS variables with shadcn/ui’s names. Colors use <code>light-dark()</code>, so one declaration covers both schemes, and everything is layered so your overrides never fight specificity.</p>
+
+<h2 id="two-halves">Themes and styles</h2>
+<p>The variables split in two. A <strong>theme</strong> is the colors. A <strong>style</strong> is everything else: spacing, radius, corner shape, borders, fonts, type scale, weights, shadows and motion. They are independent, so one brand theme can ship with a compact style in the app and an airy one on the marketing site. The <a href="/playground/">playground</a> edits both halves, previews light and dark side by side, and exports one <code>:root</code> block you can paste unlayered anywhere after native-base.</p>
+
+<h2 id="cli">From the command line</h2>
+<p>Every theme and style is in the registry. Pick one of each, or bring a custom one from the playground. <a href="/docs/registry/#themes">More on the registry</a>.</p>
+${codeBlock(`npx native-base theme indigo --style mochi
+npx native-base theme "{origin}/playground/#s=…"`, 'sh')}
 
 <h2 id="editor">Try it</h2>
 <div data-theme-editor>
@@ -186,9 +248,22 @@ ${codeBlock(`:root {
   --spacing: .25rem;
 }`, 'css', { label: 'your.css' })}
 
-<h2 id="variables">Variables</h2>
+<h2 id="variables">Theme variables</h2>
 <table data-api><thead><tr><th>Variable</th><th>Used for</th></tr></thead>
-<tbody>${variables.map(([name, use]) => `<tr><td><code>${name}</code></td><td>${use}</td></tr>`).join('')}</tbody></table>
+<tbody>${colors.map(([name, use]) => `<tr><td><code>${name}</code></td><td>${use}</td></tr>`).join('')}</tbody></table>
+
+<h2 id="style-variables">Style variables</h2>
+<p>None of these is a color. Every component reads them, so a style changes the whole kit at once: set <code>--spacing</code> and buttons, fields, cards and dialogs move together.</p>
+<table data-api><thead><tr><th>Variable</th><th>Used for</th></tr></thead>
+<tbody>${styles.map(([name, use]) => `<tr><td><code>${name}</code></td><td>${use}</td></tr>`).join('')}</tbody></table>
+${codeBlock(`/* A compact style: everything tighter, nothing recolored. */
+:root {
+  --spacing: .2rem;
+  --radius: .375rem;
+  --text-sm: .8125rem;
+  --leading: 1.45;
+  --duration: .12s;
+}`, 'css')}
 
 <h2 id="spacing">Spacing</h2>
 <p>One unit, <code>--spacing</code>, sets the rhythm. Every padding, gap, margin and control height is a multiple of it, so a button, the dialog around it and the card inside it stay in proportion when you change it. Set it on <code>:root</code> for the whole page, or on any element for a denser or roomier subtree.</p>

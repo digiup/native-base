@@ -7,7 +7,7 @@
     inline-size: 1rem;
     block-size: 1rem;
     margin: 0;
-    border: 1px solid var(--input);
+    border: var(--border-width) solid var(--input);
     border-radius: 4px;
     background: var(--background);
     box-shadow: var(--shadow);

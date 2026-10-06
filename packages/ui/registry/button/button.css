@@ -6,13 +6,13 @@
     gap: calc(var(--spacing) * 2);
     block-size: var(--_h, calc(var(--spacing) * 9));
     padding: 0 var(--_px, calc(var(--spacing) * 4));
-    border: 1px solid var(--_bd, transparent);
-    border-radius: calc(var(--radius) - 2px);
+    border: var(--border-width) solid var(--_bd, transparent);
+    border-radius: calc(var(--radius) - 2px); corner-shape: var(--corner-shape);
     background: var(--_bg, var(--primary));
     color: var(--_fg, var(--primary-foreground));
     font: inherit;
-    font-size: var(--_fs, .875rem);
-    font-weight: 500;
+    font-size: var(--_fs, var(--text-sm));
+    font-weight: var(--weight);
     line-height: 1;
     white-space: nowrap;
     text-decoration: none;
@@ -37,7 +37,8 @@
     & > * { border-radius: 0; }
     & > :first-child { border-start-start-radius: calc(var(--radius) - 2px); border-end-start-radius: calc(var(--radius) - 2px); }
     & > :last-child { border-start-end-radius: calc(var(--radius) - 2px); border-end-end-radius: calc(var(--radius) - 2px); }
-    & > * + * { margin-inline-start: -1px; }
+    & > :is(:first-child, :last-child) { corner-shape: var(--corner-shape); }
+    & > * + * { margin-inline-start: calc(-1 * var(--border-width)); }
     & > :focus-visible { z-index: 1; }
   }
 }

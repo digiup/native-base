@@ -4,12 +4,12 @@
     align-items: center;
     gap: calc(var(--spacing) * 1);
     padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
-    border: 1px solid var(--_bd, transparent);
-    border-radius: calc(var(--radius) - 4px);
+    border: var(--border-width) solid var(--_bd, transparent);
+    border-radius: calc(var(--radius) - 4px); corner-shape: var(--corner-shape);
     background: var(--_bg, var(--primary));
     color: var(--_fg, var(--primary-foreground));
-    font-size: .75rem;
-    font-weight: 500;
+    font-size: var(--text-xs);
+    font-weight: var(--weight);
     line-height: 1.35;
     white-space: nowrap;
     & svg { inline-size: .75rem; block-size: .75rem; }

@@ -13,13 +13,13 @@ A classless, registry-driven UI kit built on native HTML. Inspired by shadcn/ui'
 - **One hook per composite.** `data-card`, `data-tabs`, `data-toast`, … Variants are shared: `data-variant`, `data-size`.
 - **Platform features.** Invoker commands, popover + anchor positioning, customizable select, `details name`, `::details-content`, `:user-invalid`, `field-sizing`, `@starting-style`, scroll markers, cross-document view transitions.
 - **You always win.** Everything lives in `@layer nb.*`; unlayered CSS overrides it without specificity fights.
-- **shadcn/ui variable names.** Existing shadcn themes drop in.
+- **shadcn/ui variable names.** Existing shadcn themes drop in. Colors are the *theme*; spacing, radius, fonts, type scale, weights, shadows and motion are the *style* (including CSS corner-shape: squircle, bevel, notch, scoop). Compose either half with the other in the [playground](apps/docs/site/pages/playground.js).
 
 ## Repo
 
 ```
 packages/ui     @digiup/native-base: registry source, rolldown build, CLI
-apps/docs       landing page, docs, kitchen sink (Vite 8, real multi-page HTML)
+apps/docs       landing page, docs, kitchen sink, theme playground (Vite 8, real multi-page HTML)
 examples/*      the kit used from React, Vue, Svelte and Solid: no wrapper components
 ```
 
@@ -44,7 +44,10 @@ Each registry item is a folder: `packages/ui/registry/<name>/<name>.css` plus `e
 | `dist/r/<name>.css` | For `<link>` straight from a URL |
 | `dist/llms.txt` | The whole markup API for language models |
 | `dist/index.js` | `registry`, `getItem`, `resolve(names)`, `css(names)` |
-| `dist/cli.js` | `native-base init / add / list / view` |
+| `dist/themes/<name>.css`, `dist/styles/<name>.css` | Theme (colors) and style (spacing, shape, type, motion) presets |
+| `dist/r/theme-<name>.json`, `dist/r/style-<name>.json` | The same presets as registry items; they install to `theme.css` and `style.css` |
+| `dist/presets.js` | Theme generator, presets, CSS/JSON export and import, playground share links |
+| `dist/cli.js` | `native-base init / add / list / view / theme` |
 
 ## The docs
 

@@ -2,14 +2,14 @@
 @view-transition { navigation: auto; }
 
 @layer nb.transitions {
-  ::view-transition-group(*) { animation-duration: .25s; animation-timing-function: var(--ease); }
+  ::view-transition-group(*) { animation-duration: calc(var(--duration) * 1.4); animation-timing-function: var(--ease); }
 
   /* Keep the top-level page header still while the page underneath moves. */
   :root[data-transition] body > header { view-transition-name: nb-header; }
 
   :root[data-transition=slide] {
-    &::view-transition-old(root) { animation: .25s var(--ease) both nb-slide-out; }
-    &::view-transition-new(root) { animation: .25s var(--ease) both nb-slide-in; }
+    &::view-transition-old(root) { animation: calc(var(--duration) * 1.4) var(--ease) both nb-slide-out; }
+    &::view-transition-new(root) { animation: calc(var(--duration) * 1.4) var(--ease) both nb-slide-in; }
     &:active-view-transition-type(back)::view-transition-old(root) { animation-name: nb-slide-out-back; }
     &:active-view-transition-type(back)::view-transition-new(root) { animation-name: nb-slide-in-back; }
   }

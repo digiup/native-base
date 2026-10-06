@@ -14,9 +14,8 @@
   /* shadcn/ui variable names, so existing shadcn themes drop straight in. */
   :root {
     color-scheme: light dark;
-    --radius: .625rem;
-    /* Spacing rhythm: every padding, gap, margin and control height is a multiple of this. */
-    --spacing: .25rem;
+
+    /* Theme: colors. shadcn/ui variable names, so existing shadcn themes drop straight in. */
     --background: light-dark(oklch(1 0 0), oklch(.145 0 0));
     --foreground: light-dark(oklch(.145 0 0), oklch(.985 0 0));
     --card: light-dark(oklch(1 0 0), oklch(.205 0 0));
@@ -37,12 +36,28 @@
     --border: light-dark(oklch(.922 0 0), oklch(1 0 0 / 10%));
     --input: light-dark(oklch(.922 0 0), oklch(1 0 0 / 15%));
     --ring: light-dark(oklch(.708 0 0), oklch(.556 0 0));
+
+    /* Style: everything that isn't a color. A style sets these; a theme sets the colors above. */
+    --spacing: .25rem;                 /* The unit: every padding, gap, margin and control height is a multiple of it */
+    --radius: .625rem;                 /* Base corner radius; components derive from it */
+    --corner-shape: round;             /* round | squircle | superellipse(n) | bevel | notch | scoop | square */
+    --border-width: 1px;               /* Boxes: buttons, fields, cards, overlays */
     --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
     --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --font-heading: var(--font-sans);
+    --text-xs: .75rem;                 /* Badges, hints, tooltips */
+    --text-sm: .875rem;                /* Controls, labels, tables: the UI size */
+    --text-base: 1rem;                 /* Body copy, card titles */
+    --text-lg: 1.125rem;               /* Dialog titles */
+    --leading: 1.6;                    /* Body line height */
+    --tracking: -.02em;                /* Heading letter spacing */
+    --weight: 500;                     /* Controls, labels and titles */
+    --weight-heading: 600;
     --shadow: 0 1px 2px oklch(0 0 0 / 6%);
     --shadow-lg: 0 10px 38px -10px oklch(0 0 0 / 25%), 0 10px 20px -15px oklch(0 0 0 / 20%);
-    --ease: cubic-bezier(.2, .8, .2, 1);
     --duration: .18s;
+    --ease: cubic-bezier(.2, .8, .2, 1);
+
     --icon-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
   }
@@ -59,7 +74,7 @@
   [data-variant=destructive] { --_bg: var(--destructive); --_fg: oklch(.985 0 0); --_tone: var(--destructive); }
   [data-variant=success] { --_bg: var(--success); --_fg: oklch(.985 0 0); --_tone: var(--success); }
   [data-variant=warning] { --_bg: var(--warning); --_fg: oklch(.2 0 0); --_tone: var(--warning); }
-  [data-size=sm] { --_h: calc(var(--spacing) * 8); --_px: calc(var(--spacing) * 3); --_fs: .8125rem; }
-  [data-size=lg] { --_h: calc(var(--spacing) * 10); --_px: calc(var(--spacing) * 6); --_fs: .9375rem; }
+  [data-size=sm] { --_h: calc(var(--spacing) * 8); --_px: calc(var(--spacing) * 3); --_fs: calc(var(--text-sm) * .93); }
+  [data-size=lg] { --_h: calc(var(--spacing) * 10); --_px: calc(var(--spacing) * 6); --_fs: calc(var(--text-sm) * 1.07); }
   [data-size=icon] { --_px: 0; }
 }
