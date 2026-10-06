@@ -26,13 +26,13 @@
   :where(img, svg, video, canvas, picture) { max-inline-size: 100%; block-size: auto; }
   :where(img, video, canvas, picture) { display: block; }
   :where(small) { font-size: .875em; color: var(--muted-foreground); }
-  :where(ul, ol) { margin: 0 0 1em; padding-inline-start: 1.25rem; }
-  :where(hr) { margin: 1.5rem 0; border: 0; border-block-start: 1px solid var(--border); }
-  :where(blockquote) { margin: 0 0 1em; padding-inline-start: 1rem; border-inline-start: 2px solid var(--border); font-style: italic; }
+  :where(ul, ol) { margin: 0 0 1em; padding-inline-start: calc(var(--spacing) * 5); }
+  :where(hr) { margin: calc(var(--spacing) * 6) 0; border: 0; border-block-start: 1px solid var(--border); }
+  :where(blockquote) { margin: 0 0 1em; padding-inline-start: calc(var(--spacing) * 4); border-inline-start: 2px solid var(--border); font-style: italic; }
   :where(mark) { padding: 0 .15em; border-radius: 2px; background: light-dark(oklch(.95 .12 100), oklch(.45 .1 90)); color: inherit; }
   :where(code, kbd, samp, pre) { font-family: var(--font-mono); font-size: .875em; }
   :where(:not(pre) > code) { padding: .15em .35em; border-radius: calc(var(--radius) - 4px); background: var(--muted); }
-  :where(pre) { margin: 0 0 1em; padding: 1rem; overflow: auto; border-radius: var(--radius); background: var(--muted); line-height: 1.5; tab-size: 2; }
+  :where(pre) { margin: 0 0 1em; padding: calc(var(--spacing) * 4); overflow: auto; border-radius: var(--radius); background: var(--muted); line-height: 1.5; tab-size: 2; }
   :where(kbd) { padding: .1em .4em; border: 1px solid var(--border); border-block-end-width: 2px; border-radius: 4px; background: var(--background); }
   :where(:focus-visible) { outline: 2px solid var(--ring); outline-offset: 2px; }
   :where(::selection) { background: color-mix(in oklch, var(--primary) 20%, transparent); }

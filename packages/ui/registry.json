@@ -13,10 +13,11 @@
       "name": "tokens",
       "title": "Tokens",
       "category": "Foundations",
-      "description": "Theme variables (shadcn/ui names), automatic light/dark with light-dark(), and the shared variant vocabulary.",
+      "description": "Theme variables (shadcn/ui names), one spacing unit, automatic light/dark with light-dark(), and the shared variant vocabulary.",
       "native": ["light-dark()", "@property", "cascade layers", ":has()"],
       "api": {
         "--primary, --background, --radius, …": "shadcn/ui-compatible theme variables",
+        "--spacing": "Base unit (.25rem); every padding, gap and control height is a multiple of it",
         "data-theme": "light | dark on any subtree",
         "[name=color-scheme]": "Any select or radio group with this name switches the page theme, no JS",
         "data-variant": "secondary | outline | ghost | link | destructive | success | warning",

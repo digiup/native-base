@@ -2,8 +2,8 @@
   :where([data-badge]) {
     display: inline-flex;
     align-items: center;
-    gap: .25rem;
-    padding: .125rem .5rem;
+    gap: calc(var(--spacing) * 1);
+    padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
     border: 1px solid var(--_bd, transparent);
     border-radius: calc(var(--radius) - 4px);
     background: var(--_bg, var(--primary));

@@ -1,21 +1,21 @@
 @layer nb.components {
   :where(menu[popover]) {
     min-inline-size: 11rem;
-    margin-block: .25rem;
-    padding: .25rem;
+    margin-block: calc(var(--spacing) * 1);
+    padding: calc(var(--spacing) * 1);
     font-size: .875rem;
     list-style: none;
 
     & li { list-style: none; }
-    & li > small { display: block; padding: .375rem .5rem; color: var(--foreground); font-weight: 500; }
-    & hr { margin: .25rem -.25rem; }
+    & li > small { display: block; padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2); color: var(--foreground); font-weight: 500; }
+    & hr { margin: calc(var(--spacing) * 1) calc(var(--spacing) * -1); }
     & :where(button, a) {
       display: flex;
       inline-size: 100%;
       block-size: auto;
       justify-content: flex-start;
-      gap: .5rem;
-      padding: .375rem .5rem;
+      gap: calc(var(--spacing) * 2);
+      padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
       border: 0;
       border-radius: calc(var(--radius) - 4px);
       background: transparent;

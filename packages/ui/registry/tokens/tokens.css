@@ -15,6 +15,8 @@
   :root {
     color-scheme: light dark;
     --radius: .625rem;
+    /* Spacing rhythm: every padding, gap, margin and control height is a multiple of this. */
+    --spacing: .25rem;
     --background: light-dark(oklch(1 0 0), oklch(.145 0 0));
     --foreground: light-dark(oklch(.145 0 0), oklch(.985 0 0));
     --card: light-dark(oklch(1 0 0), oklch(.205 0 0));
@@ -57,7 +59,7 @@
   [data-variant=destructive] { --_bg: var(--destructive); --_fg: oklch(.985 0 0); --_tone: var(--destructive); }
   [data-variant=success] { --_bg: var(--success); --_fg: oklch(.985 0 0); --_tone: var(--success); }
   [data-variant=warning] { --_bg: var(--warning); --_fg: oklch(.2 0 0); --_tone: var(--warning); }
-  [data-size=sm] { --_h: 2rem; --_px: .75rem; --_fs: .8125rem; }
-  [data-size=lg] { --_h: 2.5rem; --_px: 1.5rem; --_fs: .9375rem; }
+  [data-size=sm] { --_h: calc(var(--spacing) * 8); --_px: calc(var(--spacing) * 3); --_fs: .8125rem; }
+  [data-size=lg] { --_h: calc(var(--spacing) * 10); --_px: calc(var(--spacing) * 6); --_fs: .9375rem; }
   [data-size=icon] { --_px: 0; }
 }

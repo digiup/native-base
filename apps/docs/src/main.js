@@ -28,11 +28,12 @@ if (editor) {
   const preview = editor.querySelector('[data-theme-preview]');
   const output = editor.nextElementSibling.querySelector('code');
   const apply = () => {
-    const { hue, chroma, radius } = Object.fromEntries(new FormData(editor.querySelector('form')));
+    const { hue, chroma, radius, spacing } = Object.fromEntries(new FormData(editor.querySelector('form')));
     const css = {
       '--primary': `light-dark(oklch(.55 ${chroma} ${hue}), oklch(.72 ${chroma} ${hue}))`,
       '--primary-foreground': 'oklch(.985 0 0)',
       '--radius': `${radius}rem`,
+      '--spacing': `${spacing}rem`,
     };
     for (const [name, value] of Object.entries(css)) preview.style.setProperty(name, value);
     output.textContent = `:root {\n${Object.entries(css).map(([name, value]) => `  ${name}: ${value};`).join('\n')}\n}`;

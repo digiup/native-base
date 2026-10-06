@@ -1,11 +1,11 @@
 @layer nb.components {
   :where(select) {
-    padding-inline-end: 2rem;
+    padding-inline-end: calc(var(--spacing) * 8);
     appearance: none;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right .6rem center / 1rem;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right calc(var(--spacing) * 2.5) center / 1rem;
     cursor: pointer;
   }
-  :where(select:is([multiple], [size])) { block-size: auto; padding: .25rem; background-image: none; }
+  :where(select:is([multiple], [size])) { block-size: auto; padding: calc(var(--spacing) * 1); background-image: none; }
 
   /* Customizable select: same markup, rich options, styled picker. Older browsers keep the native select above. */
   @supports (appearance: base-select) {
@@ -13,18 +13,18 @@
       &, &::picker(select) { appearance: base-select; }
       display: flex;
       align-items: center;
-      gap: .5rem;
-      padding-inline-end: .75rem;
+      gap: calc(var(--spacing) * 2);
+      padding-inline-end: calc(var(--spacing) * 3);
       background-image: none;
 
       &::picker-icon { content: ""; inline-size: 1rem; block-size: 1rem; margin-inline-start: auto; background: currentColor; mask: var(--icon-chevron) center / contain no-repeat; opacity: .5; transition: rotate var(--duration) var(--ease); }
       &:open::picker-icon { rotate: 180deg; }
       & > button { display: contents; color: inherit; font: inherit; }
-      & selectedcontent { display: flex; align-items: center; gap: .5rem; min-inline-size: 0; overflow: hidden; white-space: nowrap; }
+      & selectedcontent { display: flex; align-items: center; gap: calc(var(--spacing) * 2); min-inline-size: 0; overflow: hidden; white-space: nowrap; }
 
       &::picker(select) {
-        margin-block: .25rem;
-        padding: .25rem;
+        margin-block: calc(var(--spacing) * 1);
+        padding: calc(var(--spacing) * 1);
         border: 1px solid var(--border);
         border-radius: var(--radius);
         background: var(--popover);
@@ -40,16 +40,16 @@
       & option {
         display: flex;
         align-items: center;
-        gap: .5rem;
-        padding: .375rem .5rem;
+        gap: calc(var(--spacing) * 2);
+        padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
         border-radius: calc(var(--radius) - 4px);
         font-size: .875rem;
         outline: 0;
         &:is(:hover, :focus-visible) { background: var(--accent); color: var(--accent-foreground); }
         &::checkmark { order: 1; content: ""; inline-size: 1rem; block-size: 1rem; margin-inline-start: auto; background: currentColor; mask: var(--icon-check) center / .875rem no-repeat; }
       }
-      & legend { padding: .375rem .5rem; color: var(--muted-foreground); font-size: .75rem; }
-      & hr { margin: .25rem -.25rem; }
+      & legend { padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2); color: var(--muted-foreground); font-size: .75rem; }
+      & hr { margin: calc(var(--spacing) * 1) calc(var(--spacing) * -1); }
     }
   }
 }

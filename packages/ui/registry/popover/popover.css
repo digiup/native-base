@@ -1,7 +1,7 @@
 @layer nb.components {
   :where([popover]) {
-    max-inline-size: min(24rem, calc(100vw - 1rem));
-    padding: 1rem;
+    max-inline-size: min(24rem, calc(100vw - var(--spacing) * 4));
+    padding: calc(var(--spacing) * 4);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--popover);
@@ -16,12 +16,12 @@
 
   /* Anchored to its invoker (popovertarget / commandfor / interestfor) with no ids or JS. */
   @supports (position-area: block-end) {
-    :where([popover]:not([data-toast])) { inset: auto; margin: .25rem 0; position-area: block-end span-inline-end; position-try-fallbacks: flip-block, flip-inline; }
-    :where([popover=hint]) { margin: .375rem 0; position-area: block-start; }
+    :where([popover]:not([data-toast])) { inset: auto; margin: calc(var(--spacing) * 1) 0; position-area: block-end span-inline-end; position-try-fallbacks: flip-block, flip-inline; }
+    :where([popover=hint]) { margin: calc(var(--spacing) * 1.5) 0; position-area: block-start; }
   }
 
   :where([popover=hint]) {
-    padding: .375rem .625rem;
+    padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5);
     border: 0;
     border-radius: calc(var(--radius) - 4px);
     background: var(--primary);
