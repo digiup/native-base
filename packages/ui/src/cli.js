@@ -1,5 +1,5 @@
 import { existsSync } from 'node:fs';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs, styleText } from 'node:util';
@@ -20,6 +20,7 @@ import {
 const CONFIG_FILE = 'native-base.json';
 const NAMESPACE = '@native-base/';
 const BUNDLED_REGISTRY = new URL('./r/', import.meta.url).href;
+const BUNDLED_SKILL = new URL('./skill/native-base/', import.meta.url);
 
 const HELP = `
 native-base: add native HTML components to your project
@@ -30,6 +31,7 @@ Usage
   native-base list [kind]          Show the registry: components, themes or styles
   native-base view <item>          Print an item's markup API and examples, or a theme's CSS
   native-base theme [theme]        Write theme.css (colors) and style.css (spacing, shape, type)
+  native-base skill                Install the native-base agent skill for coding agents
 
 Items can be names (button), namespaced (@native-base/button) or URLs to any registry item JSON.
 Themes and styles are items too: native-base add theme-indigo style-mochi
@@ -44,8 +46,10 @@ Theme and style sources
   native-base theme ./brand.json --print > brand.css
   native-base init --theme rose --style hygge
 
+  native-base skill --out .agents/skills
+
 Options
-  -o, --out <dir>        Where CSS files go (default: src/styles/native-base)
+  -o, --out <dir>        Where CSS files go (default: src/styles/native-base), or skills for skill
   -r, --registry <url>   Registry base URL (default: the registry bundled with this package)
   -f, --force            Overwrite files that already exist
   -t, --theme <source>   Theme for init and theme
@@ -268,6 +272,15 @@ async function theme(source = flags.theme) {
   console.log(`\nImport once: ${styleText('cyan', `@import "./${relative('.', indexPath)}";`)}`);
 }
 
+/** The skill ships inside the package, so it always describes the version that is installed. */
+async function skill() {
+  const path = join(flags.out ?? '.claude/skills', 'native-base');
+  if (existsSync(path) && !flags.force) throw new Error(`${relative('.', path)} exists. Pass --force to replace it`);
+  await rm(path, { recursive: true, force: true });
+  await cp(BUNDLED_SKILL, path, { recursive: true });
+  console.log(`${styleText('green', 'add')}   ${relative('.', path)}/SKILL.md ${styleText('dim', '(and references/)')}`);
+}
+
 async function init() {
   if (!existsSync(CONFIG_FILE)) {
     const initial = { out: outDir, ...(flags.registry && { registry: flags.registry }) };
@@ -282,7 +295,7 @@ async function init() {
 }
 
 const [command, ...args] = positionals;
-const commands = { add: () => add(args), list: () => list(args[0]), view: () => view(args[0]), theme: () => theme(args[0] ?? flags.theme), init };
+const commands = { add: () => add(args), list: () => list(args[0]), view: () => view(args[0]), theme: () => theme(args[0] ?? flags.theme), skill, init };
 
 try {
   if (flags.help || !commands[command]) console.log(HELP);

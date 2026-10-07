@@ -40,6 +40,7 @@ export interface Registry {
   items: RegistryItem[];
   bundle: { size: Size };
   llms: { tokens: number; size: Size };
+  llmsFull: { tokens: number; size: Size };
 }
 
 export declare const registry: Registry;

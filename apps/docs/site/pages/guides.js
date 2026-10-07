@@ -62,7 +62,10 @@ ${codeBlock(firstPage, 'html', { tokens: countTokens(firstPage) })}
 <ol data-rules>${registry.rules.map((rule) => `<li>${esc(rule)}</li>`).join('')}</ol>
 
 <h2 id="ai">Using it with AI</h2>
-<p>The whole markup API, with one example per component, is in <a href="/llms.txt">/llms.txt</a>: ${registry.llms.tokens.toLocaleString('en')} tokens. Paste it into a system prompt or your agent’s rules file. <code>npx native-base view dialog</code> prints any single component’s API in the terminal.</p>
+<p>Coding agents (Claude Code, Codex, Cursor and others that read <code>SKILL.md</code>) can install the native-base skill. It carries the rules, every component’s markup API and examples, and the theming tokens for the version you installed, and loads only when the agent works on UI.</p>
+${codeBlock(`npx native-base skill                       # .claude/skills/native-base
+npx native-base skill --out .agents/skills  # anywhere else`, 'sh')}
+<p>For a system prompt or a rules file, use <a href="/llms.txt">/llms.txt</a>: the whole markup API with one example per component, in ${registry.llms.tokens.toLocaleString('en')} tokens. <a href="/llms-full.txt">/llms-full.txt</a> adds every example plus setup, CLI, theming and framework notes (${registry.llmsFull.tokens.toLocaleString('en')} tokens). <code>npx native-base view dialog</code> prints any single component’s API in the terminal.</p>
 
 <h2 id="support">Browser support</h2>
 <p>Everything is progressive enhancement. Where a feature is missing, you get working native behavior:</p>
@@ -84,6 +87,8 @@ export function registryGuide(site) {
     ['/r/style-{name}.json', 'A style: spacing, radius, corner shape, borders, type and motion'],
     ['/native-base.css', 'Everything, minified'],
     ['/llms.txt', 'The markup API for language models'],
+    ['/llms-full.txt', 'Every example, plus setup, CLI, theming and framework notes'],
+    ['/skill/native-base/SKILL.md', 'The agent skill; its references sit beside it in references/'],
   ];
 
   const content = `<h1>Registry & CLI</h1>

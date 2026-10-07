@@ -63,7 +63,7 @@ ${modules.map((src) => `<script type="module" src="${src}"></script>`).join('')}
 ${body}
 <footer data-wrap data-footer>
   <p>MIT licensed. Built with native-base, Vite and rolldown. This site loads no web fonts and no client router. Only the framework guides load a framework, to run their demos.</p>
-  <p><a href="/llms.txt">llms.txt</a> · <a href="/r/index.json">registry</a> · <a href="/native-base.css">native-base.css</a></p>
+  <p><a href="/llms.txt">llms.txt</a> · <a href="/llms-full.txt">llms-full.txt</a> · <a href="/skill/native-base/SKILL.md">agent skill</a> · <a href="/r/index.json">registry</a> · <a href="/native-base.css">native-base.css</a></p>
 </footer>
 </body>
 </html>`;

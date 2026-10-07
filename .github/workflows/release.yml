@@ -1,0 +1,83 @@
+# Every merge to main that touches the library publishes @digiup/native-base.
+# The bump level comes from the merged PR (see .github/scripts/next-version.mjs);
+# the release commit and tag are pushed back to main after npm accepts the package.
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths: ['packages/ui/**']
+  workflow_dispatch:
+    inputs:
+      level:
+        description: Version bump
+        type: choice
+        options: [patch, minor, major]
+        default: patch
+
+# One release at a time, and never cancel one halfway through a publish.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write # push the release commit, tag and GitHub release
+  id-token: write # npm trusted publishing and provenance
+  pull-requests: read
+
+jobs:
+  release:
+    if: ${{ !startsWith(github.event.head_commit.message, 'Release v') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - run: pnpm install --frozen-lockfile
+
+      - id: next
+        run: node .github/scripts/next-version.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          LEVEL: ${{ inputs.level }}
+
+      - if: steps.next.outputs.version
+        working-directory: packages/ui
+        run: npm version "${{ steps.next.outputs.version }}" --no-git-tag-version
+
+      # The version is baked into dist (llms files, the skill), so build after bumping.
+      - if: steps.next.outputs.version
+        run: pnpm build
+
+      - if: steps.next.outputs.version
+        working-directory: packages/ui
+        run: npm publish --access public --provenance
+        env:
+          # Empty unless you add an NPM_TOKEN secret; trusted publishing needs no token.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - if: steps.next.outputs.version
+        env:
+          VERSION: ${{ steps.next.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Release v$VERSION"
+          git pull --rebase origin main
+          git tag "v$VERSION"
+          git push origin HEAD:main "v$VERSION"
+
+      - if: steps.next.outputs.version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.next.outputs.version }}
+        run: gh release create "v$VERSION" --title "v$VERSION" --generate-notes
