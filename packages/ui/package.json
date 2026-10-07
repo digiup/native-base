@@ -22,6 +22,8 @@
     "./styles/*": "./dist/styles/*",
     "./r/*": "./dist/r/*",
     "./llms.txt": "./dist/llms.txt",
+    "./llms-full.txt": "./dist/llms-full.txt",
+    "./skill/*": "./dist/skill/native-base/*",
     "./package.json": "./package.json"
   },
   "files": [

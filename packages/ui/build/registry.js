@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { brotliCompressSync, gzipSync } from 'node:zlib';
 import { countTokens } from 'gpt-tokenizer';
 import { transform } from 'lightningcss';
-import { STYLE_PRESETS, THEME_PRESETS, slug, styleFrom, themeFrom, toCSS } from '../src/presets.js';
+import { STYLE_PRESETS, STYLE_VARS, THEME_PRESETS, THEME_VARS, slug, styleFrom, themeFrom, toCSS } from '../src/presets.js';
 
 const root = new URL('../', import.meta.url);
 const VIRTUAL_ID = 'virtual:native-base/registry';
@@ -30,21 +30,110 @@ function parseExamples(html) {
   return examples;
 }
 
-function renderLlms(pkg, manifest, items, presets) {
-  const lines = [`# ${manifest.name}`, '', `> ${pkg.description}`, '', ...manifest.rules.map((rule) => `- ${rule}`), ''];
-  for (const item of items) {
-    lines.push(`## ${item.title}`, '', item.description, '');
-    for (const [hook, meaning] of Object.entries(item.api)) lines.push(`- \`${hook}\`: ${meaning}`);
-    const example = item.examples[0];
-    if (example) lines.push('', '```html', example.code, '```');
-    lines.push('');
+/** One component as Markdown: what it is, its markup API, then its examples. */
+function renderItem(item, { allExamples }) {
+  const lines = [`## ${item.title}`, '', item.description, ''];
+  if (allExamples) {
+    const meta = [`Registry name: \`${item.name}\``];
+    if (item.registryDependencies.length) meta.push(`needs ${item.registryDependencies.map((dep) => `\`${dep}\``).join(', ')}`);
+    if (item.native.length) meta.push(`uses ${item.native.join(', ')}`);
+    lines.push(`${meta.join('; ')}.`, '');
   }
-  lines.push('## Themes and styles', '', 'A theme sets the colors; a style sets spacing, radius, corner shape, borders, type and motion. Pick one of each: `npx native-base theme <theme> --style <style>`, or `npx native-base add theme-<name> style-<name>`.', '');
+  for (const [hook, meaning] of Object.entries(item.api)) lines.push(`- \`${hook}\`: ${meaning}`);
+  for (const example of allExamples ? item.examples : item.examples.slice(0, 1)) {
+    if (allExamples) lines.push('', `### ${example.title}`);
+    lines.push('', '```html', example.code, '```');
+  }
+  lines.push('');
+  return lines;
+}
+
+function renderPresets(presets) {
+  const lines = [];
   for (const kind of ['theme', 'style']) {
     for (const preset of presets.filter((p) => p.kind === kind)) lines.push(`- \`${preset.name}\`: ${preset.description}`);
     lines.push('');
   }
+  return lines;
+}
+
+const header = (pkg, manifest) => [`# ${manifest.name}`, '', `> ${pkg.description}`, '', ...manifest.rules.map((rule) => `- ${rule}`), ''];
+
+function renderLlms(pkg, manifest, items, presets) {
+  const lines = header(pkg, manifest);
+  for (const item of items) lines.push(...renderItem(item, { allExamples: false }));
+  lines.push('## Themes and styles', '', 'A theme sets the colors; a style sets spacing, radius, corner shape, borders, type and motion. Pick one of each: `npx native-base theme <theme> --style <style>`, or `npx native-base add theme-<name> style-<name>`.', '');
+  lines.push(...renderPresets(presets));
+  lines.push('## Optional', '', '- [llms-full.txt](/llms-full.txt): every example of every component, plus install, CLI, theming and framework notes', '');
   return lines.join('\n');
+}
+
+/** Install, CLI and framework notes: the parts of the docs site an agent needs to set a project up. */
+const SETUP = `## Setup
+
+Pick one:
+
+- Link it: \`<link rel="stylesheet" href="https://unpkg.com/@digiup/native-base/dist/native-base.css">\`
+- npm: \`npm i @digiup/native-base\`, then \`@import "@digiup/native-base/native-base.css";\` once in the app's entry CSS or JS. Per-component files live at \`@digiup/native-base/components/<name>.css\`; import each one's dependencies first.
+- Own the source: \`npx native-base init\` writes native-base.json and copies tokens + base; \`npx native-base add dialog tabs\` copies more, dependencies first, and keeps an index.css in cascade order. Import that index.css once.
+
+Next.js: import it in app/layout.js. Nuxt: add it to \`css\` in nuxt.config.ts. SvelteKit: the root +layout.svelte. SolidStart: app.tsx.
+
+## CLI
+
+- \`npx native-base list [components|themes|styles]\`: the registry
+- \`npx native-base view <name>\`: one item's markup API and every example
+- \`npx native-base add <name...>\`: copy items into the project (\`--force\` overwrites)
+- \`npx native-base theme <theme> --style <style>\`: write theme.css and style.css. Also \`--hue 0-360 --chroma 0-0.3 --tint 0-1\` to generate a theme, a playground share link, or a shadcn/ui theme file.
+- \`npx native-base skill\`: install the native-base agent skill into .claude/skills
+
+## Frameworks
+
+There is nothing to wrap. Vue and Svelte templates take the HTML as written. JSX needs only its usual renames: React uses \`className\`, \`htmlFor\`, \`popoverTarget\`, \`defaultValue\`/\`defaultChecked\` and a style object; Solid keeps HTML spelling. In JSX, write valueless data attributes and \`popover\` as \`=""\` (\`data-card=""\`, \`popover=""\`), because \`{true}\` is dropped or becomes "true". \`commandfor\` and \`command\` stay lowercase.
+
+Keep open/closed state in the browser. Use invoker commands for overlays; when a dialog's contents depend on data, keep the data in state and call \`showModal()\` through a ref. \`<form method="dialog">\` closes it and its \`close\` event exposes the clicked button's value as \`dialog.returnValue\`. For server-side validation errors, call \`input.setCustomValidity(message)\` so \`<small data-error>\` shows.
+`;
+
+function renderLlmsFull(pkg, manifest, items, presets) {
+  const lines = header(pkg, manifest);
+  lines.push(SETUP);
+  for (const item of items) lines.push(...renderItem(item, { allExamples: true }));
+  lines.push(renderThemes(presets));
+  return lines.join('\n');
+}
+
+function renderThemes(presets) {
+  const lines = [
+    '## Themes and styles',
+    '',
+    'Colors are the theme; every other token is the style. Each half is an unlayered `:root` block, so it overrides the kit. Pick one of each with `npx native-base theme <theme> --style <style>` (writes theme.css and style.css), or `npx native-base add theme-<name> style-<name>`. A theme always replaces theme.css and a style replaces style.css. Existing shadcn/ui themes work as they are.',
+    '',
+    '### Theme variables (light and dark)',
+    '',
+    ...THEME_VARS.map(([name, label]) => `- \`${name}\`: ${label}`),
+    '',
+    '### Style variables',
+    '',
+    ...STYLE_VARS.map(({ name, label, hint }) => `- \`${name}\`: ${label}${hint ? `. ${hint}` : ''}`),
+    '',
+    '### Presets',
+    '',
+    ...renderPresets(presets),
+  ];
+  return lines.join('\n');
+}
+
+/** The agent skill: a hand-written SKILL.md plus generated references, so the API it carries matches this build. */
+function renderSkill(pkg, items, presets) {
+  const components = [`# native-base ${pkg.version} components`, '', 'Every component: description, registry name, dependencies, markup API and all examples. Find one with its `## Title` heading.', ''];
+  for (const item of items) components.push(...renderItem(item, { allExamples: true }));
+  return {
+    'references/components.md': components.join('\n'),
+    'references/setup.md': `# native-base ${pkg.version} setup\n\n${SETUP}`,
+    'references/theming.md': `# native-base ${pkg.version} theming\n\n${renderThemes(presets)
+      .replace(/^## Themes and styles\n\n/, '')
+      .replace(/^### /gm, '## ')}`,
+  };
 }
 
 /** Registry item in the shadcn "universal item" shape, so `npx shadcn add <url>` works too. */
@@ -161,6 +250,12 @@ export function nativeBaseRegistry() {
       const bundle = minify(this, 'native-base.css', items.map((item) => item.source).join('\n'));
       const presets = presetItems();
       const llms = renderLlms(pkg, manifest, items, presets);
+      const llmsFull = renderLlmsFull(pkg, manifest, items, presets);
+      const skillTemplate = await read(this, 'skill/SKILL.md');
+      const skill = {
+        'SKILL.md': skillTemplate.replace('{{rules}}', manifest.rules.map((rule) => `- ${rule}`).join('\n')),
+        ...renderSkill(pkg, items, presets),
+      };
 
       registry = {
         name: manifest.name,
@@ -170,6 +265,8 @@ export function nativeBaseRegistry() {
         items,
         bundle: { css: bundle, size: sizes(bundle) },
         llms: { text: llms, tokens: countTokens(llms), size: sizes(llms) },
+        llmsFull: { text: llmsFull, tokens: countTokens(llmsFull), size: sizes(llmsFull) },
+        skill,
         presets,
       };
     },
@@ -180,8 +277,13 @@ export function nativeBaseRegistry() {
 
     load(id) {
       if (id !== RESOLVED_ID) return;
-      const { bundle, llms, presets, ...rest } = registry;
-      const data = { ...rest, bundle: { size: bundle.size }, llms: { tokens: llms.tokens, size: llms.size } };
+      const { bundle, llms, llmsFull, skill, presets, ...rest } = registry;
+      const data = {
+        ...rest,
+        bundle: { size: bundle.size },
+        llms: { tokens: llms.tokens, size: llms.size },
+        llmsFull: { tokens: llmsFull.tokens, size: llmsFull.size },
+      };
       return `export default ${JSON.stringify(data)};`;
     },
 
@@ -190,6 +292,8 @@ export function nativeBaseRegistry() {
 
       emit('native-base.css', registry.bundle.css);
       emit('llms.txt', registry.llms.text);
+      emit('llms-full.txt', registry.llmsFull.text);
+      for (const [path, text] of Object.entries(registry.skill)) emit(`skill/native-base/${path}`, text);
       emit('index.d.ts', await read(this, 'src/index.d.ts'));
       emit(
         'r/index.json',

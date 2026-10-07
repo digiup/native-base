@@ -42,12 +42,14 @@ Each registry item is a folder: `packages/ui/registry/<name>/<name>.css` plus `e
 | `dist/components/<name>.css` | One item, minified |
 | `dist/r/index.json`, `dist/r/<name>.json` | shadcn-compatible registry items (`registry:item`) with source |
 | `dist/r/<name>.css` | For `<link>` straight from a URL |
-| `dist/llms.txt` | The whole markup API for language models |
+| `dist/llms.txt` | The whole markup API for language models, one example per component |
+| `dist/llms-full.txt` | Every example, plus setup, CLI, theming and framework notes |
+| `dist/skill/native-base/` | Agent skill: `skill/SKILL.md` with the registry's rules filled in, plus generated `references/` |
 | `dist/index.js` | `registry`, `getItem`, `resolve(names)`, `css(names)` |
 | `dist/themes/<name>.css`, `dist/styles/<name>.css` | Theme (colors) and style (spacing, shape, type, motion) presets |
 | `dist/r/theme-<name>.json`, `dist/r/style-<name>.json` | The same presets as registry items; they install to `theme.css` and `style.css` |
 | `dist/presets.js` | Theme generator, presets, CSS/JSON export and import, playground share links |
-| `dist/cli.js` | `native-base init / add / list / view / theme` |
+| `dist/cli.js` | `native-base init / add / list / view / theme / skill` |
 
 ## The docs
 
