@@ -50,9 +50,11 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           LEVEL: ${{ inputs.level }}
 
+      # Not `npm version`: it reads the root `workspaces` field and chokes on the
+      # pnpm-only `workspace:*` dependencies in the docs and examples.
       - if: steps.next.outputs.version
         working-directory: packages/ui
-        run: npm version "${{ steps.next.outputs.version }}" --no-git-tag-version
+        run: npm pkg set version="${{ steps.next.outputs.version }}"
 
       # The version is baked into dist (llms files, the skill), so build after bumping.
       - if: steps.next.outputs.version
@@ -81,3 +83,16 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           VERSION: ${{ steps.next.outputs.version }}
         run: gh release create "v$VERSION" --title "v$VERSION" --generate-notes
+
+      # Vercel already built the merged commit, before the bump, so the docs hero
+      # still shows the old version. Rebuild main, which is now the release commit.
+      # A deploy hook does it whether or not Vercel deploys the bot's push itself.
+      - if: steps.next.outputs.version
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$VERCEL_DEPLOY_HOOK" ]; then
+            echo "::warning::No VERCEL_DEPLOY_HOOK secret; the docs site may still show the old version."
+            exit 0
+          fi
+          curl --fail --silent --show-error -X POST "$VERCEL_DEPLOY_HOOK"
