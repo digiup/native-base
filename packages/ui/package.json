@@ -3,6 +3,11 @@
   "version": "0.1.2",
   "description": "A drop-in, classless, registry-driven UI kit built on native HTML. No Tailwind, no runtime, minimal tokens.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digiup/native-base.git",
+    "directory": "packages/ui"
+  },
   "type": "module",
   "bin": {
     "native-base": "./dist/cli.js"

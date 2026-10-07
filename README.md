@@ -51,6 +51,19 @@ Each registry item is a folder: `packages/ui/registry/<name>/<name>.css` plus `e
 | `dist/presets.js` | Theme generator, presets, CSS/JSON export and import, playground share links |
 | `dist/cli.js` | `native-base init / add / list / view / theme / skill` |
 
+## Releasing
+
+Merging a pull request that touches `packages/ui` publishes `@digiup/native-base` to npm, then pushes a `Release vX.Y.Z` commit, a tag and a GitHub release ([`release.yml`](.github/workflows/release.yml)). The PR decides the bump:
+
+| PR | Bump |
+| --- | --- |
+| Label `major`, `minor`, `patch` or `no release` | That, overriding the title |
+| Title `feat!: …`, `fix!: …` or containing `BREAKING CHANGE` | major |
+| Title `feat: …` or `feat(scope): …` | minor |
+| Anything else | patch |
+
+Docs-only merges publish nothing. To release by hand, run the workflow from the Actions tab and pick a level.
+
 ## The docs
 
 `apps/docs/site/plugin.js` renders every route to a real HTML document (in dev through middleware, in build as virtual HTML inputs), so navigation uses cross-document view transitions instead of a client router. It also serves the library's registry at `/r/*`, `/native-base.css` and `/llms.txt`.
