@@ -127,6 +127,14 @@
   & nav small { color: var(--foreground); font-size: .8125rem; font-weight: 600; }
   & nav a { color: var(--muted-foreground); text-decoration: none; transition: color var(--duration); }
   & nav a:hover { color: var(--foreground); }
+  & nav button { padding: 0; border: 0; background: none; color: var(--muted-foreground); font: inherit; text-align: start; cursor: pointer; transition: color var(--duration); }
+  & nav button:hover { color: var(--foreground); }
+}
+
+/* Cookie consent: the library's toast, held open until the visitor picks. */
+[data-consent] {
+  z-index: 40;
+  & > div { display: flex; gap: .5rem; margin-block-start: .5rem; }
 }
 @media (width < 52rem) {
   [data-site-footer] > div { grid-template-columns: repeat(2, minmax(0, 1fr)); }

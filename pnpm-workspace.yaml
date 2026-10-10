@@ -2,3 +2,5 @@ packages:
   - packages/*
   - apps/*
   - examples/*
+allowBuilds:
+  core-js: false # postinstall only prints a funding banner

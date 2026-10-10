@@ -48,6 +48,15 @@ function searchDialog(registry) {
 </dialog>`;
 }
 
+/** Asks before analytics loads. main.js shows it, and only when a PostHog key is configured. */
+function consentBanner() {
+  return `<section popover="manual" id="consent" data-toast data-consent aria-label="Cookie consent">
+  <strong>Can we count your visit?</strong>
+  <p>We use PostHog to see which pages get read. It stores an ID in your browser, so it stays off unless you accept.</p>
+  <div><button type="button" data-consent-choice="granted" data-size="sm">Accept</button><button type="button" data-consent-choice="denied" data-variant="outline" data-size="sm">Decline</button></div>
+</section>`;
+}
+
 export function page({ site, path, title, description, body, modules = [], styles = [] }) {
   const nav = SECTIONS.map(([href, label, active]) => `<a href="${href}"${active(path) ? ' aria-current="page"' : ''}>${label}</a>`).join('');
 
@@ -85,6 +94,7 @@ ${modules.map((src) => `<script type="module" src="${src}"></script>`).join('')}
 </header>
 ${body}
 ${searchDialog(site.registry)}
+${consentBanner()}
 <footer data-site-footer>
   <div data-wrap>
     <div>
@@ -94,7 +104,7 @@ ${searchDialog(site.registry)}
     <nav aria-label="Docs"><small>Docs</small><a href="/docs/">Getting started</a><a href="/docs/theming/">Theming</a><a href="/docs/registry/">Registry & CLI</a><a href="/playground/">Playground</a></nav>
     <nav aria-label="Library"><small>Library</small><a href="/docs/components/">Components</a><a href="/blocks/">Blocks</a><a href="/templates/">Templates</a><a href="/kitchen-sink/">Kitchen sink</a></nav>
     <nav aria-label="For agents"><small>For agents</small><a href="/llms.txt">llms.txt</a><a href="/llms-full.txt">llms-full.txt</a><a href="/skill/native-base/SKILL.md">Agent skill</a><a href="/r/index.json">Registry JSON</a></nav>
-    <nav aria-label="Get it"><small>Get it</small><a href="https://www.npmjs.com/package/@digiup/native-base">npm</a><a href="https://github.com/digiup/native-base">GitHub</a></nav>
+    <nav aria-label="Get it"><small>Get it</small><a href="https://www.npmjs.com/package/@digiup/native-base">npm</a><a href="https://github.com/digiup/native-base">GitHub</a><button type="button" data-consent-open hidden>Cookie settings</button></nav>
   </div>
 </footer>
 </body>

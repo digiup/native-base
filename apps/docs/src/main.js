@@ -23,6 +23,34 @@ document.querySelector('select[name=color-scheme]')?.addEventListener('change', 
   localStorage.setItem('color-scheme', event.target.value);
 });
 
+// Analytics waits for consent. Without a VITE_POSTHOG_KEY at build time there is nothing to consent to, so no banner.
+const consent = document.querySelector('[data-consent]');
+const posthogKey = import.meta.env.VITE_POSTHOG_KEY;
+if (consent && posthogKey) {
+  const config = { key: posthogKey, host: import.meta.env.VITE_POSTHOG_HOST || 'https://us.i.posthog.com' };
+  let analytics;
+  const start = () => (analytics ??= import('./analytics.js')).then((module) => module.start(config));
+  // A page prerendered by the speculation rules counts once the visitor actually opens it.
+  const startWhenVisible = () => (document.prerendering ? document.addEventListener('prerenderingchange', start, { once: true }) : start());
+
+  const choice = localStorage.getItem('analytics-consent');
+  if (choice === 'granted') startWhenVisible();
+  else if (!choice) consent.showPopover();
+
+  consent.addEventListener('click', (event) => {
+    const value = event.target.closest('[data-consent-choice]')?.dataset.consentChoice;
+    if (!value) return;
+    localStorage.setItem('analytics-consent', value);
+    consent.hidePopover();
+    if (value === 'granted') start();
+    else analytics?.then((module) => module.stop());
+  });
+
+  const reopen = document.querySelector('[data-consent-open]');
+  reopen.hidden = false;
+  reopen.addEventListener('click', () => consent.togglePopover(true));
+}
+
 const editor = document.querySelector('[data-theme-editor]');
 if (editor) {
   const preview = editor.querySelector('[data-theme-preview]');
