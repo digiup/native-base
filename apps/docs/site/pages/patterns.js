@@ -21,7 +21,6 @@ export function preview(pattern, kind) {
 <title>${esc(pattern.title)} · native-base ${kind}</title>
 <meta name="description" content="${esc(pattern.description)}">
 <link rel="icon" href="/favicon.svg">
-<link rel="stylesheet" href="/native-base.css">
 <script type="module" src="/src/preview.js"></script>
 </head>
 <body>

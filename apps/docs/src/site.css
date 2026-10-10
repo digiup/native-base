@@ -549,6 +549,7 @@
     & s { text-decoration-color: var(--mark); text-decoration-thickness: .08em; }
   }
   & [data-lead] { max-inline-size: 46ch; margin: 0; font-size: clamp(1.0625rem, 1.6vw, 1.3rem); }
+  & > [data-pill] + [data-kicker] { margin-block-start: -.75rem; font-variant-numeric: tabular-nums; }
 }
 [data-pill] {
   display: inline-flex;

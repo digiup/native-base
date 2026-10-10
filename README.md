@@ -43,7 +43,6 @@ Blocks and templates are plain HTML built from those items, with no CSS of their
 | `dist/native-base.css` | Everything, minified |
 | `dist/components/<name>.css` | One item, minified |
 | `dist/r/index.json`, `dist/r/<name>.json` | shadcn-compatible registry items (`registry:item`) with source |
-| `dist/r/<name>.css` | For `<link>` straight from a URL |
 | `dist/llms.txt` | The whole markup API for language models, one example per component |
 | `dist/llms-full.txt` | Every example, plus setup, CLI, theming and framework notes |
 | `dist/skill/native-base/` | Agent skill: `skill/SKILL.md` with the registry's rules filled in, plus generated `references/` (components, blocks and templates, setup, theming) |
@@ -69,10 +68,10 @@ Docs-only merges publish nothing. To release by hand, run the workflow from the 
 
 ## The docs
 
-`apps/docs/site/plugin.js` renders every route to a real HTML document (in dev through middleware, in build as virtual HTML inputs), so navigation uses cross-document view transitions instead of a client router. It also serves the library's registry at `/r/*`, `/native-base.css` and `/llms.txt`.
+`apps/docs/site/plugin.js` renders every route to a real HTML document (in dev through middleware, in build as virtual HTML inputs), so navigation uses cross-document view transitions instead of a client router. It also serves the library's registry JSON at `/r/*`, `/llms.txt` and the agent skill. It serves no stylesheets: the CSS is installed from npm or copied by the CLI.
 
 Every component example can be shown as HTML, React, Vue, Svelte or Solid: `site/translate.js` converts the registry's HTML, and the picker in each code bar is one radio group plus CSS, so the whole site follows one choice. `pnpm --filter @native-base/docs check` renders every generated React example and compares it with the HTML it came from, and compiles the Solid, Vue and Svelte versions.
 
-`/blocks/` and `/templates/` show every block and template in an iframe that loads only `native-base.css` (each also has its own page at `/blocks/<name>/` and `/templates/<name>/`). The Theme and Style pickers above them write to `localStorage`, and every frame restyles through the `storage` event. On a block, the Preview/Code switch is the kit's own tabs, and the width presets are a segmented control.
+`/blocks/` and `/templates/` show every block and template in an iframe that loads only the kit's own CSS (each also has its own page at `/blocks/<name>/` and `/templates/<name>/`). The Theme and Style pickers above them write to `localStorage`, and every frame restyles through the `storage` event. On a block, the Preview/Code switch is the kit's own tabs, and the width presets are a segmented control.
 
 The four framework guides (`/docs/react/`, `/docs/vue/`, `/docs/svelte/`, `/docs/solid/`) read their demo components off disk and mount them on the page, so the code shown is the code running. They are the only pages that load a framework.

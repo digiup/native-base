@@ -8,9 +8,10 @@ const require = createRequire(import.meta.url);
 const libEntry = require.resolve('@digiup/native-base');
 const libDist = dirname(libEntry);
 
-// Files the library build produces that the site serves verbatim: the registry over plain GET.
-const PASSTHROUGH = /^\/(native-base\.css|llms(-full)?\.txt|r\/[\w-]+\.(json|css)|skill\/native-base\/(references\/)?[\w-]+\.md)$/;
-const TYPES = { '.css': 'text/css', '.json': 'application/json', '.txt': 'text/plain; charset=utf-8', '.md': 'text/markdown; charset=utf-8' };
+// Files the library build produces that the site serves verbatim: the registry JSON, llms.txt and the skill.
+// No stylesheets: the CSS is installed from npm or copied by the CLI, never linked from this site.
+const PASSTHROUGH = /^\/(llms(-full)?\.txt|r\/[\w-]+\.json|skill\/native-base\/(references\/)?[\w-]+\.md)$/;
+const TYPES = { '.json': 'application/json', '.txt': 'text/plain; charset=utf-8', '.md': 'text/markdown; charset=utf-8' };
 
 /** Fresh import of the built library, so `rolldown --watch` output shows up without restarting Vite. */
 async function loadSite() {
@@ -88,14 +89,11 @@ export function nativeBaseSite() {
 
     generateBundle() {
       const emit = (fileName) => this.emitFile({ type: 'asset', fileName, source: readFileSync(join(libDist, fileName)) });
-      emit('native-base.css');
       emit('llms.txt');
       emit('llms-full.txt');
       for (const file of ['SKILL.md', 'references/components.md', 'references/patterns.md', 'references/setup.md', 'references/theming.md']) emit(`skill/native-base/${file}`);
       for (const item of JSON.parse(readFileSync(join(libDist, 'r/index.json'), 'utf8')).items) {
         emit(`r/${item.name}.json`);
-        // Blocks and templates are HTML only.
-        if (existsSync(join(libDist, `r/${item.name}.css`))) emit(`r/${item.name}.css`);
       }
       emit('r/index.json');
     },

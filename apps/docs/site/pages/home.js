@@ -72,8 +72,8 @@ const features = [
 ];
 
 const install = [
-  ['Everything, one tag', '<link rel="stylesheet" href="{origin}/native-base.css">', 'html'],
-  ['Just what you use, from npm', '@import "@digiup/native-base/components/dialog.css";', 'css'],
+  ['Everything, from npm', 'npm i @digiup/native-base', 'sh'],
+  ['Import it once', '@import "@digiup/native-base/native-base.css";', 'css'],
   ['Own the source', 'npx native-base add dialog select', 'sh'],
   ['A whole section', 'npx native-base add block-hero-centered', 'sh'],
 ];
@@ -260,6 +260,7 @@ export default function home(site) {
 <section data-home-hero data-theme="dark">
   <div data-wrap data-hero-copy>
     <a href="/blocks/" data-pill><span data-badge>New</span> ${registry.blocks.length} blocks and ${registry.templates.length} full-page templates ${ICONS.arrow}</a>
+    <p data-kicker>${registry.items.length} components on native HTML · v${registry.version}</p>
     <h1>Write <code>&lt;button&gt;</code>.<br>Skip the <s>${classCount}&nbsp;classes</s>.</h1>
     <p data-lead>native-base styles the HTML you already know. No utility classes, no runtime, no Tailwind. Your AI reads less, writes less, and ships the same interface.</p>
     <div data-row data-cta>
@@ -359,7 +360,7 @@ export default function home(site) {
   <div data-wrap data-home-split>
     <header>
       <h2>Own the code, shadcn-style.</h2>
-      <p>Every component, block and template is a registry item: JSON and CSS over plain GET. Link it, import it, or copy the source into your project and make it yours.</p>
+      <p>Every component, block and template is a registry item. Import the package, or copy the source into your project and make it yours.</p>
       <a href="/docs/registry/" data-variant="outline">Registry and CLI docs</a>
     </header>
     <dl data-install>

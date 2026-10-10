@@ -132,7 +132,6 @@ const SETUP = `## Setup
 
 Pick one:
 
-- Link it: \`<link rel="stylesheet" href="https://unpkg.com/@digiup/native-base/dist/native-base.css">\`
 - npm: \`npm i @digiup/native-base\`, then \`@import "@digiup/native-base/native-base.css";\` once in the app's entry CSS or JS. Per-component files live at \`@digiup/native-base/components/<name>.css\`; import each one's dependencies first.
 - Own the source: \`npx native-base init\` writes native-base.json and copies tokens + base; \`npx native-base add dialog tabs\` copies more, dependencies first, and keeps an index.css in cascade order. Import that index.css once.
 
@@ -441,12 +440,10 @@ export function nativeBaseRegistry() {
       );
       for (const item of registry.items) {
         emit(`components/${item.name}.css`, item.css);
-        emit(`r/${item.name}.css`, item.css);
         emit(`r/${item.name}.json`, JSON.stringify(toRegistryItem(item, true), null, 2));
       }
       for (const preset of registry.presets) {
         emit(`${preset.kind}s/${preset.name.slice(preset.kind.length + 1)}.css`, preset.css);
-        emit(`r/${preset.name}.css`, preset.css);
         emit(`r/${preset.name}.json`, JSON.stringify(toPresetItem(preset, true), null, 2));
       }
       for (const [kind, list] of [['block', registry.blocks], ['template', registry.templates]]) {

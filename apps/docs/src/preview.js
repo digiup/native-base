@@ -1,6 +1,7 @@
-// Block and template previews load only native-base.css. This applies the theme, style and color
+// Block and template previews load only native-base.css (bundled here, not linked). This applies the theme, style and color
 // scheme picked anywhere on the site: every preview listens to the same localStorage keys, so changing
 // them in a gallery restyles every frame at once (the storage event reaches same-origin iframes).
+import '@digiup/native-base/native-base.css';
 import { STYLE_PRESETS, THEME_PRESETS, findStyle, findTheme, styleFrom, themeFrom, toCSS } from '@digiup/native-base/presets';
 
 const sheet = document.createElement('style');

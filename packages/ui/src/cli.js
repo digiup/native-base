@@ -293,7 +293,7 @@ async function theme(source = flags.theme) {
     imports.add(`@import "./${name}";`);
   }
   await writeFile(indexPath, `${[...imports].join('\n')}\n`);
-  if (!existsSync(join(outDir, 'tokens.css'))) console.log(`\n${styleText('yellow', 'note')}  No tokens.css in ${outDir} yet. Run native-base init, or link native-base.css first.`);
+  if (!existsSync(join(outDir, 'tokens.css'))) console.log(`\n${styleText('yellow', 'note')}  No tokens.css in ${outDir} yet. Run native-base init, or import @digiup/native-base/native-base.css first.`);
   console.log(`\nImport once: ${styleText('cyan', `@import "./${relative('.', indexPath)}";`)}`);
 }
 
