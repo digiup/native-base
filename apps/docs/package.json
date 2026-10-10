@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@digiup/native-base": "workspace:*",
+    "posthog-js": "^1.438.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "solid-js": "^1.9.15",
