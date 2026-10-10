@@ -17,7 +17,7 @@ export interface Example {
 export interface RegistryItem {
   name: string;
   title: string;
-  category: 'Foundations' | 'Forms' | 'Display' | 'Overlays' | 'Disclosure';
+  category: 'Foundations' | 'Forms' | 'Display' | 'Overlays' | 'Navigation' | 'Disclosure' | 'Sections';
   description: string;
   registryDependencies: string[];
   /** Markup hooks and what they do. */
@@ -32,12 +32,27 @@ export interface RegistryItem {
   size: Size;
 }
 
+/** A block (one section) or template (a whole page): plain HTML built from registry items. */
+export interface Pattern {
+  name: string;
+  title: string;
+  description: string;
+  /** Blocks only: Hero, Pricing, Dashboard, … */
+  category?: string;
+  code: string;
+  tokens: number;
+  /** Registry items the markup uses, in cascade order. */
+  uses: string[];
+}
+
 export interface Registry {
   name: string;
   version: string;
   description: string;
   rules: string[];
   items: RegistryItem[];
+  blocks: Pattern[];
+  templates: Pattern[];
   bundle: { size: Size };
   llms: { tokens: number; size: Size };
   llmsFull: { tokens: number; size: Size };

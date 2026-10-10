@@ -1,0 +1,457 @@
+<header data-navbar="sticky">
+  <a href="#" aria-label="Ferry home">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0"/><path d="M4 16 6 9h12l2 7"/><path d="M12 9V3l5 3-5 3"/></svg>
+    Ferry
+  </a>
+  <nav popover id="landing-menu" aria-label="Main">
+    <a href="#features">Product</a>
+    <a href="#workflow">Workflow</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#customers">Customers</a>
+    <a href="#faq">Docs</a>
+  </nav>
+  <button popovertarget="landing-menu" aria-label="Open menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <div>
+    <a href="#" data-variant="ghost">Sign in</a>
+    <a href="#pricing" data-variant="primary">Start free</a>
+  </div>
+</header>
+
+<main>
+  <section data-section="hero">
+    <header>
+      <span data-badge data-variant="outline">New · Edge functions in 34 regions</span>
+      <h1>Every pull request, live in forty seconds</h1>
+      <p>Ferry builds each branch into a production-grade preview, runs your checks on it and promotes it worldwide with one click. No YAML, no waiting on CI.</p>
+      <div data-row>
+        <a href="#pricing" data-variant="primary" data-size="lg">Start deploying free</a>
+        <a href="#workflow" data-variant="outline" data-size="lg">See how it works</a>
+      </div>
+    </header>
+
+    <div data-frame="ferry.app/acme/storefront">
+      <div data-stack>
+        <div data-row="between">
+          <div data-row>
+            <strong>acme/storefront</strong>
+            <span data-badge data-variant="success">Production</span>
+          </div>
+          <div data-row>
+            <button data-variant="outline" data-size="sm">View logs</button>
+            <button data-size="sm">Promote preview</button>
+          </div>
+        </div>
+        <div data-grid style="--min: 11rem">
+          <div data-card data-stat><small>Deploys this week</small><strong>1,284</strong><span data-trend="up">12%</span></div>
+          <div data-card data-stat><small>Build cache hits</small><strong>96.2%</strong><span data-trend="up">3.1%</span></div>
+          <div data-card data-stat><small>Median build</small><strong>38s</strong><span data-trend="down" data-variant="success">47%</span></div>
+        </div>
+        <div data-grid style="--min: 20rem">
+          <article data-card>
+            <header><h3>Deployments per day</h3><p>Last 10 days</p></header>
+            <ul data-chart style="--max: 240; --height: 8rem" aria-label="Deployments per day">
+              <li style="--v: 120" data-tooltip="120"><span>M</span></li>
+              <li style="--v: 168" data-tooltip="168"><span>T</span></li>
+              <li style="--v: 141" data-tooltip="141"><span>W</span></li>
+              <li style="--v: 190" data-tooltip="190"><span>T</span></li>
+              <li style="--v: 172" data-tooltip="172"><span>F</span></li>
+              <li style="--v: 64" data-tooltip="64"><span>S</span></li>
+              <li style="--v: 48" data-tooltip="48"><span>S</span></li>
+              <li style="--v: 156" data-tooltip="156"><span>M</span></li>
+              <li style="--v: 203" data-tooltip="203"><span>T</span></li>
+              <li style="--v: 226" data-tooltip="226" aria-current="true"><span>W</span></li>
+            </ul>
+          </article>
+          <article data-card>
+            <header><h3>Recent deployments</h3><p>Main and open pull requests</p></header>
+            <div style="overflow-x: auto">
+              <table>
+                <thead><tr><th>Branch</th><th>Status</th><th data-numeric>Build</th></tr></thead>
+                <tbody>
+                  <tr><td><code>main</code></td><td><span data-badge data-variant="success">Ready</span></td><td data-numeric>36s</td></tr>
+                  <tr><td><code>checkout-v2</code></td><td><span data-badge data-variant="secondary">Building</span></td><td data-numeric>—</td></tr>
+                  <tr><td><code>fix/cart-tax</code></td><td><span data-badge data-variant="success">Ready</span></td><td data-numeric>41s</td></tr>
+                  <tr><td><code>search-rank</code></td><td><span data-badge data-variant="destructive">Failed</span></td><td data-numeric>12s</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-section aria-label="Customers">
+    <header><small>Trusted by 4,000 engineering teams</small></header>
+    <div data-marquee>
+      <ul>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 10 18H2z"/></svg> Polaris</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg> Kitebase</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4l16 16V4"/></svg> Northwind</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg> Halcyon</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/></svg> Lumen</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z"/></svg> Quartzly</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4"/></svg> Orbital</li>
+      </ul>
+      <ul aria-hidden="true">
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 10 18H2z"/></svg> Polaris</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg> Kitebase</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4l16 16V4"/></svg> Northwind</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg> Halcyon</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/></svg> Lumen</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z"/></svg> Quartzly</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4"/></svg> Orbital</li>
+      </ul>
+    </div>
+  </section>
+
+  <section data-section data-tone="muted" id="features">
+    <header>
+      <small>Platform</small>
+      <h2>Everything between git push and production</h2>
+      <p>One platform for builds, previews, checks and rollouts, tuned so the fast path is the default.</p>
+    </header>
+    <div data-grid style="--min: 20rem">
+      <article data-card>
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+        <header><h3>A preview per branch</h3><p>Every push gets its own URL with production data shapes, ready before the reviewer opens the diff.</p></header>
+      </article>
+      <article data-card>
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+        <header><h3>Incremental builds</h3><p>A content-addressed cache shared across your team means most builds only compile what changed.</p></header>
+      </article>
+      <article data-card>
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <header><h3>34 edge regions</h3><p>Static assets and functions run next to your users, with automatic failover between regions.</p></header>
+      </article>
+      <article data-card>
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        <header><h3>Instant rollback</h3><p>Every deployment stays warm for 30 days. Roll back in under a second, without a rebuild.</p></header>
+      </article>
+      <article data-card>
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        <header><h3>Protected previews</h3><p>Single sign-on in front of every preview, with share links that expire when the branch merges.</p></header>
+      </article>
+      <article data-card>
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+        <header><h3>Real-user metrics</h3><p>Core Web Vitals per deployment, so a slow commit shows up in review instead of in support tickets.</p></header>
+      </article>
+    </div>
+  </section>
+
+  <section data-section id="workflow">
+    <header>
+      <small>Workflow</small>
+      <h2>Built for the way reviews actually happen</h2>
+      <p>Checks, comments and approvals live on the preview itself, so nobody has to pull a branch to see it.</p>
+    </header>
+    <div data-grid style="--min: 22rem">
+      <article data-card>
+        <header><h3>Pipeline</h3><p>Pull request #1482 · checkout-v2</p></header>
+        <ol data-steps>
+          <li><strong>Build</strong><small>36s</small></li>
+          <li><strong>Checks</strong><small>212 passed</small></li>
+          <li aria-current="step"><strong>Review</strong><small>2 of 3</small></li>
+          <li><strong>Promote</strong><small>Waiting</small></li>
+        </ol>
+        <pre><code>$ ferry deploy --prebuilt
+✓ Uploaded 418 files (2.4 MB) in 3.1s
+✓ Preview ready https://checkout-v2.acme.ferry.app</code></pre>
+      </article>
+      <div data-stack>
+        <article data-card>
+          <header><h3>Reviewers</h3><p>Leave comments right on the preview.</p></header>
+          <div data-row="between">
+            <div data-group>
+              <span data-avatar>JK</span>
+              <span data-avatar>AL</span>
+              <span data-avatar>TS</span>
+              <span data-avatar>+4</span>
+            </div>
+            <span data-badge data-variant="warning">1 change requested</span>
+          </div>
+        </article>
+        <article data-card>
+          <header><h3>Bundle budget</h3><p>Main entry · 182 kB of 250 kB</p></header>
+          <meter value="182" min="0" max="250" low="200" high="230" optimum="100">182 kB</meter>
+        </article>
+      </div>
+    </div>
+    <div data-grid style="--min: 18rem">
+      <article data-card>
+        <header><h3>Environment</h3><p>Synced from your secrets manager.</p></header>
+        <label><input type="checkbox" role="switch" checked> Seed preview database</label>
+        <label><input type="checkbox" role="switch" checked> Mirror production traffic</label>
+        <label><input type="checkbox" role="switch"> Expose to search engines</label>
+      </article>
+      <article data-card>
+        <header><h3>Notifications</h3><p>Where Ferry tells you a preview is ready.</p></header>
+        <div data-alert data-variant="success">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <strong>Preview ready</strong>
+          <p>checkout-v2 built in 36s.</p>
+        </div>
+        <div data-alert data-variant="destructive">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+          <strong>Checks failed</strong>
+          <p>search-rank: 3 of 212 tests failed.</p>
+        </div>
+      </article>
+      <article data-card>
+        <header><h3>Regions</h3><p>Traffic share over the last hour.</p></header>
+        <ul data-chart="bars" style="--max: 100" aria-label="Traffic by region">
+          <li style="--v: 46"><span>Frankfurt</span> <data value="46">46%</data></li>
+          <li style="--v: 31"><span>Virginia</span> <data value="31">31%</data></li>
+          <li style="--v: 15"><span>Tokyo</span> <data value="15">15%</data></li>
+          <li style="--v: 8"><span>São Paulo</span> <data value="8">8%</data></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section data-section data-tone="muted">
+    <div data-split>
+      <header>
+        <small>Observability</small>
+        <h2>See what each commit did to real users</h2>
+        <p>Ferry tags every request with the deployment that served it. Compare error rates and Web Vitals between two commits without leaving the pull request.</p>
+        <div data-row><a href="#" data-variant="outline">Read about deployment metrics</a></div>
+      </header>
+      <div data-frame="ferry.app/acme/storefront/metrics">
+        <div data-stack>
+          <div data-grid style="--min: 8rem">
+            <div data-stat><small>Largest paint</small><strong>1.4s</strong><span data-trend="down" data-variant="success">0.3s</span><p>vs main</p></div>
+            <div data-stat><small>Error rate</small><strong>0.02%</strong><span data-trend="down" data-variant="success">41%</span><p>vs main</p></div>
+          </div>
+          <ul data-chart style="--max: 2.4; --height: 7rem" aria-label="Largest contentful paint by hour">
+            <li style="--v: 2.1"><span>09</span></li>
+            <li style="--v: 2.2"><span>10</span></li>
+            <li style="--v: 1.9"><span>11</span></li>
+            <li style="--v: 1.5" aria-current="true"><span>12</span></li>
+            <li style="--v: 1.4"><span>13</span></li>
+            <li style="--v: 1.4"><span>14</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-split="reverse">
+      <header>
+        <small>Rollouts</small>
+        <h2>Promote gradually, roll back instantly</h2>
+        <p>Send 5% of traffic to a new deployment, watch it, then widen the rollout. If anything regresses, Ferry rolls back on its own and tells you why.</p>
+        <div data-row><a href="#" data-variant="outline">Read about rollouts</a></div>
+      </header>
+      <div data-frame="ferry.app/acme/storefront/rollouts">
+        <ol data-timeline>
+          <li data-variant="success"><time datetime="2026-10-09T14:02">14:02</time><strong>Rollout complete</strong><p>dpl_8f3a serves 100% of traffic.</p></li>
+          <li><time datetime="2026-10-09T13:40">13:40</time><strong>Widened to 50%</strong><p>Error rate within budget for 20 minutes.</p></li>
+          <li data-variant="warning"><time datetime="2026-10-09T13:12">13:12</time><strong>Latency spike in Tokyo</strong><p>Paused automatically, resumed after cache warm-up.</p></li>
+          <li><time datetime="2026-10-09T13:00">13:00</time><strong>Canary at 5%</strong><p>Started by Maya Okafor.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section data-section data-theme="dark" aria-label="Ferry in numbers">
+    <div data-grid style="--min: 9rem; --gap: calc(var(--spacing) * 8)">
+      <div data-stat><small>Deployments a day</small><strong>2.1M</strong><p>Across 4,000 teams</p></div>
+      <div data-stat><small>Median build</small><strong>41s</strong><p>For a 200-page Next.js app</p></div>
+      <div data-stat><small>Edge regions</small><strong>34</strong><p>On six continents</p></div>
+      <div data-stat><small>Uptime SLA</small><strong>99.99%</strong><p>On every paid plan</p></div>
+    </div>
+  </section>
+
+  <section data-section id="pricing">
+    <header>
+      <small>Pricing</small>
+      <h2>Free for side projects, fair for teams</h2>
+      <p>Every plan includes unlimited previews. Switch or cancel at any time.</p>
+    </header>
+    <div data-tabs>
+      <details name="landing-billing" open>
+        <summary>Monthly</summary>
+        <div data-grid>
+          <article data-card>
+            <header><h3>Hobby</h3><p>For side projects and prototypes.</p></header>
+            <div data-stat><strong>$0</strong><p>Free forever</p></div>
+            <ul>
+              <li>1 member, 3 projects</li>
+              <li>100 GB bandwidth</li>
+              <li>Community support</li>
+            </ul>
+            <footer><a href="#" data-variant="outline">Start for free</a></footer>
+          </article>
+          <article data-card data-theme="dark">
+            <header><h3>Team <span data-badge>Most popular</span></h3><p>For product teams shipping every day.</p></header>
+            <div data-stat><strong>$24</strong><p>Per member, per month</p></div>
+            <ul>
+              <li>Unlimited projects and previews</li>
+              <li>1 TB bandwidth, shared cache</li>
+              <li>Gradual rollouts and rollback</li>
+              <li>Email support, 1-day response</li>
+            </ul>
+            <footer><a href="#" data-variant="primary">Start a 14-day trial</a></footer>
+          </article>
+          <article data-card>
+            <header><h3>Enterprise</h3><p>For organisations with compliance needs.</p></header>
+            <div data-stat><strong>Custom</strong><p>Annual contract</p></div>
+            <ul>
+              <li>SSO, SCIM and audit logs</li>
+              <li>99.99% uptime SLA</li>
+              <li>Dedicated build machines</li>
+              <li>A named support engineer</li>
+            </ul>
+            <footer><a href="#" data-variant="outline">Talk to sales</a></footer>
+          </article>
+        </div>
+      </details>
+      <details name="landing-billing">
+        <summary>Yearly · save 20%</summary>
+        <div data-grid>
+          <article data-card>
+            <header><h3>Hobby</h3><p>For side projects and prototypes.</p></header>
+            <div data-stat><strong>$0</strong><p>Free forever</p></div>
+            <ul>
+              <li>1 member, 3 projects</li>
+              <li>100 GB bandwidth</li>
+              <li>Community support</li>
+            </ul>
+            <footer><a href="#" data-variant="outline">Start for free</a></footer>
+          </article>
+          <article data-card data-theme="dark">
+            <header><h3>Team <span data-badge>Most popular</span></h3><p>For product teams shipping every day.</p></header>
+            <div data-stat><strong>$19</strong><p>Per member, per month, billed yearly</p></div>
+            <ul>
+              <li>Unlimited projects and previews</li>
+              <li>1 TB bandwidth, shared cache</li>
+              <li>Gradual rollouts and rollback</li>
+              <li>Email support, 1-day response</li>
+            </ul>
+            <footer><a href="#" data-variant="primary">Start a 14-day trial</a></footer>
+          </article>
+          <article data-card>
+            <header><h3>Enterprise</h3><p>For organisations with compliance needs.</p></header>
+            <div data-stat><strong>Custom</strong><p>Annual contract</p></div>
+            <ul>
+              <li>SSO, SCIM and audit logs</li>
+              <li>99.99% uptime SLA</li>
+              <li>Dedicated build machines</li>
+              <li>A named support engineer</li>
+            </ul>
+            <footer><a href="#" data-variant="outline">Talk to sales</a></footer>
+          </article>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section data-section data-tone="muted" id="customers">
+    <header>
+      <small>Customers</small>
+      <h2>Teams ship more when previews are free</h2>
+    </header>
+    <div data-grid>
+      <article data-card>
+        <span data-rating style="--value: 5" role="img" aria-label="5 out of 5 stars"></span>
+        <p>“We cut our review cycle from two days to an afternoon. Designers stopped asking for screenshots because the preview link is already in the pull request.”</p>
+        <footer><span data-avatar>MO</span><span><strong>Maya Okafor</strong><br><small>Staff engineer, Polaris</small></span></footer>
+      </article>
+      <article data-card>
+        <span data-rating style="--value: 5" role="img" aria-label="5 out of 5 stars"></span>
+        <p>“The shared cache paid for the plan in the first week. Our monorepo builds went from eleven minutes to under one.”</p>
+        <footer><span data-avatar>DR</span><span><strong>Diego Ramos</strong><br><small>Platform lead, Kitebase</small></span></footer>
+      </article>
+      <article data-card>
+        <span data-rating style="--value: 4.5" role="img" aria-label="4.5 out of 5 stars"></span>
+        <p>“Automatic rollback caught a bad config at 2 a.m. and nobody got paged. That alone sold the rest of the company.”</p>
+        <footer><span data-avatar>SH</span><span><strong>Sofia Haddad</strong><br><small>VP Engineering, Halcyon</small></span></footer>
+      </article>
+    </div>
+  </section>
+
+  <section data-section id="faq" style="--max: 48rem">
+    <header>
+      <h2>Frequently asked questions</h2>
+      <p>Can’t find an answer? <a href="#">Ask the team</a>.</p>
+    </header>
+    <div>
+      <details name="landing-faq" open>
+        <summary>Which frameworks does Ferry support?</summary>
+        <p>Anything that produces static files or a Node, Bun or Deno server: Next.js, Remix, Astro, SvelteKit, Nuxt, Vite and plain HTML are detected automatically.</p>
+      </details>
+      <details name="landing-faq">
+        <summary>Do previews use my production database?</summary>
+        <p>Never by default. Each preview gets a branch of your database seeded from a sanitised snapshot, deleted when the pull request closes.</p>
+      </details>
+      <details name="landing-faq">
+        <summary>How is bandwidth counted?</summary>
+        <p>Only responses served to visitors count. Builds, previews opened by your team and cache fills between regions are free.</p>
+      </details>
+      <details name="landing-faq">
+        <summary>Can I bring my own CI?</summary>
+        <p>Yes. Run <code>ferry deploy --prebuilt</code> from GitHub Actions, GitLab or Buildkite and keep previews, rollouts and metrics.</p>
+      </details>
+      <details name="landing-faq">
+        <summary>Is there a discount for open source?</summary>
+        <p>Public repositories with an OSI-approved licence get the Team plan free. Apply from your project settings.</p>
+      </details>
+    </div>
+  </section>
+
+  <section data-section data-tone="primary">
+    <header>
+      <h2>Your next pull request could be live in a minute</h2>
+      <p>Connect a repository, push a branch and share the link. No credit card required.</p>
+      <div data-row>
+        <a href="#" data-variant="primary" data-size="lg">Start deploying free</a>
+        <a href="#" data-variant="outline" data-size="lg">Talk to an engineer</a>
+      </div>
+    </header>
+  </section>
+</main>
+
+<footer data-section data-tone="muted">
+  <div data-grid style="--min: 9rem">
+    <div data-stack style="--gap: calc(var(--spacing) * 3)">
+      <strong data-row>
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0"/><path d="M4 16 6 9h12l2 7"/><path d="M12 9V3l5 3-5 3"/></svg>
+        Ferry
+      </strong>
+      <small>Previews and deployments for teams that ship every day.</small>
+    </div>
+    <nav data-stack style="--gap: calc(var(--spacing) * 2.5)" aria-label="Product">
+      <strong>Product</strong>
+      <a href="#features">Previews</a>
+      <a href="#workflow">Rollouts</a>
+      <a href="#">Edge functions</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <nav data-stack style="--gap: calc(var(--spacing) * 2.5)" aria-label="Developers">
+      <strong>Developers</strong>
+      <a href="#">Documentation</a>
+      <a href="#">CLI reference</a>
+      <a href="#">Status</a>
+      <a href="#">Changelog</a>
+    </nav>
+    <nav data-stack style="--gap: calc(var(--spacing) * 2.5)" aria-label="Company">
+      <strong>Company</strong>
+      <a href="#">About</a>
+      <a href="#customers">Customers</a>
+      <a href="#">Careers</a>
+      <a href="#">Contact</a>
+    </nav>
+    <nav data-stack style="--gap: calc(var(--spacing) * 2.5)" aria-label="Legal">
+      <strong>Legal</strong>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Security</a>
+      <a href="#">DPA</a>
+    </nav>
+  </div>
+  <div data-row="between">
+    <small>© 2026 Ferry Systems, Inc.</small>
+    <span data-badge data-variant="outline">All systems operational</span>
+  </div>
+</footer>

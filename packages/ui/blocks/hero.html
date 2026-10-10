@@ -1,0 +1,157 @@
+<!-- @block: Hero centered | A centered product hero with a changelog badge, two calls to action and a live dashboard in a browser frame. -->
+<section data-section="hero">
+  <header>
+    <a href="/changelog/relay-3"><span data-badge data-variant="outline">Relay 3.0: preview databases for every branch <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
+    <h1>Ship the whole stack with one git push</h1>
+    <p>Relay builds your frontend, API and database migrations together, gives every pull request its own live preview, and rolls back in one click when Friday goes sideways.</p>
+    <div data-row>
+      <a href="/signup" data-variant="primary" data-size="lg">Start deploying free</a>
+      <a href="/demo" data-variant="outline" data-size="lg">Book a demo</a>
+    </div>
+  </header>
+  <div data-frame="relay.dev/acme/acme-web">
+    <div data-stack>
+      <div data-row="between">
+        <strong>acme-web <span data-badge data-variant="success">Production</span></strong>
+        <div data-row>
+          <button data-variant="outline" data-size="sm">Rollback</button>
+          <button data-size="sm">Promote</button>
+        </div>
+      </div>
+      <div data-grid style="--min: 8rem">
+        <div data-card data-stat><small>Requests</small><strong>2.41M</strong><span data-trend="up">12.4%</span></div>
+        <div data-card data-stat><small>p95 latency</small><strong>84 ms</strong><span data-trend="down" data-variant="success">9 ms</span></div>
+        <div data-card data-stat><small>Error rate</small><strong>0.02%</strong><span data-trend="down" data-variant="success">0.01%</span></div>
+        <div data-card data-stat><small>Build time</small><strong>38 s</strong><span data-trend="down" data-variant="success">11 s</span></div>
+      </div>
+      <div data-grid style="--min: 18rem">
+        <article data-card>
+          <header><h3>Requests per hour</h3><p>Today, all regions</p></header>
+          <ul data-chart style="--max: 100; --height: 8rem">
+            <li style="--v: 66" data-tooltip="352k"><span>11</span></li>
+            <li style="--v: 72" data-tooltip="384k"><span>12</span></li>
+            <li style="--v: 63" data-tooltip="336k"><span>13</span></li>
+            <li style="--v: 70" data-tooltip="374k"><span>14</span></li>
+            <li style="--v: 92" data-tooltip="491k" aria-current="true"><span>15</span></li>
+            <li style="--v: 81" data-tooltip="432k"><span>16</span></li>
+            <li style="--v: 64" data-tooltip="341k"><span>17</span></li>
+            <li style="--v: 52" data-tooltip="277k"><span>18</span></li>
+          </ul>
+        </article>
+        <article data-card>
+          <header><h3>Recent deploys</h3><p>3 today on main</p></header>
+          <table>
+            <thead><tr><th>Commit</th><th>Status</th><th data-numeric>Age</th></tr></thead>
+            <tbody>
+              <tr><td>Cache product images at the edge</td><td><span data-badge data-variant="success">Ready</span></td><td data-numeric>4m</td></tr>
+              <tr><td>Add EU billing region</td><td><span data-badge data-variant="success">Ready</span></td><td data-numeric>2h</td></tr>
+              <tr><td>Bump Postgres to 17.2</td><td><span data-badge data-variant="secondary">Rolled back</span></td><td data-numeric>6h</td></tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- @block: Hero split | Copy and an email signup on one side, a framed product screen on the other. -->
+<section data-section="hero">
+  <div data-split>
+    <header>
+      <small>Product analytics for teams that ship weekly</small>
+      <h1>Know which feature moved the number</h1>
+      <p>Pulse ties every release to the metrics it touched. Funnels, retention and revenue update the moment you deploy, with no tracking plan to maintain.</p>
+      <form>
+        <span data-group>
+          <input type="email" placeholder="you@company.com" aria-label="Work email" autocomplete="email" required>
+          <button>Get early access</button>
+        </span>
+        <small>Free for up to 10,000 monthly users. No credit card.</small>
+      </form>
+    </header>
+    <div data-frame="app.pulse.so/funnels/checkout">
+      <div data-stack>
+        <div data-row="between">
+          <strong>Checkout funnel</strong>
+          <fieldset data-segmented data-size="sm" aria-label="Range">
+            <label><input type="radio" name="hero-split-range"> 7d</label>
+            <label><input type="radio" name="hero-split-range" checked> 30d</label>
+            <label><input type="radio" name="hero-split-range"> 90d</label>
+          </fieldset>
+        </div>
+        <ul data-chart="bars" style="--max: 100">
+          <li style="--v: 100"><span>Viewed cart</span><data value="100">100%</data></li>
+          <li style="--v: 71"><span>Started checkout</span><data value="71">71%</data></li>
+          <li style="--v: 54"><span>Added payment</span><data value="54">54%</data></li>
+          <li style="--v: 46" aria-current="true"><span>Purchased</span><data value="46">46%</data></li>
+        </ul>
+        <div data-alert data-variant="success">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>
+          <strong>Release 4.12 lifted conversion by 6.1%</strong>
+          <p>One-page checkout shipped Tuesday. Purchases are up from 39.9% to 46.0%.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- @block: Hero with logos | A centered hero followed by a scrolling row of customer logos. -->
+<section data-section="hero">
+  <header>
+    <small>Trusted by 4,000 engineering teams</small>
+    <h1>Incident response that starts before the page goes out</h1>
+    <p>Beacon groups related alerts, pulls in the deploy that caused them and drafts the status update, so on-call engineers spend their night fixing instead of triaging.</p>
+    <div data-row>
+      <a href="/signup" data-variant="primary" data-size="lg">Try Beacon free</a>
+      <a href="/product/beacon" data-variant="ghost" data-size="lg">See how it works <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </header>
+  <div data-marquee style="--speed: 50s">
+    <ul>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg> Halcyon</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 16H3z"/></svg> Northbeam</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 12h8V4"/></svg> Quillstack</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg> Meridian</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 22 12 12 22 2 12z"/><path d="M12 7v10"/></svg> Kestrel</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10a8 8 0 0 1 16 0v10"/><path d="M12 20v-8"/></svg> Fernway</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 20.66 7v10L12 22l-8.66-5V7z"/></svg> Tessera</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M6 12h12M9 18h6"/></svg> Parallax</li>
+    </ul>
+    <ul aria-hidden="true">
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg> Halcyon</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 16H3z"/></svg> Northbeam</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 12h8V4"/></svg> Quillstack</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg> Meridian</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 22 12 12 22 2 12z"/><path d="M12 7v10"/></svg> Kestrel</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10a8 8 0 0 1 16 0v10"/><path d="M12 20v-8"/></svg> Fernway</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 20.66 7v10L12 22l-8.66-5V7z"/></svg> Tessera</li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M6 12h12M9 18h6"/></svg> Parallax</li>
+    </ul>
+  </div>
+</section>
+<!-- @block: Hero dark | A dark, centered launch hero with a terminal-style product shot. -->
+<section data-section="hero" data-theme="dark">
+  <header>
+    <span data-badge data-variant="secondary">Now in public beta</span>
+    <h1>Your database, branched like code</h1>
+    <p>Fork production Postgres in under a second, run the migration against real data, and merge it back when the review passes. Strata copies on write, so a branch costs nothing until it diverges.</p>
+    <div data-row>
+      <a href="/signup" data-variant="primary" data-size="lg">Create a branch</a>
+      <a href="/docs" data-variant="outline" data-size="lg">Read the docs</a>
+    </div>
+  </header>
+  <div data-frame="Terminal — strata">
+<pre><code>$ strata branch create fix-invoice-totals --from main
+✓ Branched main (48.2 GB) in 0.4s
+  postgres://fix-invoice-totals.db.strata.dev/app
+
+$ strata migrate --branch fix-invoice-totals
+  Applying 0042_invoice_totals_numeric.sql
+✓ 1 migration applied, 1,204,331 rows rewritten in 12.8s
+
+$ strata diff fix-invoice-totals main
+  ~ invoices.total  integer → numeric(12,2)</code></pre>
+    <div data-row="between">
+      <small>Branch fix-invoice-totals · 212 MB diverged from main</small>
+      <span data-badge data-variant="success">Ready to merge</span>
+    </div>
+  </div>
+</section>

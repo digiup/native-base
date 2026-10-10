@@ -1,0 +1,64 @@
+@layer nb.components {
+  /* The file input covers the whole label, invisibly, so a drop lands on the input itself: no JS. */
+  :where([data-dropzone]) {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: calc(var(--spacing) * 1);
+    padding: calc(var(--spacing) * 10) calc(var(--spacing) * 6);
+    border: var(--border-width) dashed var(--input);
+    border-radius: calc(var(--radius) + 4px); corner-shape: var(--corner-shape);
+    color: var(--muted-foreground);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    text-align: center;
+    text-wrap: balance;
+    transition: border-color var(--duration), background-color var(--duration), box-shadow var(--duration), color var(--duration);
+
+    & > svg {
+      inline-size: calc(var(--spacing) * 11);
+      block-size: calc(var(--spacing) * 11);
+      margin-block-end: calc(var(--spacing) * 2);
+      padding: calc(var(--spacing) * 2.75);
+      border: var(--border-width) solid var(--border);
+      border-radius: 50%;
+      background: var(--background);
+      color: var(--foreground);
+      box-shadow: var(--shadow);
+      transition: translate var(--duration) var(--ease), color var(--duration);
+    }
+    & > strong { color: var(--foreground); font-weight: var(--weight); }
+    & > small { font-size: var(--text-xs); }
+    & > input[type=file] {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      inline-size: 100%;
+      block-size: 100%;
+      padding: 0;
+      border: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    /* While a file is dragged over it, the input under the pointer is :hover in most browsers. */
+    &:hover { border-color: var(--ring); background: color-mix(in oklch, var(--muted) 60%, transparent); color: var(--foreground); }
+    &:hover > svg { translate: 0 calc(var(--spacing) * -1); }
+    &:has(> input:focus-visible) { border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent); }
+    &:has(> input:required:valid) { border-style: solid; border-color: var(--success); & > svg { color: var(--success); } }
+    &:has(> input:user-invalid) { border-color: var(--destructive); background: color-mix(in oklch, var(--destructive) 5%, transparent); & > :is(svg, strong) { color: var(--destructive); } }
+    &:has(> input:disabled) { opacity: .5; pointer-events: none; }
+  }
+  /* Compact: one row, icon at the start. */
+  :where([data-dropzone][data-size=sm]) {
+    grid-template-columns: auto 1fr;
+    justify-items: start;
+    column-gap: calc(var(--spacing) * 3);
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+    text-align: start;
+    & > :not(svg, input) { grid-column: 2; }
+    & > svg { grid-row: span 2; align-self: center; inline-size: calc(var(--spacing) * 9); block-size: calc(var(--spacing) * 9); margin: 0; padding: calc(var(--spacing) * 2.25); }
+    &:hover > svg { translate: none; }
+  }
+}

@@ -28,6 +28,7 @@ const REACT_NAMES = {
   popovertarget: 'popoverTarget',
   popovertargetaction: 'popoverTargetAction',
   crossorigin: 'crossOrigin',
+  datetime: 'dateTime',
   'stroke-width': 'strokeWidth',
   'stroke-linecap': 'strokeLinecap',
   'stroke-linejoin': 'strokeLinejoin',

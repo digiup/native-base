@@ -1,0 +1,52 @@
+<!-- @block: Upload files | A drop zone above the files in flight, each with progress and a cancel or retry button. -->
+<article data-card>
+  <header>
+    <h2>Upload files</h2>
+    <p>Attach designs, specs or exports to <strong>Q4 brand refresh</strong>.</p>
+  </header>
+  <label data-dropzone>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 13v8"/><path d="M4 14.9A7 7 0 1 1 15.7 8h1.8a4.5 4.5 0 0 1 2.5 8.2"/><path d="m8 17 4-4 4 4"/></svg>
+    <strong>Drop files here or click to browse</strong>
+    <small>PNG, JPG, PDF or Figma files, up to 50 MB each</small>
+    <input type="file" name="files" multiple accept=".png,.jpg,.jpeg,.pdf,.fig">
+  </label>
+  <table>
+    <caption>2 uploading · 1 failed · 1 done</caption>
+    <tbody>
+      <tr>
+        <td>hero-banner@2x.png<br><small>PNG · 2.4 of 3.1 MB</small></td>
+        <td><progress value="78" max="100" aria-label="hero-banner@2x.png">78%</progress></td>
+        <td><button type="button" data-variant="ghost" data-size="icon" aria-label="Cancel upload of hero-banner@2x.png"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></td>
+      </tr>
+      <tr>
+        <td>brand-guidelines.pdf<br><small>PDF · 1.1 of 8.6 MB</small></td>
+        <td><progress value="13" max="100" aria-label="brand-guidelines.pdf">13%</progress></td>
+        <td><button type="button" data-variant="ghost" data-size="icon" aria-label="Cancel upload of brand-guidelines.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></td>
+      </tr>
+      <tr>
+        <td>homepage-v3.fig<br><small>Figma · 64.2 MB</small></td>
+        <td><span data-badge data-variant="destructive">Over 50 MB</span></td>
+        <td><button type="button" data-variant="ghost" data-size="icon" aria-label="Remove homepage-v3.fig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg></button></td>
+      </tr>
+      <tr>
+        <td>logo-lockup.png<br><small>PNG · 412 KB</small></td>
+        <td><span data-badge data-variant="success">Uploaded</span></td>
+        <td><button type="button" data-variant="ghost" data-size="icon" aria-label="Remove logo-lockup.png"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg></button></td>
+      </tr>
+    </tbody>
+  </table>
+  <footer data-row="end">
+    <button type="button" data-variant="outline">Cancel</button>
+    <button type="button">Done</button>
+  </footer>
+</article>
+<!-- @block: Empty project | What a new project shows before its first deployment, with a primary and a secondary action. -->
+<div data-empty>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 10v6"/><path d="M9 13h6"/><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+  <h3>No deployments yet</h3>
+  <p>Push to your connected repository or import an existing project, and your first deployment will show up here.</p>
+  <div data-row>
+    <button type="button">Import project</button>
+    <a href="/docs/quickstart" data-variant="outline">Read the quickstart</a>
+  </div>
+</div>

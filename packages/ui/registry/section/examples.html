@@ -1,0 +1,87 @@
+<!-- @example: Hero with a product shot -->
+<section data-section="hero">
+  <header>
+    <span data-badge data-variant="outline">New: preview environments for every branch</span>
+    <h1>Ship the whole stack on every push</h1>
+    <p>Relay builds, tests and deploys your app the moment you merge. No YAML to babysit, no servers to patch.</p>
+    <div data-row>
+      <a href="/signup" data-variant="primary" data-size="lg">Start deploying</a>
+      <a href="/demo" data-variant="outline" data-size="lg">Book a demo</a>
+    </div>
+  </header>
+  <div data-frame="relay.dev/acme/deployments">
+    <div data-stack>
+      <div data-row="between">
+        <strong>Deployments</strong>
+        <span data-badge data-variant="success">All systems normal</span>
+      </div>
+      <table>
+        <thead><tr><th>Branch</th><th>Status</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td>main</td><td><span data-badge data-variant="success">Ready</span></td><td>42s</td></tr>
+          <tr><td>feat/billing-v2</td><td><span data-badge data-variant="secondary">Building</span></td><td>18s</td></tr>
+          <tr><td>fix/login-redirect</td><td><span data-badge data-variant="success">Ready</span></td><td>39s</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!-- @example: Features on a muted band -->
+<section data-section data-tone="muted">
+  <header>
+    <small>Why Relay</small>
+    <h2>Everything between git push and production</h2>
+    <p>One platform for builds, previews and rollbacks, so your team spends Fridays shipping instead of firefighting.</p>
+  </header>
+  <div data-grid style="--min: 15rem">
+    <article data-card>
+      <header>
+        <h3>Instant previews</h3>
+        <p>Every pull request gets its own URL with production data masked.</p>
+      </header>
+    </article>
+    <article data-card>
+      <header>
+        <h3>One-click rollback</h3>
+        <p>Every deploy is immutable. Go back to any of them in under a second.</p>
+      </header>
+    </article>
+    <article data-card>
+      <header>
+        <h3>Edge by default</h3>
+        <p>Static assets and functions run in 38 regions without extra config.</p>
+      </header>
+    </article>
+  </div>
+</section>
+<!-- @example: Split -->
+<section data-section>
+  <div data-split="reverse">
+    <header>
+      <small>Observability</small>
+      <h2>See a slow request before your customers do</h2>
+      <p>Traces, logs and Web Vitals for every deployment, linked to the commit that changed them.</p>
+      <div data-row>
+        <a href="/docs/observability" data-variant="outline">Read the docs</a>
+      </div>
+    </header>
+    <div data-frame>
+      <div data-stack>
+        <label>p95 latency, last 24 hours <progress value="38" max="100"></progress></label>
+        <label>Error budget used <progress value="12" max="100"></progress></label>
+        <label>Cache hit rate <progress value="91" max="100"></progress></label>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- @example: Call to action on primary -->
+<section data-section data-tone="primary">
+  <header>
+    <h2>Your next deploy could take 40 seconds</h2>
+    <p>Free for hobby projects. Teams start with a 14-day trial, no card required.</p>
+    <div data-row>
+      <a href="/signup" data-variant="primary" data-size="lg">Get started free</a>
+      <a href="/sales" data-variant="outline" data-size="lg">Talk to sales</a>
+    </div>
+  </header>
+</section>

@@ -1,0 +1,70 @@
+@layer nb.components {
+  /* Two copies of the list scroll by one list width plus the gap, so the loop has no seam. */
+  :where([data-marquee]) {
+    --_gap: var(--gap, calc(var(--spacing) * 12));
+    display: flex;
+    gap: var(--_gap);
+    padding-block: calc(var(--spacing) * 2);
+    overflow: clip;
+    mask-image: linear-gradient(to right, transparent, oklch(0 0 0) 12%, oklch(0 0 0) 88%, transparent);
+
+    & > ul {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: space-around;
+      gap: var(--_gap);
+      min-inline-size: 100%;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      animation: nb-marquee var(--speed, 40s) linear infinite;
+    }
+    &:hover > ul { animation-play-state: paused; }
+
+    & li {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: calc(var(--spacing) * 2);
+      color: var(--muted-foreground);
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: var(--weight-heading);
+      letter-spacing: var(--tracking);
+      white-space: nowrap;
+      transition: color var(--duration);
+      &:hover { color: var(--foreground); }
+      & > svg { inline-size: 1.5em; block-size: 1.5em; flex-shrink: 0; }
+    }
+    /* Cards (testimonials) keep their own type, wrap, and share one height. */
+    & > ul:has(> li > [data-card]) { align-items: stretch; }
+    & li:has(> [data-card]) { align-items: stretch; }
+    & li > [data-card] {
+      inline-size: min(22rem, 80vw);
+      margin: 0;
+      color: var(--card-foreground);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      font-style: normal;
+      font-weight: 400;
+      letter-spacing: normal;
+      white-space: normal;
+      & > p { margin: 0; }
+    }
+  }
+  :where([data-marquee=reverse]) > ul { animation-direction: reverse; }
+  :where([data-marquee]:dir(rtl)) > ul { animation-name: nb-marquee-rtl; }
+
+  @keyframes nb-marquee { to { translate: calc(-100% - var(--_gap)) 0; } }
+  @keyframes nb-marquee-rtl { to { translate: calc(100% + var(--_gap)) 0; } }
+
+  /* Reduced motion: one still, wrapped, centered list. */
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-marquee]) {
+      mask-image: none;
+      & > ul { flex-shrink: 1; flex-wrap: wrap; justify-content: center; row-gap: calc(var(--spacing) * 6); animation: none; }
+      & > ul[aria-hidden=true] { display: none; }
+    }
+  }
+}

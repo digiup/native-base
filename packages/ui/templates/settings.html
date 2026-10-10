@@ -1,0 +1,307 @@
+<div data-shell>
+  <aside popover id="set-sidebar" aria-label="Sidebar">
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M3.6 15.4C2.3 12.9 3.5 9.3 6.4 6.4s6.5-4.1 9-2.8"/><path d="M20.4 8.6c1.3 2.5.1 6.1-2.8 9s-6.5 4.1-9 2.8"/></svg>
+      Orbit
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg> Inbox <span data-badge data-variant="secondary">4</span></a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> My issues</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg> Projects</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg> Cycles</a></li>
+      </ul>
+      <small>Workspace</small>
+      <ul>
+        <li><a href="#" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg> Settings</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Members</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <span data-avatar data-size="sm">NK</span>
+      <div>
+        <strong>Noor Khalil</strong>
+        <small>Admin · Orbit Labs</small>
+      </div>
+      <a href="#" data-variant="ghost" data-size="icon" aria-label="Sign out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg></a>
+    </footer>
+  </aside>
+
+  <main data-stack>
+    <header data-row>
+      <button popovertarget="set-sidebar" data-shell-toggle data-variant="ghost" data-size="icon" aria-label="Open navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg></button>
+      <div>
+        <h1>Settings</h1>
+        <p>Manage your profile, notifications and the Orbit Labs workspace.</p>
+      </div>
+    </header>
+
+    <div data-tabs>
+      <details name="settings-tab" open>
+        <summary>Account</summary>
+        <div data-stack>
+          <form data-card>
+            <header>
+              <h2>Profile</h2>
+              <p>How teammates see you across Orbit.</p>
+            </header>
+            <div data-row style="--gap: 1rem">
+              <span data-avatar data-size="lg">NK</span>
+              <label data-dropzone data-size="sm">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14.9A7 7 0 1 1 15.7 8h1.8a4.5 4.5 0 0 1 2.5 8.2"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>
+                <strong>Upload a new photo</strong>
+                <small>PNG or JPG, at least 256 × 256 px</small>
+                <input type="file" accept="image/png, image/jpeg">
+              </label>
+            </div>
+            <div data-grid style="--min: 14rem">
+              <label>Full name <input value="Noor Khalil" autocomplete="name" required></label>
+              <label>Email <input type="email" value="noor@orbitlabs.dev" autocomplete="email" required>
+                <small data-error>Enter a valid email address.</small>
+              </label>
+            </div>
+            <label>
+              Username
+              <div data-group>
+                <button type="button" data-variant="outline" tabindex="-1" aria-hidden="true">orbit.so/</button>
+                <input value="noor" pattern="[a-z0-9-]{3,20}" required>
+              </div>
+              <small data-hint>3 to 20 lowercase letters, numbers or dashes.</small>
+              <small data-error>Use 3 to 20 lowercase letters, numbers or dashes.</small>
+            </label>
+            <label>
+              Bio
+              <textarea maxlength="160">Design engineer. I keep the Orbit design system and the web app in sync.</textarea>
+              <small data-hint>Shown on your profile. 160 characters max.</small>
+            </label>
+            <footer data-row="end">
+              <button type="reset" data-variant="ghost">Cancel</button>
+              <button>Save profile</button>
+            </footer>
+          </form>
+
+          <form data-card>
+            <header>
+              <h2>Preferences</h2>
+              <p>Language and region for dates and numbers.</p>
+            </header>
+            <div data-grid style="--min: 14rem">
+              <label>Language
+                <select><option>English (US)</option><option>English (UK)</option><option>Deutsch</option><option>Français</option><option>日本語</option></select>
+              </label>
+              <label>Time zone
+                <select><option>(GMT+04:00) Dubai</option><option>(GMT+00:00) London</option><option>(GMT−05:00) New York</option><option>(GMT+09:00) Tokyo</option></select>
+              </label>
+            </div>
+            <footer data-row="end">
+              <button>Save preferences</button>
+            </footer>
+          </form>
+
+          <form data-card>
+            <header>
+              <h2>Sign-in</h2>
+              <p>Protect your account with a second step.</p>
+            </header>
+            <label data-row="between"><span data-stack style="--gap: 0">Two-factor authentication<small>Ask for a code from your authenticator app at sign-in.</small></span><input type="checkbox" role="switch" checked></label>
+            <label data-row="between"><span data-stack style="--gap: 0">Require 2FA for everyone<small>Members without it are signed out until they set it up.</small></span><input type="checkbox" role="switch"></label>
+          </form>
+        </div>
+      </details>
+
+      <details name="settings-tab">
+        <summary>Notifications</summary>
+        <form data-card>
+          <header>
+            <h2>Notifications</h2>
+            <p>Choose what reaches you, and where.</p>
+          </header>
+          <fieldset>
+            <legend>Email</legend>
+            <label data-row="between"><span data-stack style="--gap: 0">Mentions and replies<small>Someone @mentions you or replies to your comment.</small></span><input type="checkbox" role="switch" checked></label>
+            <label data-row="between"><span data-stack style="--gap: 0">Assigned to me<small>An issue is assigned to you or its status changes.</small></span><input type="checkbox" role="switch" checked></label>
+            <label data-row="between"><span data-stack style="--gap: 0">Weekly digest<small>Monday summary of what shipped in your projects.</small></span><input type="checkbox" role="switch"></label>
+          </fieldset>
+          <fieldset>
+            <legend>Push</legend>
+            <label data-row="between"><span data-stack style="--gap: 0">Direct messages<small>Sent to the desktop and mobile apps.</small></span><input type="checkbox" role="switch" checked></label>
+            <label data-row="between"><span data-stack style="--gap: 0">Due date reminders<small>The morning an issue you own is due.</small></span><input type="checkbox" role="switch"></label>
+          </fieldset>
+          <footer data-row="end">
+            <button>Save notifications</button>
+          </footer>
+        </form>
+      </details>
+
+      <details name="settings-tab">
+        <summary>Billing</summary>
+        <div data-stack>
+          <div data-grid style="--min: 18rem">
+            <article data-card>
+              <header>
+                <h2>Team plan <span data-badge data-variant="secondary">Monthly</span></h2>
+                <p>$12 per seat, billed monthly. Renews November 1, 2026.</p>
+              </header>
+              <label><span data-row="between">Seats <small>8 of 10 used</small></span> <progress value="8" max="10">80%</progress></label>
+              <label><span data-row="between">File storage <small>41.2 GB of 100 GB</small></span> <meter value="41.2" max="100" low="70" high="90" optimum="10">41%</meter></label>
+              <label><span data-row="between">Automation runs <small>8,420 of 10,000 this month</small></span> <meter value="8420" max="10000" low="7000" high="9000" optimum="1000">84%</meter></label>
+              <footer>
+                <button>Upgrade to Business</button>
+                <button data-variant="ghost">Compare plans</button>
+              </footer>
+            </article>
+            <article data-card>
+              <header>
+                <h2>Payment method</h2>
+                <p>Used for subscriptions and add-ons.</p>
+              </header>
+              <div data-row style="--gap: 1rem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="32" height="32"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg>
+                <div>
+                  <strong>Visa ending in 4242</strong><br>
+                  <small>Expires 08/2028 · billing@orbitlabs.dev</small>
+                </div>
+              </div>
+              <div data-stat>
+                <small>Next invoice</small>
+                <strong>$96.00</strong>
+                <p>November 1, 2026 · 8 seats on the Team plan</p>
+              </div>
+              <footer>
+                <button data-variant="outline">Update card</button>
+                <button data-variant="ghost">Edit billing address</button>
+              </footer>
+            </article>
+          </div>
+          <article data-card>
+            <header>
+              <h2>Invoices</h2>
+              <p>Download a PDF for your records.</p>
+            </header>
+            <div style="overflow-x: auto">
+              <table>
+                <thead><tr><th>Date</th><th>Invoice</th><th>Status</th><th data-numeric>Amount</th><th><span hidden>Download</span></th></tr></thead>
+                <tbody>
+                  <tr><td>Oct 1, 2026</td><td>ORB-2026-010</td><td><span data-badge data-variant="success">Paid</span></td><td data-numeric>$96.00</td><td data-numeric><a href="#">PDF</a></td></tr>
+                  <tr><td>Sep 1, 2026</td><td>ORB-2026-009</td><td><span data-badge data-variant="success">Paid</span></td><td data-numeric>$96.00</td><td data-numeric><a href="#">PDF</a></td></tr>
+                  <tr><td>Aug 1, 2026</td><td>ORB-2026-008</td><td><span data-badge data-variant="success">Paid</span></td><td data-numeric>$84.00</td><td data-numeric><a href="#">PDF</a></td></tr>
+                  <tr><td>Jul 1, 2026</td><td>ORB-2026-007</td><td><span data-badge data-variant="outline">Refunded</span></td><td data-numeric>$84.00</td><td data-numeric><a href="#">PDF</a></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </details>
+
+      <details name="settings-tab">
+        <summary>Team</summary>
+        <div data-stack>
+          <article data-card>
+            <header>
+              <h2>Members</h2>
+              <p>8 of 10 seats used. Admins can change roles and billing.</p>
+            </header>
+            <div data-row="between">
+              <search><input type="search" placeholder="Filter members" aria-label="Filter members"></search>
+              <button commandfor="set-invite" command="show-modal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Invite</button>
+            </div>
+            <div style="overflow-x: auto">
+              <table style="min-inline-size: 36rem">
+                <thead><tr><th>Member</th><th>Role</th><th>Last active</th><th><span hidden>Actions</span></th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><div data-row><span data-avatar data-size="sm">NK</span><span>Noor Khalil<br><small>noor@orbitlabs.dev</small></span></div></td>
+                    <td><select aria-label="Role for Noor Khalil"><option selected>Admin</option><option>Member</option><option>Guest</option></select></td>
+                    <td>Now</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><div data-row><span data-avatar data-size="sm">DR</span><span>Daniel Reyes<br><small>daniel@orbitlabs.dev</small></span></div></td>
+                    <td><select aria-label="Role for Daniel Reyes"><option>Admin</option><option selected>Member</option><option>Guest</option></select></td>
+                    <td>2 hours ago</td>
+                    <td><button data-variant="ghost" data-size="sm">Remove</button></td>
+                  </tr>
+                  <tr>
+                    <td><div data-row><span data-avatar data-size="sm">HS</span><span>Hana Sato<br><small>hana@orbitlabs.dev</small></span></div></td>
+                    <td><select aria-label="Role for Hana Sato"><option>Admin</option><option selected>Member</option><option>Guest</option></select></td>
+                    <td>Yesterday</td>
+                    <td><button data-variant="ghost" data-size="sm">Remove</button></td>
+                  </tr>
+                  <tr>
+                    <td><div data-row><span data-avatar data-size="sm">OB</span><span>Olu Bankole<br><small>olu@freelance.studio</small></span></div></td>
+                    <td><select aria-label="Role for Olu Bankole"><option>Admin</option><option>Member</option><option selected>Guest</option></select></td>
+                    <td>Sep 28, 2026</td>
+                    <td><button data-variant="ghost" data-size="sm">Remove</button></td>
+                  </tr>
+                  <tr>
+                    <td><div data-row><span data-avatar data-size="sm">EV</span><span>elena@orbitlabs.dev<br><small>Invited Oct 8 · expires in 6 days</small></span></div></td>
+                    <td><span data-badge data-variant="outline">Pending</span></td>
+                    <td>—</td>
+                    <td><button data-variant="ghost" data-size="sm">Resend</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+            <article data-card>
+              <header>
+                <h2>Danger zone</h2>
+                <p>Export first: nothing here can be undone.</p>
+              </header>
+              <div data-alert data-variant="destructive">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                <strong>Delete the Orbit Labs workspace</strong>
+                <p>Removes 14 projects, 2,318 issues and every uploaded file for all 8 members, immediately.</p>
+              </div>
+              <footer data-row="end">
+                <button data-variant="outline">Export data</button>
+                <button commandfor="set-delete" command="show-modal" data-variant="destructive">Delete workspace</button>
+              </footer>
+            </article>
+        </div>
+      </details>
+
+    </div>
+  </main>
+</div>
+
+<dialog id="set-invite" closedby="any" aria-labelledby="set-invite-title">
+  <button commandfor="set-invite" command="close" aria-label="Close">✕</button>
+  <header>
+    <h2 id="set-invite-title">Invite to Orbit Labs</h2>
+    <p>They’ll get an email with a link that expires in 7 days.</p>
+  </header>
+  <form method="dialog">
+    <label>Email addresses
+      <input type="email" multiple placeholder="ana@orbitlabs.dev, sam@orbitlabs.dev" required>
+      <small data-hint>Separate several addresses with commas.</small>
+      <small data-error>Enter at least one valid email address.</small>
+    </label>
+    <label>Role
+      <select><option>Member</option><option>Admin</option><option>Guest</option></select>
+    </label>
+    <footer>
+      <button value="cancel" data-variant="outline" formnovalidate>Cancel</button>
+      <button value="invite">Send invites</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog id="set-delete" closedby="any" aria-labelledby="set-delete-title">
+  <button commandfor="set-delete" command="close" aria-label="Close">✕</button>
+  <header>
+    <h2 id="set-delete-title">Delete Orbit Labs?</h2>
+    <p>All projects, issues and files are deleted for everyone, immediately.</p>
+  </header>
+  <form method="dialog">
+    <label><span>Type <code>orbit-labs</code> to confirm</span>
+      <input pattern="orbit-labs" required autocomplete="off" spellcheck="false">
+      <small data-error>That doesn’t match the workspace name.</small>
+    </label>
+    <footer>
+      <button value="cancel" data-variant="outline" formnovalidate>Cancel</button>
+      <button value="delete" data-variant="destructive">Delete workspace</button>
+    </footer>
+  </form>
+</dialog>

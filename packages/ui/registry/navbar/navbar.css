@@ -1,0 +1,100 @@
+@layer nb.components {
+  /* Padded like data-section, so the bar lines up with the page under it. */
+  :where([data-navbar]) {
+    container: nb-navbar / inline-size;
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 4);
+    min-block-size: calc(var(--spacing) * 16);
+    padding-inline: max(calc(var(--spacing) * 6), (100% - var(--max, 72rem)) / 2);
+    font-size: var(--text-sm);
+
+    & > a:first-child {
+      display: inline-flex;
+      align-items: center;
+      gap: calc(var(--spacing) * 2);
+      margin-inline-end: calc(var(--spacing) * 4);
+      color: inherit;
+      font-family: var(--font-heading);
+      font-size: var(--text-base);
+      font-weight: var(--weight-heading);
+      letter-spacing: var(--tracking);
+      white-space: nowrap;
+      text-decoration: none;
+      & svg { inline-size: 1.5em; block-size: 1.5em; flex-shrink: 0; }
+    }
+
+    & > nav:not([popover]) { display: flex; align-items: center; gap: calc(var(--spacing) * 1); }
+    & > nav a {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--spacing) * 2);
+      padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 3);
+      border-radius: calc(var(--radius) - 4px); corner-shape: var(--corner-shape);
+      color: var(--muted-foreground);
+      font-weight: var(--weight);
+      white-space: nowrap;
+      text-decoration: none;
+      transition: color var(--duration), background-color var(--duration);
+      &:hover { color: var(--foreground); background: var(--accent); }
+      &[aria-current=page] { color: var(--foreground); }
+      & svg { inline-size: 1rem; block-size: 1rem; }
+    }
+
+    & > div { display: flex; align-items: center; gap: calc(var(--spacing) * 2); min-inline-size: 0; margin-inline-start: auto; }
+    & > div > input { inline-size: 16rem; flex-shrink: 1; }
+    & > button[popovertarget] { order: 1; & svg { inline-size: 1.25rem; block-size: 1.25rem; } }
+    & > button[popovertarget]:not([data-variant]) { --_bg: transparent; --_fg: var(--foreground); --_px: 0; inline-size: calc(var(--spacing) * 9); }
+    &:has(> nav:popover-open) > button[popovertarget] { background: var(--accent); }
+  }
+
+  /* Narrow: the links are a dropdown under the menu button. Shown only while open. */
+  :where([data-navbar]) > nav[popover] {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    min-inline-size: 14rem;
+    padding: calc(var(--spacing) * 1.5);
+    &:popover-open { display: flex; }
+    & a { padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3); }
+  }
+  @supports (position-area: block-end) {
+    :where([data-navbar]) > nav[popover] { margin: calc(var(--spacing) * 2) 0 0; position-area: block-end span-inline-start; }
+  }
+
+  /* Wide: the popover becomes a plain row of links. Author display beats the UA's display: none. */
+  @container nb-navbar (width >= 48rem) {
+    :where([data-navbar]) > nav[popover] {
+      display: flex;
+      position: static;
+      flex-direction: row;
+      align-items: center;
+      gap: calc(var(--spacing) * 1);
+      inset: auto;
+      inline-size: auto;
+      min-inline-size: 0;
+      max-inline-size: none;
+      block-size: auto;
+      margin: 0;
+      padding: 0;
+      overflow: visible;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      box-shadow: none;
+      opacity: 1;
+      translate: none;
+      & a { padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 3); }
+    }
+    :where([data-navbar]) > button[popovertarget] { display: none; }
+  }
+
+  :where([data-navbar=sticky]) {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 40;
+    border-block-end: var(--border-width) solid var(--border);
+    background: color-mix(in oklch, var(--background) 80%, transparent);
+    backdrop-filter: blur(calc(var(--spacing) * 3)) saturate(1.6);
+  }
+}

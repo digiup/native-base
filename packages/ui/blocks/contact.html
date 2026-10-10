@@ -1,0 +1,35 @@
+<!-- @block: Contact form | A validated contact form beside the ways to reach the team directly. -->
+<section data-section>
+  <div data-split>
+    <header>
+      <small>Contact</small>
+      <h2>Talk to the people who build it</h2>
+      <p>Questions about pricing, a migration or a security review? Every message is answered by an engineer, usually within four working hours.</p>
+      <div data-stack style="--gap: calc(var(--spacing) * 3)">
+        <a href="mailto:hello@relay.dev" data-row><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>hello@relay.dev</a>
+        <a href="https://discord.gg/relay" data-row><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Chat in our community Discord</a>
+        <span data-row><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>Torstraße 140, 10119 Berlin</span>
+      </div>
+    </header>
+    <form data-card>
+      <div data-grid style="--min: 12rem">
+        <label>Name <input autocomplete="name" placeholder="Ada Lovelace" required></label>
+        <label>Work email
+          <input type="email" autocomplete="email" placeholder="ada@company.com" required>
+          <small data-error>Enter a valid email address.</small>
+        </label>
+      </div>
+      <label>Topic
+        <select>
+          <option>Pricing and plans</option>
+          <option>Migrating to Relay</option>
+          <option>Security and compliance</option>
+          <option>Something else</option>
+        </select>
+      </label>
+      <label>Message <textarea placeholder="Tell us about your stack and what you want to ship." required></textarea></label>
+      <label><input type="checkbox" required> I agree to Relay storing my details to answer this message.</label>
+      <button>Send message</button>
+    </form>
+  </div>
+</section>

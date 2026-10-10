@@ -9,6 +9,9 @@
 @property --_h { syntax: "*"; inherits: false; }
 @property --_px { syntax: "*"; inherits: false; }
 @property --_fs { syntax: "*"; inherits: false; }
+/* Layout knobs apply to the element they're set on, never to a row or grid nested inside it. */
+@property --gap { syntax: "*"; inherits: false; }
+@property --min { syntax: "*"; inherits: false; }
 
 @layer nb.tokens {
   /* shadcn/ui variable names, so existing shadcn themes drop straight in. */

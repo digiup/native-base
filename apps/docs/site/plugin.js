@@ -91,10 +91,11 @@ export function nativeBaseSite() {
       emit('native-base.css');
       emit('llms.txt');
       emit('llms-full.txt');
-      for (const file of ['SKILL.md', 'references/components.md', 'references/setup.md', 'references/theming.md']) emit(`skill/native-base/${file}`);
+      for (const file of ['SKILL.md', 'references/components.md', 'references/patterns.md', 'references/setup.md', 'references/theming.md']) emit(`skill/native-base/${file}`);
       for (const item of JSON.parse(readFileSync(join(libDist, 'r/index.json'), 'utf8')).items) {
         emit(`r/${item.name}.json`);
-        emit(`r/${item.name}.css`);
+        // Blocks and templates are HTML only.
+        if (existsSync(join(libDist, `r/${item.name}.css`))) emit(`r/${item.name}.css`);
       }
       emit('r/index.json');
     },

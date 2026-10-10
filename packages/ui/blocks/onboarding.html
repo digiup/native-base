@@ -1,0 +1,78 @@
+<!-- @block: Onboarding steps | A multi-step setup flow: progress across the top, the current step's form below, back and continue. -->
+<div data-stack style="--gap: calc(var(--spacing) * 8)">
+  <ol data-steps>
+    <li><strong>Account</strong><small>Name and email</small></li>
+    <li aria-current="step"><strong>Workspace</strong><small>Team and URL</small></li>
+    <li><strong>Invite</strong><small>Bring your team</small></li>
+    <li><strong>Connect</strong><small>Link a repository</small></li>
+  </ol>
+  <form data-card>
+    <header>
+      <h2>Create your workspace</h2>
+      <p>A workspace holds your projects, domains and billing. You can rename it later.</p>
+    </header>
+    <label>Workspace name <input name="workspace" value="Lattice" autocomplete="organization" required></label>
+    <label>
+      Workspace URL
+      <span data-group>
+        <span data-badge data-variant="secondary">northwind.app/</span>
+        <input name="slug" value="lattice" pattern="[a-z0-9-]{2,32}" required>
+      </span>
+      <small data-hint>Lowercase letters, numbers and dashes.</small>
+      <small data-error>Use 2–32 lowercase letters, numbers or dashes.</small>
+    </label>
+    <fieldset>
+      <legend>Team size</legend>
+      <fieldset data-segmented>
+        <label><input type="radio" name="team-size" value="1"> Just me</label>
+        <label><input type="radio" name="team-size" value="2-10" checked> 2–10</label>
+        <label><input type="radio" name="team-size" value="11-50"> 11–50</label>
+        <label><input type="radio" name="team-size" value="51+"> 51+</label>
+      </fieldset>
+    </fieldset>
+    <label>
+      What will you build first?
+      <select name="use-case">
+        <option>Marketing site</option>
+        <option selected>Web application</option>
+        <option>API or backend</option>
+        <option>Documentation</option>
+      </select>
+    </label>
+    <footer data-row="between">
+      <button type="button" data-variant="outline">Back</button>
+      <button type="submit">Continue</button>
+    </footer>
+  </form>
+</div>
+<!-- @block: Setup checklist | A getting-started card with overall progress and the tasks left, finished ones checked off. -->
+<article data-card>
+  <header>
+    <h2>Finish setting up Northwind</h2>
+    <p>3 of 5 done. Most teams finish in under 10 minutes.</p>
+  </header>
+  <progress value="3" max="5" aria-label="Setup progress">60%</progress>
+  <div data-stack>
+    <label><input type="checkbox" checked disabled> <s>Create your workspace</s></label>
+    <label><input type="checkbox" checked disabled> <s>Invite your teammates</s></label>
+    <label><input type="checkbox" checked disabled> <s>Connect GitHub</s></label>
+    <div data-row="between">
+      <label>
+        <input type="checkbox" name="task-deploy">
+        <span data-stack style="--gap: 0">Deploy your first project <small>Import a repository and ship it in about a minute.</small></span>
+      </label>
+      <a href="/new" data-variant="outline" data-size="sm">Deploy</a>
+    </div>
+    <div data-row="between">
+      <label>
+        <input type="checkbox" name="task-domain">
+        <span data-stack style="--gap: 0">Add a custom domain <small>Point your DNS at Northwind; HTTPS is automatic.</small></span>
+      </label>
+      <a href="/settings/domains" data-variant="outline" data-size="sm">Add domain</a>
+    </div>
+  </div>
+  <footer data-row="between">
+    <small>Stuck? <a href="/support/setup-call">Book a 15-minute setup call</a></small>
+    <button type="button" data-variant="ghost" data-size="sm">Hide checklist</button>
+  </footer>
+</article>

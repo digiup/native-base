@@ -1,7 +1,8 @@
 import { esc, kb } from '../html.js';
 import { page } from '../layout.js';
 
-export default function kitchenSink({ registry }) {
+export default function kitchenSink(site) {
+  const { registry } = site;
   const categories = [...new Set(registry.items.map((item) => item.category))];
   const demos = registry.items.flatMap((item) => item.examples.filter((ex) => ex.live).map((ex) => ({ item, ex })));
   const tokens = demos.reduce((sum, { ex }) => sum + ex.tokens, 0);
@@ -15,7 +16,11 @@ export default function kitchenSink({ registry }) {
     )
     .join('');
 
+  // The filter is CSS :has(); one rule per category, written here so new categories need no stylesheet edit.
+  const filter = categories.map((category) => `main:has([data-filter] [value="${category}"]:not(:checked)) [data-category="${category}"]`).join(',\n');
+
   const body = `<main data-wrap data-sink>
+  <style>${filter} { display: none; }</style>
   <header data-sink-head>
     <div>
       <h1>Kitchen sink</h1>
@@ -30,6 +35,7 @@ export default function kitchenSink({ registry }) {
 </main>`;
 
   return page({
+    site,
     path: '/kitchen-sink/',
     title: 'Kitchen sink',
     description: 'Every native-base component, live on one page.',

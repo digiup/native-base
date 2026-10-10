@@ -1,0 +1,45 @@
+<!-- @example: Rating -->
+<fieldset data-rating aria-label="Rate your stay">
+  <input type="radio" name="stay" value="1" aria-label="1 star">
+  <input type="radio" name="stay" value="2" aria-label="2 stars">
+  <input type="radio" name="stay" value="3" aria-label="3 stars">
+  <input type="radio" name="stay" value="4" aria-label="4 stars" checked>
+  <input type="radio" name="stay" value="5" aria-label="5 stars">
+</fieldset>
+<!-- @example: Read-only score -->
+<div data-stack style="--gap: calc(var(--spacing) * 3)">
+  <div data-row>
+    <span data-rating style="--value: 4.6" role="img" aria-label="4.6 out of 5"></span>
+    <strong>4.6</strong>
+    <small>(2,184 reviews)</small>
+  </div>
+  <div data-row>
+    <span data-rating data-size="sm" style="--value: 3.5" role="img" aria-label="3.5 out of 5"></span>
+    <small>3.5 · Battery life</small>
+  </div>
+  <div data-row>
+    <span data-rating data-size="sm" style="--value: 5" role="img" aria-label="5 out of 5"></span>
+    <small>5.0 · Build quality</small>
+  </div>
+</div>
+<!-- @example: In a review form -->
+<form data-card style="max-inline-size: 26rem">
+  <header>
+    <h3>Review Linen Duvet Set</h3>
+    <p>Your review helps other shoppers. It's public under your first name.</p>
+  </header>
+  <fieldset data-rating data-size="lg">
+    <legend>Overall rating</legend>
+    <input type="radio" name="review" value="1" aria-label="1 star" required>
+    <input type="radio" name="review" value="2" aria-label="2 stars">
+    <input type="radio" name="review" value="3" aria-label="3 stars">
+    <input type="radio" name="review" value="4" aria-label="4 stars">
+    <input type="radio" name="review" value="5" aria-label="5 stars">
+  </fieldset>
+  <label>What did you think?
+    <textarea name="body" placeholder="Soft from the first wash, and it kept its color…"></textarea>
+  </label>
+  <footer data-row="end">
+    <button type="submit">Post review</button>
+  </footer>
+</form>

@@ -1,0 +1,216 @@
+<!-- @block: Feature grid | Six product capabilities, each with an icon, a short title and one sentence. -->
+<section data-section>
+  <header>
+    <small>Platform</small>
+    <h2>Everything between git push and production</h2>
+    <p>Relay replaces the CI scripts, the preview servers and the deploy dashboard you glued together yourself.</p>
+  </header>
+  <div data-grid style="--min: 18rem; --gap: calc(var(--spacing) * 10)">
+    <div data-stack style="--gap: calc(var(--spacing) * 2)">
+      <span data-avatar><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></span>
+      <h3>A preview for every branch</h3>
+      <p>Each pull request gets its own URL, its own database branch and a comment with the link, torn down when it merges.</p>
+    </div>
+    <div data-stack style="--gap: calc(var(--spacing) * 2)">
+      <span data-avatar><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></span>
+      <h3>Instant rollbacks</h3>
+      <p>Every build is kept and addressable. Going back is a pointer swap, not a rebuild, so it takes about a second.</p>
+    </div>
+    <div data-stack style="--gap: calc(var(--spacing) * 2)">
+      <span data-avatar><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span>
+      <h3>Edge in 34 regions</h3>
+      <p>Static assets and functions run close to your users, with requests routed to the nearest healthy region.</p>
+    </div>
+    <div data-stack style="--gap: calc(var(--spacing) * 2)">
+      <span data-avatar><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+      <h3>Secrets that stay secret</h3>
+      <p>Environment variables are encrypted per environment and never printed in build logs, even by accident.</p>
+    </div>
+    <div data-stack style="--gap: calc(var(--spacing) * 2)">
+      <span data-avatar><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+      <h3>Logs and metrics included</h3>
+      <p>Request logs, p95 latency and error rates for every deploy, kept for 30 days without a second vendor.</p>
+    </div>
+    <div data-stack style="--gap: calc(var(--spacing) * 2)">
+      <span data-avatar><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <h3>Roles for real teams</h3>
+      <p>Let contractors deploy previews but not production, and require a second approval for anything tagged release.</p>
+    </div>
+  </div>
+</section>
+<!-- @block: Feature bento | A bento grid of feature cards, each showing a small live piece of the product. -->
+<section data-section>
+  <header>
+    <small>Pulse</small>
+    <h2>Built for the way product teams actually work</h2>
+    <p>Not another wall of charts. Every screen in Pulse answers a question somebody asked in standup.</p>
+  </header>
+  <div data-grid style="--min: 18rem">
+    <article data-card style="grid-row: span 2">
+      <header>
+        <h3>Weekly active users</h3>
+        <p>Retention by week, with releases pinned to the bars they changed.</p>
+      </header>
+      <div data-stat><small>This week</small><strong>48,210</strong><span data-trend="up">8.2%</span></div>
+      <ul data-chart style="--max: 100; --height: 12rem">
+        <li style="--v: 42" data-tooltip="31,880"><span>W1</span></li>
+        <li style="--v: 48" data-tooltip="34,120"><span>W2</span></li>
+        <li style="--v: 46" data-tooltip="33,540"><span>W3</span></li>
+        <li style="--v: 57" data-tooltip="38,900"><span>W4</span></li>
+        <li style="--v: 61" data-tooltip="41,370"><span>W5</span></li>
+        <li style="--v: 69" data-tooltip="44,560"><span>W6</span></li>
+        <li style="--v: 76" data-tooltip="48,210" aria-current="true"><span>W7</span></li>
+      </ul>
+    </article>
+    <article data-card>
+      <header>
+        <h3>Alerts you can tune</h3>
+        <p>Decide what is worth a ping, per metric.</p>
+      </header>
+      <div data-stack style="--gap: calc(var(--spacing) * 3)">
+        <label><input type="checkbox" role="switch" checked> Conversion drops below 3%</label>
+        <label><input type="checkbox" role="switch" checked> Signups spike 2× over baseline</label>
+        <label><input type="checkbox" role="switch"> Weekly digest on Mondays</label>
+      </div>
+    </article>
+    <article data-card>
+      <header>
+        <h3>Ask in plain words</h3>
+        <p>Search every event, cohort and dashboard.</p>
+      </header>
+      <search data-group>
+        <input type="search" placeholder="Users who churned after trial…" aria-label="Search Pulse">
+        <button data-variant="outline" aria-label="Search"><kbd>⌘K</kbd></button>
+      </search>
+      <small>Try “trial users who invited a teammate” or “revenue by plan, last quarter”.</small>
+    </article>
+    <article data-card>
+      <header>
+        <h3>Notified the moment it matters</h3>
+        <p>Anomalies land in Slack with the chart attached.</p>
+      </header>
+      <div data-alert data-variant="warning">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        <strong>Checkout errors up 340%</strong>
+        <p>Started 4 minutes after deploy 7f3c2a on Android.</p>
+      </div>
+    </article>
+    <article data-card>
+      <header>
+        <h3>One workspace, every team</h3>
+        <p>Product, growth and support see the same numbers.</p>
+      </header>
+      <div data-row>
+        <div data-group>
+          <span data-avatar>MR</span>
+          <span data-avatar>JK</span>
+          <span data-avatar>AO</span>
+          <span data-avatar>+9</span>
+        </div>
+        <small>12 teammates viewing</small>
+      </div>
+    </article>
+    <article data-card style="grid-column: 1 / -1">
+      <header>
+        <h3>From event to insight in four steps</h3>
+        <p>Install the snippet and Pulse does the rest. Most teams see their first funnel within the hour.</p>
+      </header>
+      <ol data-steps>
+        <li><strong>Install</strong><small>One script tag or SDK</small></li>
+        <li><strong>Capture</strong><small>Clicks and pages, automatically</small></li>
+        <li aria-current="step"><strong>Define</strong><small>Name the events that matter</small></li>
+        <li><strong>Decide</strong><small>Funnels, cohorts, experiments</small></li>
+      </ol>
+    </article>
+  </div>
+</section>
+<!-- @block: Feature rows | Alternating rows of copy and framed product screens. -->
+<section data-section>
+  <header>
+    <h2>Incidents, handled end to end</h2>
+    <p>Beacon follows an alert from the first page to the postmortem, so nothing falls between tools.</p>
+  </header>
+  <div data-split>
+    <header>
+      <small>Triage</small>
+      <h3>Related alerts arrive as one incident</h3>
+      <p>Beacon groups alerts by service, time and deploy, so the on-call engineer gets one page instead of forty, with the likely cause already linked.</p>
+      <a href="/docs/grouping">How grouping works →</a>
+    </header>
+    <div data-frame="beacon.app/incidents/INC-2291">
+      <ol data-timeline>
+        <li data-variant="destructive"><time datetime="2026-10-09T02:14">02:14</time><strong>checkout-api error rate above 5%</strong><p>14 alerts grouped from Datadog and Sentry</p></li>
+        <li data-variant="warning"><time datetime="2026-10-09T02:15">02:15</time><strong>Paged Maya Ruiz</strong><p>Acknowledged from mobile in 48 s</p></li>
+        <li><time datetime="2026-10-09T02:19">02:19</time><strong>Suspected cause: deploy 7f3c2a</strong><p>Shipped 6 minutes before the first alert</p></li>
+        <li data-variant="success"><time datetime="2026-10-09T02:23">02:23</time><strong>Rolled back and resolved</strong><p>9 minutes from first alert to recovery</p></li>
+      </ol>
+    </div>
+  </div>
+  <div data-split="reverse">
+    <header>
+      <small>Communicate</small>
+      <h3>Status updates that write themselves</h3>
+      <p>Beacon drafts the customer-facing update from the incident timeline. Review it, edit a word, and publish to your status page and Slack at once.</p>
+      <a href="https://status.beacon.app">See a sample status page →</a>
+    </header>
+    <div data-frame="beacon.app/status/acme">
+      <form>
+        <label>Status
+          <select>
+            <option>Investigating</option>
+            <option selected>Identified</option>
+            <option>Monitoring</option>
+            <option>Resolved</option>
+          </select>
+        </label>
+        <label>Update
+          <textarea>We identified a faulty release that caused failed card payments on Android between 02:14 and 02:23 UTC. It has been rolled back and payments are succeeding again.</textarea>
+        </label>
+        <label><input type="checkbox" checked> Also post to #incidents</label>
+        <div data-row="end">
+          <button type="button" data-variant="ghost">Save draft</button>
+          <button type="button">Publish update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<!-- @block: Feature checklist | A heading beside a two-column list of features, each marked with a check. -->
+<section data-section>
+  <div data-split>
+    <header>
+      <small>Security</small>
+      <h2>Enterprise controls on every plan</h2>
+      <p>Strata passed its SOC 2 Type II audit before the first customer signed. The controls your security team asks for are on every plan, not behind a sales call.</p>
+      <div data-row>
+        <a href="/security" data-variant="outline">Visit the trust center</a>
+      </div>
+    </header>
+    <div data-grid style="--min: 14rem; --gap: calc(var(--spacing) * 6)">
+      <div>
+        <strong data-row><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>SSO and SCIM</strong>
+        <p>Okta, Entra ID and Google, with automatic deprovisioning.</p>
+      </div>
+      <div>
+        <strong data-row><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Audit log</strong>
+        <p>Every query, branch and permission change, exportable to your SIEM.</p>
+      </div>
+      <div>
+        <strong data-row><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Encryption everywhere</strong>
+        <p>AES-256 at rest and TLS 1.3 in transit, with customer-managed keys.</p>
+      </div>
+      <div>
+        <strong data-row><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Point-in-time restore</strong>
+        <p>Recover any branch to any second in the last 30 days.</p>
+      </div>
+      <div>
+        <strong data-row><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Data residency</strong>
+        <p>Pin data to the EU, US or Australia. It never leaves the region.</p>
+      </div>
+      <div>
+        <strong data-row><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>99.99% uptime SLA</strong>
+        <p>Multi-zone replicas with automatic failover under 30 seconds.</p>
+      </div>
+    </div>
+  </div>
+</section>

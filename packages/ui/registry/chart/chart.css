@@ -1,0 +1,90 @@
+@layer nb.components {
+  /* Each li draws its own bar as ::before (::after stays free for data-tooltip). --v / --max are unitless. */
+  :where([data-chart]) {
+    --_plot: var(--height, 10rem);
+    --_label: calc(var(--text-xs) * 1.25 + var(--spacing) * 2);
+    --_bar: color-mix(in oklch, var(--color, var(--primary)) 30%, transparent);
+    display: flex;
+    gap: min(calc(var(--spacing) * 2), 2%);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    /* Quarter gridlines over the plot area only, the last one being the baseline. */
+    background: repeating-linear-gradient(to bottom, color-mix(in oklch, var(--border) 75%, transparent) 0 var(--border-width), transparent 0 calc(var(--_plot) / 4)) 0 0 / 100% calc(var(--_plot) + var(--border-width)) no-repeat;
+
+    & > li {
+      flex: 1;
+      display: grid;
+      grid-template-rows: var(--_plot) var(--_label);
+      min-inline-size: 0;
+      margin: 0;
+    }
+    & > li::before {
+      content: "";
+      grid-area: 1 / 1;
+      align-self: end;
+      block-size: calc(var(--v, 0) / var(--max, 100) * 100%);
+      border-radius: calc(var(--radius) - 4px) calc(var(--radius) - 4px) 0 0; corner-shape: var(--corner-shape);
+      background: var(--_bar);
+      transition: background-color var(--duration), block-size .5s var(--ease), inline-size .5s var(--ease);
+    }
+    & > li:is(:hover, [aria-current=true])::before { background: var(--color, var(--primary)); }
+    & > li > span {
+      grid-area: 2 / 1;
+      justify-self: center;
+      padding-block-start: calc(var(--spacing) * 2);
+      color: var(--muted-foreground);
+      font-size: var(--text-xs);
+      line-height: 1.25;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+      white-space: nowrap;
+    }
+    & > li[aria-current=true] > span { color: var(--foreground); font-weight: var(--weight); }
+  }
+
+  /* Real specificity to beat the tooltip's own placement: the tip floats just above the bar, not the plot. */
+  [data-chart]:not([data-chart=bars]) > li[data-tooltip]::after { inset-block-end: calc(var(--_label) + var(--_plot) * var(--v, 0) / var(--max, 100) + var(--spacing) * 1.5); }
+
+  /* Horizontal bars: label | bar | value, columns shared across rows through subgrid. */
+  :where([data-chart=bars]) {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+    background: none;
+
+    & > li { grid-column: 1 / -1; grid-template-columns: subgrid; grid-template-rows: auto; align-items: center; }
+    & > li::before {
+      grid-area: 1 / 2;
+      justify-self: start;
+      inline-size: calc(var(--v, 0) / var(--max, 100) * 100%);
+      block-size: calc(var(--spacing) * 6);
+      border-radius: 0 calc(var(--radius) - 4px) calc(var(--radius) - 4px) 0;
+    }
+    & > li:dir(rtl)::before { border-radius: calc(var(--radius) - 4px) 0 0 calc(var(--radius) - 4px); }
+    & > li > span { grid-area: 1 / 1; justify-self: start; padding: 0; color: var(--foreground); font-size: var(--text-sm); text-align: start; }
+    & > li > :not(span) { grid-area: 1 / 3; color: var(--muted-foreground); font-size: var(--text-sm); font-variant-numeric: tabular-nums; text-align: end; }
+  }
+
+  /* Sparkline: thin columns, no labels (spans stay for screen readers), no gridlines. */
+  :where([data-chart=spark]) {
+    --_plot: var(--height, calc(var(--spacing) * 8));
+    gap: max(1px, calc(var(--spacing) * .5));
+    background: none;
+
+    & > li { grid-template-rows: var(--_plot); }
+    & > li::before { border-radius: max(1px, calc(var(--radius) - 8px)) max(1px, calc(var(--radius) - 8px)) 0 0; }
+    & > li > span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  }
+  [data-chart=spark] > li[data-tooltip]::after { inset-block-end: calc(var(--_plot) * var(--v, 0) / var(--max, 100) + var(--spacing) * 1.5); }
+
+  /* Grow in on load, one bar after another. */
+  @media (prefers-reduced-motion: no-preference) {
+    :where([data-chart]) > li::before { animation: nb-chart-grow-y .7s var(--ease) backwards; animation-delay: calc(var(--_i, 0) * 35ms); }
+    :where([data-chart=bars]) > li::before { animation-name: nb-chart-grow-x; }
+    :where([data-chart]) > li { --_i: sibling-index(); }
+  }
+  @keyframes nb-chart-grow-y { from { block-size: 0; } }
+  @keyframes nb-chart-grow-x { from { inline-size: 0; } }
+}

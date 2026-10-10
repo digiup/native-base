@@ -1,0 +1,74 @@
+@layer nb.components {
+  /* A radio group on a pill track. Equal segments: 1fr columns in an auto-sized grid all take the widest label. */
+  :where([data-segmented]) {
+    --_sh: var(--_h, calc(var(--spacing) * 9));
+    --_sf: var(--_fs, var(--text-sm));
+    --_sr: max(0px, calc(var(--radius) - var(--spacing)));
+    --_on: light-dark(var(--background), var(--input));
+    position: relative;
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 0;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    margin: 0;
+    padding: calc(var(--spacing) * 1);
+    border: 0;
+    border-radius: var(--radius); corner-shape: var(--corner-shape);
+    background: var(--muted);
+
+    /* The accessible name; a visible legend would sit inside the track. */
+    & > legend { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  }
+  /* Real specificity: beats checkbox.css's label/fieldset rules for radio groups. */
+  [data-segmented] > label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--spacing) * 1.5);
+    block-size: calc(var(--_sh) - var(--spacing) * 2);
+    padding: 0 calc(var(--spacing) * 3);
+    border-radius: var(--_sr); corner-shape: var(--corner-shape);
+    color: var(--muted-foreground);
+    font-size: var(--_sf);
+    font-weight: var(--weight);
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: color var(--duration), background-color var(--duration), box-shadow var(--duration);
+
+    &:hover, &:has(:checked) { color: var(--foreground); }
+    &:has(:checked) { background: var(--_on); box-shadow: var(--shadow); }
+    &:has(:focus-visible) { outline: 2px solid var(--ring); outline-offset: 0; }
+    &:has(:disabled) { opacity: .5; cursor: not-allowed; }
+    & > input { position: absolute; inline-size: 1px; block-size: 1px; margin: 0; opacity: 0; pointer-events: none; }
+    & > svg { inline-size: 1em; block-size: 1em; flex-shrink: 0; }
+  }
+  [data-segmented]:has(> label > input) { gap: 0; }
+  :where([data-segmented][data-size=sm]) { padding: calc(var(--spacing) * .75); }
+  [data-segmented][data-size=sm] > label { block-size: calc(var(--_sh) - var(--spacing) * 1.5); padding-inline: calc(var(--spacing) * 2.5); font-size: var(--text-xs); }
+  [data-segmented][data-size=lg] > label { padding-inline: calc(var(--spacing) * 4); }
+
+  /* The highlight is one element anchored to the checked label, so it slides. anchor-scope keeps instances apart. */
+  @supports (anchor-scope: --x) {
+    :where([data-segmented]) {
+      anchor-scope: --nb-segment;
+
+      &::before {
+        content: "";
+        position: absolute;
+        position-anchor: --nb-segment;
+        inset: anchor(top) anchor(right) anchor(bottom) anchor(left);
+        border-radius: var(--_sr); corner-shape: var(--corner-shape);
+        background: var(--_on);
+        box-shadow: var(--shadow);
+        transition: inset var(--duration) var(--ease), opacity var(--duration);
+      }
+      &:not(:has(:checked))::before { opacity: 0; }
+    }
+    [data-segmented] > label:has(:checked) { anchor-name: --nb-segment; background: none; box-shadow: none; }
+  }
+}

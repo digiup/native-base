@@ -1,0 +1,115 @@
+<!-- @block: Pricing tiers | Three plans with monthly and yearly prices in tabs and the recommended plan highlighted. -->
+<section data-section>
+  <header>
+    <small>Pricing</small>
+    <h2>Start free, pay as your team grows</h2>
+    <p>Every plan includes unlimited previews and rollbacks. Pay for seats, not for builds.</p>
+  </header>
+  <div data-tabs>
+    <details name="pricing-tiers-billing" open>
+      <summary>Monthly</summary>
+      <div data-grid style="--min: 17rem">
+        <article data-card>
+          <header><h3>Hobby</h3><p>For side projects and prototypes.</p></header>
+          <div data-stat><strong>$0</strong><p>Free forever, one seat</p></div>
+          <ul>
+            <li>3 projects</li>
+            <li>Previews for every branch</li>
+            <li>Deploys from GitHub and GitLab</li>
+            <li>Community support</li>
+          </ul>
+          <footer><a href="/signup" data-variant="outline">Start for free</a></footer>
+        </article>
+        <article data-card style="border-color: var(--primary)">
+          <header><h3 data-row="between">Team <span data-badge>Most popular</span></h3><p>For product teams shipping every day.</p></header>
+          <div data-stat><strong>$24</strong><p>Per seat, per month</p></div>
+          <ul>
+            <li>Unlimited projects</li>
+            <li>Preview databases</li>
+            <li>Deploy approvals and roles</li>
+            <li>Email support, 1-day response</li>
+          </ul>
+          <footer><a href="/signup?plan=team" data-variant="primary">Start 14-day trial</a></footer>
+        </article>
+        <article data-card>
+          <header><h3>Enterprise</h3><p>For organizations with compliance needs.</p></header>
+          <div data-stat><strong>Custom</strong><p>Annual contract, volume pricing</p></div>
+          <ul>
+            <li>SSO, SCIM and audit log</li>
+            <li>99.99% uptime SLA</li>
+            <li>Dedicated regions</li>
+            <li>Named support engineer</li>
+          </ul>
+          <footer><a href="/contact" data-variant="outline">Talk to sales</a></footer>
+        </article>
+      </div>
+    </details>
+    <details name="pricing-tiers-billing">
+      <summary>Yearly <span data-badge data-variant="secondary">2 months free</span></summary>
+      <div data-grid style="--min: 17rem">
+        <article data-card>
+          <header><h3>Hobby</h3><p>For side projects and prototypes.</p></header>
+          <div data-stat><strong>$0</strong><p>Free forever, one seat</p></div>
+          <ul>
+            <li>3 projects</li>
+            <li>Previews for every branch</li>
+            <li>Deploys from GitHub and GitLab</li>
+            <li>Community support</li>
+          </ul>
+          <footer><a href="/signup" data-variant="outline">Start for free</a></footer>
+        </article>
+        <article data-card style="border-color: var(--primary)">
+          <header><h3 data-row="between">Team <span data-badge>Most popular</span></h3><p>For product teams shipping every day.</p></header>
+          <div data-stat><strong>$20</strong><p>Per seat, per month, billed $240 yearly</p></div>
+          <ul>
+            <li>Unlimited projects</li>
+            <li>Preview databases</li>
+            <li>Deploy approvals and roles</li>
+            <li>Email support, 1-day response</li>
+          </ul>
+          <footer><a href="/signup?plan=team" data-variant="primary">Start 14-day trial</a></footer>
+        </article>
+        <article data-card>
+          <header><h3>Enterprise</h3><p>For organizations with compliance needs.</p></header>
+          <div data-stat><strong>Custom</strong><p>Annual contract, volume pricing</p></div>
+          <ul>
+            <li>SSO, SCIM and audit log</li>
+            <li>99.99% uptime SLA</li>
+            <li>Dedicated regions</li>
+            <li>Named support engineer</li>
+          </ul>
+          <footer><a href="/contact" data-variant="outline">Talk to sales</a></footer>
+        </article>
+      </div>
+    </details>
+  </div>
+</section>
+<!-- @block: Plan comparison | A feature-by-feature table comparing every plan, grouped by area. -->
+<section data-section>
+  <header>
+    <h2>Compare plans</h2>
+    <p>Everything in Hobby is in Team, and everything in Team is in Enterprise.</p>
+  </header>
+  <table>
+    <thead>
+      <tr><th scope="col">Feature</th><th scope="col">Hobby</th><th scope="col">Team</th><th scope="col">Enterprise</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="rowgroup" colspan="4">Deploys</th></tr>
+      <tr><td>Projects</td><td>3</td><td>Unlimited</td><td>Unlimited</td></tr>
+      <tr><td>Branch previews</td><td><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Included"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Included"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Included"><path d="M20 6 9 17l-5-5"/></svg></td></tr>
+      <tr><td>Preview databases</td><td><small role="img" aria-label="Not included">—</small></td><td><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Included"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Included"><path d="M20 6 9 17l-5-5"/></svg></td></tr>
+      <tr><td>Concurrent builds</td><td>1</td><td>4</td><td>Custom</td></tr>
+      <tr><th scope="rowgroup" colspan="4">Collaboration</th></tr>
+      <tr><td>Seats</td><td>1</td><td>Up to 50</td><td>Unlimited</td></tr>
+      <tr><td>Deploy approvals</td><td><small role="img" aria-label="Not included">—</small></td><td><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Included"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Included"><path d="M20 6 9 17l-5-5"/></svg></td></tr>
+      <tr><td>SSO and SCIM</td><td><small role="img" aria-label="Not included">—</small></td><td><small role="img" aria-label="Not included">—</small></td><td><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Included"><path d="M20 6 9 17l-5-5"/></svg></td></tr>
+      <tr><th scope="rowgroup" colspan="4">Support</th></tr>
+      <tr><td>Uptime SLA</td><td><small role="img" aria-label="Not included">—</small></td><td>99.9%</td><td>99.99%</td></tr>
+      <tr><td>Response time</td><td>Community</td><td>1 business day</td><td>1 hour, 24/7</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td></td><td><a href="/signup" data-variant="outline" data-size="sm">Start free</a></td><td><a href="/signup?plan=team" data-variant="primary" data-size="sm">Start trial</a></td><td><a href="/contact" data-variant="outline" data-size="sm">Talk to sales</a></td></tr>
+    </tfoot>
+  </table>
+</section>

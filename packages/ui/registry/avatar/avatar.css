@@ -13,6 +13,7 @@
     object-fit: cover;
     & img { inline-size: 100%; block-size: 100%; object-fit: cover; }
   }
+  :where([data-avatar][data-size=lg]) { --_h: calc(var(--spacing) * 14); }
   [data-group] > [data-avatar] { border-radius: 50%; box-shadow: 0 0 0 2px var(--background); }
   [data-group] > [data-avatar] + [data-avatar] { margin-inline-start: calc(var(--spacing) * -2.5); }
 }

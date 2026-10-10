@@ -13,6 +13,54 @@ const NAMESPACE = '@native-base';
 // Newer than lightningcss knows about. It preserves them verbatim, so these warnings are noise.
 const KNOWN_MODERN = /scroll-button|scroll-marker|target-current|interest-source|interest-target/;
 const EXAMPLE_MARKER = /^<!-- @example: (.+?)( \[code\])? -->\n/m;
+const BLOCK_MARKER = /^<!-- @block: (.+?)(?: \| (.+?))? -->\n/m;
+
+/**
+ * The markup each registry item styles. Blocks and templates are plain HTML, so their dependencies are
+ * read off the markup itself: whatever hooks a block writes is exactly what `add` has to bring along.
+ */
+const USES = {
+  layout: /\sdata-(row|stack|grid)\b/,
+  button: /<button\b|<a\b[^>]*\sdata-variant|\sdata-group\b/,
+  input: /<(input|textarea)\b/,
+  checkbox: /type="(checkbox|radio)"/,
+  switch: /role="switch"/,
+  select: /<select\b/,
+  progress: /<(progress|meter)\b/,
+  card: /\sdata-card\b/,
+  badge: /\sdata-badge\b/,
+  alert: /\sdata-alert\b/,
+  avatar: /\sdata-avatar\b/,
+  table: /<table\b/,
+  loading: /\sdata-(skeleton|spinner)\b|aria-busy=/,
+  breadcrumb: /\sdata-breadcrumb\b/,
+  dialog: /<dialog\b/,
+  popover: /\spopover\b/,
+  menu: /<menu\b/,
+  tooltip: /\sdata-tooltip=/,
+  toast: /\sdata-toast\b/,
+  accordion: /<details\b/,
+  tabs: /\sdata-tabs\b/,
+  carousel: /\sdata-carousel\b/,
+  section: /\sdata-(section|split|frame)\b/,
+  navbar: /\sdata-navbar\b/,
+  shell: /\sdata-shell\b/,
+  pagination: /\sdata-pagination\b/,
+  steps: /\sdata-steps\b/,
+  stat: /\sdata-(stat|trend)\b/,
+  chart: /\sdata-chart\b/,
+  timeline: /\sdata-timeline\b/,
+  empty: /\sdata-empty\b/,
+  segmented: /\sdata-segmented\b/,
+  rating: /\sdata-rating\b/,
+  dropzone: /\sdata-dropzone\b/,
+  marquee: /\sdata-marquee\b/,
+};
+
+/** Registry items a piece of markup uses, in cascade order. base is always there: it styles the page itself. */
+function usedBy(code, items) {
+  return items.filter((item) => item.name === 'base' || USES[item.name]?.test(code)).map((item) => item.name);
+}
 
 const sizes = (text) => ({
   bytes: Buffer.byteLength(text),
@@ -28,6 +76,17 @@ function parseExamples(html) {
     examples.push({ title: parts[i], live: !parts[i + 1], code, tokens: countTokens(code) });
   }
   return examples;
+}
+
+/** blocks/<file>.html: one or more blocks, each introduced by `<!-- @block: Title | One-line description -->`. */
+function parseBlocks(html, category, items) {
+  const parts = html.split(BLOCK_MARKER);
+  const blocks = [];
+  for (let i = 1; i < parts.length; i += 3) {
+    const code = parts[i + 2].trim();
+    blocks.push({ name: slug(parts[i]), title: parts[i], description: parts[i + 1] ?? '', category, code, tokens: countTokens(code), uses: usedBy(code, items) });
+  }
+  return blocks;
 }
 
 /** One component as Markdown: what it is, its markup API, then its examples. */
@@ -94,11 +153,33 @@ There is nothing to wrap. Vue and Svelte templates take the HTML as written. JSX
 Keep open/closed state in the browser. Use invoker commands for overlays; when a dialog's contents depend on data, keep the data in state and call \`showModal()\` through a ref. \`<form method="dialog">\` closes it and its \`close\` event exposes the clicked button's value as \`dialog.returnValue\`. For server-side validation errors, call \`input.setCustomValidity(message)\` so \`<small data-error>\` shows.
 `;
 
-function renderLlmsFull(pkg, manifest, items, presets) {
+function renderLlmsFull(pkg, manifest, items, presets, blocks, templates) {
   const lines = header(pkg, manifest);
   lines.push(SETUP);
   for (const item of items) lines.push(...renderItem(item, { allExamples: true }));
   lines.push(renderThemes(presets));
+  lines.push(...renderPatternIndex(blocks, templates));
+  return lines.join('\n');
+}
+
+/** Blocks and templates by name only: their markup is long, and it is one `view` away. */
+function renderPatternIndex(blocks, templates) {
+  const lines = ['## Blocks and templates', '', 'Blocks are sections built only from the components above (hero, pricing, dashboard cards, …); templates are whole pages. Print one with `npx native-base view block-<name>` or copy it with `npx native-base add block-<name>`, which brings the components it uses.', ''];
+  for (const [category, group] of Map.groupBy(blocks, (block) => block.category)) {
+    lines.push(`### ${category}`, '');
+    for (const block of group) lines.push(`- \`block-${block.name}\`: ${block.title}. ${block.description}`);
+    lines.push('');
+  }
+  lines.push('### Templates', '');
+  for (const template of templates) lines.push(`- \`template-${template.name}\`: ${template.title}. ${template.description}`);
+  lines.push('');
+  return lines;
+}
+
+function renderPatterns(pkg, blocks, templates) {
+  const lines = [`# native-base ${pkg.version} blocks and templates`, '', 'Complete markup for every block (a section) and template (a page). Each one uses only native-base components and layout hooks; reuse the structure, change the words.', ''];
+  for (const block of blocks) lines.push(`## Block: ${block.title} (\`block-${block.name}\`)`, '', `${block.category}. ${block.description} Uses ${block.uses.join(', ')}.`, '', '```html', block.code, '```', '');
+  for (const template of templates) lines.push(`## Template: ${template.title} (\`template-${template.name}\`)`, '', `${template.description} Uses ${template.uses.join(', ')}.`, '', '```html', template.code, '```', '');
   return lines.join('\n');
 }
 
@@ -124,12 +205,13 @@ function renderThemes(presets) {
 }
 
 /** The agent skill: a hand-written SKILL.md plus generated references, so the API it carries matches this build. */
-function renderSkill(pkg, items, presets) {
+function renderSkill(pkg, items, presets, blocks, templates) {
   const components = [`# native-base ${pkg.version} components`, '', 'Every component: description, registry name, dependencies, markup API and all examples. Find one with its `## Title` heading.', ''];
   for (const item of items) components.push(...renderItem(item, { allExamples: true }));
   return {
     'references/components.md': components.join('\n'),
     'references/setup.md': `# native-base ${pkg.version} setup\n\n${SETUP}`,
+    'references/patterns.md': renderPatterns(pkg, blocks, templates),
     'references/theming.md': `# native-base ${pkg.version} theming\n\n${renderThemes(presets)
       .replace(/^## Themes and styles\n\n/, '')
       .replace(/^### /gm, '## ')}`,
@@ -156,6 +238,32 @@ function toRegistryItem(item, withContent) {
     categories: [item.category],
     ...(withContent && { docs: item.examples[0]?.code }),
     meta: { api: item.api, native: item.native, size: item.size, ...(withContent && { examples: item.examples }) },
+  };
+}
+
+/**
+ * A block or template as a registry item. Its file is HTML: `add` writes it next to the project's pages
+ * instead of importing it, and pulls in the components it uses as ordinary dependencies.
+ */
+function toPatternItem(pattern, kind, withContent) {
+  return {
+    $schema: 'https://ui.shadcn.com/schema/registry-item.json',
+    name: `${kind}-${pattern.name}`,
+    type: 'registry:block',
+    title: pattern.title,
+    description: pattern.description,
+    registryDependencies: pattern.uses.map((dep) => `${NAMESPACE}/${dep}`),
+    files: [
+      {
+        path: `${kind}s/${pattern.name}.html`,
+        type: 'registry:file',
+        target: `~/${kind}s/${pattern.name}.html`,
+        ...(withContent && { content: pattern.code }),
+      },
+    ],
+    categories: [kind === 'block' ? pattern.category : 'Templates'],
+    ...(withContent && { docs: pattern.code }),
+    meta: { kind, tokens: pattern.tokens, ...(pattern.category && { category: pattern.category }) },
   };
 }
 
@@ -247,14 +355,29 @@ export function nativeBaseRegistry() {
         items.push({ ...entry, registryDependencies, native: entry.native ?? [], api: entry.api ?? {}, source, css, examples, size: sizes(css) });
       }
 
+      for (const name of Object.keys(USES)) if (!seen.has(name)) this.error(`build/registry.js: USES names "${name}", which is not in registry.json`);
+
+      const blocks = [];
+      for (const { file, title } of manifest.blocks ?? []) blocks.push(...parseBlocks(await read(this, `blocks/${file}.html`), title, items));
+      const templates = [];
+      for (const entry of manifest.templates ?? []) {
+        const code = (await read(this, `templates/${entry.name}.html`)).trim();
+        templates.push({ ...entry, code, tokens: countTokens(code), uses: usedBy(code, items) });
+      }
+      for (const list of [blocks, templates]) {
+        const names = list.map((pattern) => pattern.name);
+        const dupe = names.find((name, i) => names.indexOf(name) !== i);
+        if (dupe) this.error(`Two blocks or templates are named "${dupe}"; titles must be unique`);
+      }
+
       const bundle = minify(this, 'native-base.css', items.map((item) => item.source).join('\n'));
       const presets = presetItems();
       const llms = renderLlms(pkg, manifest, items, presets);
-      const llmsFull = renderLlmsFull(pkg, manifest, items, presets);
+      const llmsFull = renderLlmsFull(pkg, manifest, items, presets, blocks, templates);
       const skillTemplate = await read(this, 'skill/SKILL.md');
       const skill = {
         'SKILL.md': skillTemplate.replace('{{rules}}', manifest.rules.map((rule) => `- ${rule}`).join('\n')),
-        ...renderSkill(pkg, items, presets),
+        ...renderSkill(pkg, items, presets, blocks, templates),
       };
 
       registry = {
@@ -263,6 +386,8 @@ export function nativeBaseRegistry() {
         description: pkg.description,
         rules: manifest.rules,
         items,
+        blocks,
+        templates,
         bundle: { css: bundle, size: sizes(bundle) },
         llms: { text: llms, tokens: countTokens(llms), size: sizes(llms) },
         llmsFull: { text: llmsFull, tokens: countTokens(llmsFull), size: sizes(llmsFull) },
@@ -303,7 +428,12 @@ export function nativeBaseRegistry() {
             name: registry.name,
             version: registry.version,
             bundle: registry.bundle.size,
-            items: [...registry.items.map((item) => toRegistryItem(item, false)), ...registry.presets.map((preset) => toPresetItem(preset, false))],
+            items: [
+              ...registry.items.map((item) => toRegistryItem(item, false)),
+              ...registry.presets.map((preset) => toPresetItem(preset, false)),
+              ...registry.blocks.map((block) => toPatternItem(block, 'block', false)),
+              ...registry.templates.map((template) => toPatternItem(template, 'template', false)),
+            ],
           },
           null,
           2,
@@ -318,6 +448,9 @@ export function nativeBaseRegistry() {
         emit(`${preset.kind}s/${preset.name.slice(preset.kind.length + 1)}.css`, preset.css);
         emit(`r/${preset.name}.css`, preset.css);
         emit(`r/${preset.name}.json`, JSON.stringify(toPresetItem(preset, true), null, 2));
+      }
+      for (const [kind, list] of [['block', registry.blocks], ['template', registry.templates]]) {
+        for (const pattern of list) emit(`r/${kind}-${pattern.name}.json`, JSON.stringify(toPatternItem(pattern, kind, true), null, 2));
       }
       emit('presets.d.ts', await read(this, 'src/presets.d.ts'));
     },

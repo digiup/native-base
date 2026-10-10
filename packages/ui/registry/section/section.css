@@ -1,0 +1,138 @@
+@layer nb.components {
+  /* Full-bleed band; the padding centers the content at --max, so backgrounds still reach the edges. */
+  :where([data-section]) {
+    container: nb-section / inline-size;
+    display: grid;
+    gap: calc(var(--spacing) * 12);
+    padding-block: clamp(calc(var(--spacing) * 16), 9vw, calc(var(--spacing) * 24));
+    padding-inline: max(calc(var(--spacing) * 6), (100% - var(--max, 72rem)) / 2);
+
+    & > * { min-inline-size: 0; margin-block: 0; }
+  }
+  :where([data-section=hero]) {
+    gap: calc(var(--spacing) * 14);
+    padding-block: clamp(calc(var(--spacing) * 20), 12vw, calc(var(--spacing) * 32));
+    background-image: radial-gradient(60% 45% at 50% 0%, color-mix(in oklch, var(--primary) 9%, transparent), transparent);
+  }
+
+  /* Intro: eyebrow or badge, heading, lead, actions. Also inside a split column, where it starts aligned. */
+  :where([data-section] > header, [data-split] > header) {
+    display: grid;
+    justify-items: center;
+    gap: calc(var(--spacing) * 4);
+    max-inline-size: 42rem;
+    margin-inline: auto;
+    text-align: center;
+    text-wrap: balance;
+
+    & > * { margin: 0; }
+    & > small { color: var(--primary); font-size: var(--text-xs); font-weight: var(--weight-heading); letter-spacing: .08em; text-transform: uppercase; }
+    & > :is(h1, h2) { font-size: clamp(calc(var(--text-base) * 1.875), 3cqi + 1rem, calc(var(--text-base) * 3)); line-height: 1.1; letter-spacing: calc(var(--tracking) * 1.5); }
+    & > p { max-inline-size: 38rem; color: var(--muted-foreground); font-size: calc(var(--text-base) * 1.125); text-wrap: pretty; }
+    & > [data-row] { justify-content: center; margin-block-start: calc(var(--spacing) * 3); }
+  }
+  :where([data-section=hero] > header, [data-section=hero] > [data-split] > header) {
+    gap: calc(var(--spacing) * 5);
+    max-inline-size: 48rem;
+    & > :is(h1, h2) { font-size: clamp(calc(var(--text-base) * 2.5), 6.5cqi, calc(var(--text-base) * 4.75)); line-height: 1.02; letter-spacing: calc(var(--tracking) * 2); }
+    & > p { font-size: calc(var(--text-base) * 1.25); }
+  }
+  :where([data-section][data-align=start] > header, [data-split] > header) {
+    justify-items: start;
+    margin-inline: 0;
+    text-align: start;
+    & > [data-row] { justify-content: flex-start; }
+  }
+
+  /* Tones. A primary band inverts the tokens for its content, so buttons, badges and fields all flip. */
+  :where([data-section][data-tone=muted]) { background-color: color-mix(in oklch, var(--muted) 70%, var(--background)); }
+  :where([data-section][data-theme]) { background-color: var(--background); color: var(--foreground); }
+  :where([data-section][data-tone=primary]) {
+    --nb-on: var(--primary-foreground);
+    --nb-under: var(--primary);
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+
+    & > * {
+      --primary: var(--nb-on);
+      --primary-foreground: var(--nb-under);
+      --foreground: var(--nb-on);
+      --background: var(--nb-under);
+      --muted: color-mix(in oklch, var(--nb-on) 12%, transparent);
+      --muted-foreground: color-mix(in oklch, var(--nb-on) 72%, transparent);
+      --accent: var(--muted);
+      --accent-foreground: var(--nb-on);
+      --secondary: color-mix(in oklch, var(--nb-on) 14%, transparent);
+      --secondary-foreground: var(--nb-on);
+      --card: color-mix(in oklch, var(--nb-on) 8%, transparent);
+      --card-foreground: var(--nb-on);
+      --border: color-mix(in oklch, var(--nb-on) 18%, transparent);
+      --input: color-mix(in oklch, var(--nb-on) 30%, transparent);
+      --ring: color-mix(in oklch, var(--nb-on) 60%, transparent);
+    }
+  }
+
+  /* Two columns that wrap to one when there is no room for both: no container needed, works anywhere. */
+  :where([data-split]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: calc(var(--spacing) * 12);
+
+    & > * { flex: 1 1 min(100%, 24rem); min-inline-size: 0; margin-block: 0; }
+  }
+  /* Reversed only when side by side: stacked, the first child stays on top. */
+  :where([data-split=reverse]) { flex-direction: row-reverse; }
+
+  /* Browser chrome: a top bar with three dots and, from the attribute's value, an address. */
+  :where([data-frame]) {
+    --_bar: calc(var(--spacing) * 9);
+    --_dot: calc(var(--spacing) * 2.75);
+    --_dot-color: color-mix(in oklch, var(--muted-foreground) 45%, transparent);
+    position: relative;
+    display: block;
+    overflow: clip;
+    padding-block-start: var(--_bar);
+    border: var(--border-width) solid var(--border);
+    border-radius: calc(var(--radius) + 6px); corner-shape: var(--corner-shape);
+    background: var(--background);
+    color: var(--foreground);
+    text-align: start;
+    box-shadow: var(--shadow-lg), 0 calc(var(--spacing) * 8) calc(var(--spacing) * 24) calc(var(--spacing) * -6) color-mix(in oklch, var(--primary) 28%, transparent);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      block-size: var(--_bar);
+      border-block-end: var(--border-width) solid var(--border);
+      background:
+        radial-gradient(closest-side, var(--_dot-color) 85%, transparent) calc(var(--spacing) * 4) 50% / var(--_dot) var(--_dot) no-repeat,
+        radial-gradient(closest-side, var(--_dot-color) 85%, transparent) calc(var(--spacing) * 8.75) 50% / var(--_dot) var(--_dot) no-repeat,
+        radial-gradient(closest-side, var(--_dot-color) 85%, transparent) calc(var(--spacing) * 13.5) 50% / var(--_dot) var(--_dot) no-repeat,
+        color-mix(in oklch, var(--muted) 55%, var(--background));
+    }
+    &:not([data-frame=""])::after {
+      content: attr(data-frame);
+      position: absolute;
+      inset-block-start: calc(var(--_bar) / 2);
+      inset-inline-start: 50%;
+      translate: -50% -50%;
+      inline-size: min(22rem, 50%);
+      padding: calc(var(--spacing) * .5) calc(var(--spacing) * 3);
+      overflow: hidden;
+      border-radius: calc(var(--radius) - 4px); corner-shape: var(--corner-shape);
+      background: color-mix(in oklch, var(--muted) 80%, var(--background));
+      color: var(--muted-foreground);
+      font-size: var(--text-xs);
+      line-height: 1.5;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Media and app shells bleed to the edges; anything else gets room to breathe. */
+    &:not(:has(> :is(img, video, picture, [data-shell]))) { padding: calc(var(--_bar) + var(--spacing) * 5) calc(var(--spacing) * 5) calc(var(--spacing) * 5); }
+    & > :is(img, video, picture) { display: block; inline-size: 100%; block-size: auto; }
+  }
+}

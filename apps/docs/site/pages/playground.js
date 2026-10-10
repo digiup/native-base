@@ -185,7 +185,7 @@ function stylePanel() {
 </section>`;
 }
 
-export default function playground() {
+export default function playground(site) {
   const body = `<main data-wrap data-pg>
   <header data-pg-head>
     <div>
@@ -250,6 +250,7 @@ export default function playground() {
 </main>`;
 
   return page({
+    site,
     path: '/playground/',
     title: 'Playground',
     description: 'Compose a native-base theme (colors) with a style (spacing, type, radius, motion), tweak every variable, export CSS.',

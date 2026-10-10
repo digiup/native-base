@@ -85,6 +85,8 @@ export function registryGuide(site) {
     ['/r/{name}.css', 'One item’s minified CSS, ready for a link tag'],
     ['/r/theme-{name}.json', 'A theme: colors for light and dark, plus the seed that generated them'],
     ['/r/style-{name}.json', 'A style: spacing, radius, corner shape, borders, type and motion'],
+    ['/r/block-{name}.json', 'A block: one section of HTML, plus the components it uses as dependencies'],
+    ['/r/template-{name}.json', 'A template: a whole page of HTML, plus the components it uses'],
     ['/native-base.css', 'Everything, minified'],
     ['/llms.txt', 'The markup API for language models'],
     ['/llms-full.txt', 'Every example, plus setup, CLI, theming and framework notes'],
@@ -97,7 +99,7 @@ export function registryGuide(site) {
 <h2 id="endpoints">Endpoints</h2>
 <table data-api>
   <thead><tr><th>GET</th><th>Returns</th></tr></thead>
-  <tbody>${endpoints.map(([path, what]) => `<tr><td><a href="${path.includes('{') ? path.replace('{name}', 'dialog') : path}"><code>${path}</code></a></td><td>${what}</td></tr>`).join('')}</tbody>
+  <tbody>${endpoints.map(([path, what]) => `<tr><td><a href="${path.includes('{') ? path.replace('block-{name}', 'block-hero-centered').replace('template-{name}', 'template-dashboard').replace('{name}', 'dialog') : path}"><code>${path}</code></a></td><td>${what}</td></tr>`).join('')}</tbody>
 </table>
 
 <h2 id="cli">native-base CLI</h2>
@@ -108,8 +110,12 @@ npx native-base init
 # copy components (and their dependencies)
 npx native-base add dialog menu
 
+# a whole section or page: the HTML goes to src/native-base/, its components to your styles
+npx native-base add block-pricing-tiers template-dashboard
+
 # browse
 npx native-base list
+npx native-base list blocks
 npx native-base view select
 
 # from your own deployed registry, or any registry item URL
