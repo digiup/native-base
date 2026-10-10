@@ -1,0 +1,60 @@
+<!-- @block: Marketing navbar | A sticky site header with a brand, page links that collapse into a menu on small screens, and sign-in actions. -->
+<header data-navbar="sticky">
+  <a href="/">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17 10 11 4 5"/><path d="M12 19h8"/></svg>
+    Relay
+  </a>
+  <nav popover id="navbar-marketing-links" aria-label="Main">
+    <a href="/product">Product</a>
+    <a href="/templates">Templates</a>
+    <a href="/pricing" aria-current="page">Pricing</a>
+    <a href="/docs">Docs</a>
+    <a href="/changelog">Changelog</a>
+  </nav>
+  <button popovertarget="navbar-marketing-links" data-variant="ghost" data-size="icon" aria-label="Open menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+  </button>
+  <div>
+    <a href="/login" data-variant="ghost">Sign in</a>
+    <a href="/signup" data-variant="primary">Get started</a>
+  </div>
+</header>
+<!-- @block: Navbar with product menu | A site header whose Products link opens a dropdown of the product line. -->
+<header data-navbar>
+  <a href="/">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 20.66 7v10L12 22l-8.66-5V7z"/><path d="m12 12 8.66-5"/><path d="M12 12v10"/><path d="M12 12 3.34 7"/></svg>
+    Northwind
+  </a>
+  <nav popover id="navbar-products-links" aria-label="Main">
+    <button popovertarget="navbar-products-menu" data-variant="ghost">
+      Products
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <menu popover id="navbar-products-menu">
+      <li><small>Platform</small></li>
+      <li><a href="/products/pulse">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        Pulse analytics
+      </a></li>
+      <li><a href="/products/beacon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        Beacon on-call
+      </a></li>
+      <li><a href="/products/strata">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+        Strata databases
+      </a></li>
+      <li><hr></li>
+      <li><a href="/roadmap">See the roadmap</a></li>
+    </menu>
+    <a href="/customers">Customers</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog" aria-current="page">Blog</a>
+  </nav>
+  <button popovertarget="navbar-products-links" data-variant="ghost" data-size="icon" aria-label="Open menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+  </button>
+  <div>
+    <a href="/contact" data-variant="outline">Contact sales</a>
+  </div>
+</header>

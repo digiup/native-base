@@ -1,0 +1,116 @@
+<!-- @block: Profile settings | Edit the public profile: avatar, name, username, email and bio, with a save bar. -->
+<form data-card>
+  <header>
+    <h2>Profile</h2>
+    <p>This is how teammates see you across Northwind.</p>
+  </header>
+  <div data-row style="--gap: calc(var(--spacing) * 4)">
+    <span data-avatar data-size="lg">AL</span>
+    <label>
+      Avatar
+      <input type="file" name="avatar" accept="image/png, image/jpeg">
+      <small data-hint>PNG or JPG, at least 256 × 256.</small>
+    </label>
+  </div>
+  <div data-grid style="--min: 14rem">
+    <label>Full name <input name="name" autocomplete="name" value="Ada Lovelace" required></label>
+    <label>Email <input type="email" name="email" autocomplete="email" value="ada@northwind.dev" required></label>
+  </div>
+  <label>
+    Username
+    <span data-group>
+      <span data-badge data-variant="secondary">northwind.app/</span>
+      <input name="username" autocomplete="username" value="ada" pattern="[a-z0-9-]{2,24}" required>
+    </span>
+    <small data-hint>Lowercase letters, numbers and dashes.</small>
+    <small data-error>Use 2–24 lowercase letters, numbers or dashes.</small>
+  </label>
+  <label>
+    Bio
+    <textarea name="bio" maxlength="160" placeholder="Platform engineer. Writing the build pipeline one cache layer at a time."></textarea>
+    <small data-hint>Shown on your public profile. 160 characters at most.</small>
+  </label>
+  <footer data-row="between">
+    <small>Last saved October 7</small>
+    <div data-row>
+      <button type="reset" data-variant="outline">Discard</button>
+      <button type="submit">Save changes</button>
+    </div>
+  </footer>
+</form>
+<!-- @block: Notification preferences | Grouped email and push switches, each with a one-line description. -->
+<form data-card>
+  <header>
+    <h2>Notifications</h2>
+    <p>Choose what Northwind tells you about, and where.</p>
+  </header>
+  <fieldset>
+    <legend>Email</legend>
+    <label>
+      <input type="checkbox" role="switch" name="email-deploys" checked>
+      <span data-stack style="--gap: 0">Deployments <small>When a production deploy succeeds or fails.</small></span>
+    </label>
+    <label>
+      <input type="checkbox" role="switch" name="email-mentions" checked>
+      <span data-stack style="--gap: 0">Comments and mentions <small>When someone replies to you or @mentions you.</small></span>
+    </label>
+    <label>
+      <input type="checkbox" role="switch" name="email-digest">
+      <span data-stack style="--gap: 0">Weekly digest <small>A Monday summary of traffic, builds and spend.</small></span>
+    </label>
+  </fieldset>
+  <fieldset>
+    <legend>Push</legend>
+    <label>
+      <input type="checkbox" role="switch" name="push-incidents" checked>
+      <span data-stack style="--gap: 0">Incidents <small>Alerts that page the on-call engineer.</small></span>
+    </label>
+    <label>
+      <input type="checkbox" role="switch" name="push-mentions">
+      <span data-stack style="--gap: 0">Mentions <small>Only when you’re away from your desk.</small></span>
+    </label>
+  </fieldset>
+  <fieldset>
+    <legend>Security</legend>
+    <label>
+      <input type="checkbox" role="switch" name="security-sign-in" checked disabled>
+      <span data-stack style="--gap: 0">New sign-ins <small>Always on. We email you when a new device signs in.</small></span>
+    </label>
+  </fieldset>
+  <footer data-row="end">
+    <button type="submit">Save preferences</button>
+  </footer>
+</form>
+<!-- @block: Danger zone | Delete a project from a destructive card, confirmed in a dialog by typing its name. -->
+<article data-card style="--border: color-mix(in oklch, var(--destructive) 45%, var(--card))">
+  <header>
+    <h2>Danger zone</h2>
+    <p>These actions affect everyone on the project and can’t be undone.</p>
+  </header>
+  <div data-row="between">
+    <span data-stack style="--gap: 0">Transfer project <small>Move northwind-web, its domains and its billing to another team.</small></span>
+    <button type="button" data-variant="outline">Transfer</button>
+  </div>
+  <div data-row="between">
+    <span data-stack style="--gap: 0">Delete project <small>Remove northwind-web, its 214 deployments and every environment variable.</small></span>
+    <button commandfor="delete-project" command="show-modal" data-variant="destructive">Delete project</button>
+  </div>
+  <dialog id="delete-project" closedby="any" aria-labelledby="delete-project-title">
+    <button commandfor="delete-project" command="close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    <header>
+      <h2 id="delete-project-title">Delete northwind-web?</h2>
+      <p>Deployments stop serving immediately and the domains are released. Your team loses access to the project’s logs and analytics.</p>
+    </header>
+    <form method="dialog">
+      <label>
+        <span>Type <strong>northwind-web</strong> to confirm</span>
+        <input name="confirm" pattern="northwind-web" autocomplete="off" spellcheck="false" required>
+        <small data-error>Type the project name exactly as shown.</small>
+      </label>
+      <footer>
+        <button value="cancel" data-variant="outline" formnovalidate>Cancel</button>
+        <button value="delete" data-variant="destructive">Delete project</button>
+      </footer>
+    </form>
+  </dialog>
+</article>

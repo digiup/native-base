@@ -1,0 +1,77 @@
+<!-- @example: App shell -->
+<div data-shell style="--height: 36rem">
+  <aside popover id="app-sidebar">
+    <a href="/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      Relay
+    </a>
+    <nav aria-label="App">
+      <ul>
+        <li><a href="/" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>Overview</a></li>
+        <li><a href="/deployments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v8"/><path d="m16 6-4 4-4-4"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>Deployments<span data-badge data-variant="secondary">3</span></a></li>
+        <li><a href="/logs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Logs</a></li>
+        <li><a href="/analytics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>Analytics</a></li>
+      </ul>
+      <small>Projects</small>
+      <ul>
+        <li><a href="/p/storefront">Storefront<small>12</small></a></li>
+        <li><a href="/p/billing-api">Billing API<small>4</small></a></li>
+        <li><a href="/p/marketing-site">Marketing site<small>7</small></a></li>
+      </ul>
+    </nav>
+    <footer>
+      <span data-avatar data-size="sm">AL</span>
+      <div>
+        <strong>Ada Lovelace</strong>
+        <small>ada@relay.dev</small>
+      </div>
+    </footer>
+  </aside>
+  <main>
+    <div data-stack style="--gap: calc(var(--spacing) * 6)">
+      <div data-row>
+        <button popovertarget="app-sidebar" data-shell-toggle data-variant="ghost" data-size="icon" aria-label="Open navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
+        </button>
+        <nav aria-label="Breadcrumb">
+          <ol data-breadcrumb><li><a href="/">Acme</a></li><li aria-current="page">Overview</li></ol>
+        </nav>
+      </div>
+      <div data-grid style="--min: 11rem">
+        <article data-card data-stat><small>Requests today</small><strong>1.28M</strong><span data-trend="up">8.2%</span></article>
+        <article data-card data-stat><small>Error rate</small><strong>0.04%</strong><span data-trend="down">0.01%</span></article>
+        <article data-card data-stat><small>p95 latency</small><strong>182 ms</strong><p>Across 38 regions</p></article>
+      </div>
+    </div>
+  </main>
+</div>
+<!-- @example: Collapsible groups -->
+<div data-shell style="--height: 30rem">
+  <aside popover id="docs-sidebar">
+    <a href="/">Stacks docs</a>
+    <nav aria-label="Documentation">
+      <details open>
+        <summary>Getting started</summary>
+        <ul>
+          <li><a href="/install" aria-current="page">Installation</a></li>
+          <li><a href="/quickstart">Quickstart</a></li>
+          <li><a href="/project-structure">Project structure</a></li>
+        </ul>
+      </details>
+      <details>
+        <summary>Guides</summary>
+        <ul>
+          <li><a href="/auth">Authentication</a></li>
+          <li><a href="/data">Fetching data</a></li>
+          <li><a href="/deploy">Deploying</a></li>
+        </ul>
+      </details>
+    </nav>
+  </aside>
+  <main>
+    <button popovertarget="docs-sidebar" data-shell-toggle data-variant="outline" data-size="sm">Menu</button>
+    <h2>Installation</h2>
+    <p>Stacks runs on Node 22 or later. Create a project with one command and you are ready to go.</p>
+    <pre><code>npm create stacks@latest my-app</code></pre>
+  </main>
+</div>

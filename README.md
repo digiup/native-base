@@ -19,7 +19,7 @@ A classless, registry-driven UI kit built on native HTML. Inspired by shadcn/ui'
 
 ```
 packages/ui     @digiup/native-base: registry source, rolldown build, CLI
-apps/docs       landing page, docs, kitchen sink, theme playground (Vite 8, real multi-page HTML)
+apps/docs       landing page, docs, blocks and templates galleries, kitchen sink, theme playground (Vite 8, real multi-page HTML)
 examples/*      the kit used from React, Vue, Svelte and Solid: no wrapper components
 ```
 
@@ -34,6 +34,8 @@ pnpm preview
 
 Each registry item is a folder: `packages/ui/registry/<name>/<name>.css` plus `examples.html` (split on `<!-- @example: Title -->`, suffix `[code]` for non-live snippets). `registry.json` holds metadata, the markup API and dependencies (declared in cascade order).
 
+Blocks and templates are plain HTML built from those items, with no CSS of their own. `packages/ui/blocks/<category>.html` holds one category of sections, each introduced by `<!-- @block: Title | Description -->`; `packages/ui/templates/<name>.html` is one whole page's `<body>`. Both are listed in `registry.json`. The build reads the components each one uses straight off its markup (`USES` in `build/registry.js`), so `npx native-base add block-<name>` brings exactly those.
+
 `rolldown -c` runs a plugin that minifies with lightningcss, token-counts every example (o200k_base) and emits:
 
 | Output | What |
@@ -41,13 +43,13 @@ Each registry item is a folder: `packages/ui/registry/<name>/<name>.css` plus `e
 | `dist/native-base.css` | Everything, minified |
 | `dist/components/<name>.css` | One item, minified |
 | `dist/r/index.json`, `dist/r/<name>.json` | shadcn-compatible registry items (`registry:item`) with source |
-| `dist/r/<name>.css` | For `<link>` straight from a URL |
 | `dist/llms.txt` | The whole markup API for language models, one example per component |
 | `dist/llms-full.txt` | Every example, plus setup, CLI, theming and framework notes |
-| `dist/skill/native-base/` | Agent skill: `skill/SKILL.md` with the registry's rules filled in, plus generated `references/` |
+| `dist/skill/native-base/` | Agent skill: `skill/SKILL.md` with the registry's rules filled in, plus generated `references/` (components, blocks and templates, setup, theming) |
 | `dist/index.js` | `registry`, `getItem`, `resolve(names)`, `css(names)` |
 | `dist/themes/<name>.css`, `dist/styles/<name>.css` | Theme (colors) and style (spacing, shape, type, motion) presets |
 | `dist/r/theme-<name>.json`, `dist/r/style-<name>.json` | The same presets as registry items; they install to `theme.css` and `style.css` |
+| `dist/r/block-<name>.json`, `dist/r/template-<name>.json` | Blocks and templates as registry items: their HTML, with the components they use as dependencies |
 | `dist/presets.js` | Theme generator, presets, CSS/JSON export and import, playground share links |
 | `dist/cli.js` | `native-base init / add / list / view / theme / skill` |
 
@@ -66,8 +68,10 @@ Docs-only merges publish nothing. To release by hand, run the workflow from the 
 
 ## The docs
 
-`apps/docs/site/plugin.js` renders every route to a real HTML document (in dev through middleware, in build as virtual HTML inputs), so navigation uses cross-document view transitions instead of a client router. It also serves the library's registry at `/r/*`, `/native-base.css` and `/llms.txt`.
+`apps/docs/site/plugin.js` renders every route to a real HTML document (in dev through middleware, in build as virtual HTML inputs), so navigation uses cross-document view transitions instead of a client router. It also serves the library's registry JSON at `/r/*`, `/llms.txt` and the agent skill. It serves no stylesheets: the CSS is installed from npm or copied by the CLI.
 
 Every component example can be shown as HTML, React, Vue, Svelte or Solid: `site/translate.js` converts the registry's HTML, and the picker in each code bar is one radio group plus CSS, so the whole site follows one choice. `pnpm --filter @native-base/docs check` renders every generated React example and compares it with the HTML it came from, and compiles the Solid, Vue and Svelte versions.
+
+`/blocks/` and `/templates/` show every block and template in an iframe that loads only the kit's own CSS (each also has its own page at `/blocks/<name>/` and `/templates/<name>/`). The Theme and Style pickers above them write to `localStorage`, and every frame restyles through the `storage` event. On a block, the Preview/Code switch is the kit's own tabs, and the width presets are a segmented control.
 
 The four framework guides (`/docs/react/`, `/docs/vue/`, `/docs/svelte/`, `/docs/solid/`) read their demo components off disk and mount them on the page, so the code shown is the code running. They are the only pages that load a framework.

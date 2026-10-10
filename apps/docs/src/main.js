@@ -43,3 +43,58 @@ if (editor) {
 }
 
 if (document.querySelector('[data-builder]')) import('./builder.js');
+
+// Search: the dialog is a list of every page. ⌘K or / opens it; typing hides what doesn't match.
+const search = document.querySelector('[data-search]');
+if (search) {
+  const input = search.querySelector('input');
+  const links = [...search.querySelectorAll('[data-results] a')];
+  addEventListener('keydown', (event) => {
+    const typing = event.target.closest?.('input, textarea, select, [contenteditable]');
+    if ((event.key === 'k' && (event.metaKey || event.ctrlKey)) || (event.key === '/' && !typing)) {
+      event.preventDefault();
+      search.showModal();
+    }
+  });
+  search.addEventListener('toggle', (event) => event.newState === 'open' && input.select());
+  input.addEventListener('input', () => {
+    const words = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+    for (const link of links) link.parentElement.hidden = !words.every((word) => link.textContent.toLowerCase().includes(word));
+    for (const group of search.querySelectorAll('[data-results] > li')) group.hidden = !group.querySelector('li:not([hidden])');
+    search.toggleAttribute('data-empty-results', !links.some((link) => !link.parentElement.hidden));
+  });
+  input.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return;
+    const first = links.find((link) => !link.parentElement.hidden);
+    if (first) location.href = first.href;
+  });
+}
+
+// Preview frames grow to fit their page, so a block never scrolls inside the gallery.
+function autosize(frame) {
+  const watch = () => {
+    const doc = frame.contentDocument;
+    if (!doc?.body || doc.URL === 'about:blank') return;
+    const fit = () => (frame.style.blockSize = `${doc.documentElement.scrollHeight}px`);
+    fit();
+    new ResizeObserver(fit).observe(doc.body);
+  };
+  frame.addEventListener('load', watch);
+  // A frame can finish before this module runs.
+  if (frame.contentDocument?.readyState === 'complete') watch();
+}
+document.querySelectorAll('iframe[data-autosize]').forEach(autosize);
+
+// Width presets win over a width dragged with the resize handle.
+document.addEventListener('change', (event) => {
+  if (event.target.name?.startsWith('vp-')) event.target.closest('[data-block]').querySelector('[data-resize]').style.inlineSize = '';
+});
+
+// Theme and style for every preview frame. Frames (and preview tabs) pick it up from the storage event.
+for (const select of document.querySelectorAll('[data-preview-controls] select')) {
+  select.value = localStorage.getItem(select.name) ?? select.options[0].value;
+  select.addEventListener('change', () => {
+    for (const twin of document.querySelectorAll(`select[name="${select.name}"]`)) twin.value = select.value;
+    localStorage.setItem(select.name, select.value);
+  });
+}

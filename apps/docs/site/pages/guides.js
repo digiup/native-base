@@ -3,10 +3,7 @@ import { codeBlock, esc, kb } from '../html.js';
 import { STYLE_PRESETS, THEME_PRESETS, slug } from '@digiup/native-base/presets';
 import { docsPage } from '../layout.js';
 
-const firstPage = `<!doctype html>
-<html lang="en">
-<link rel="stylesheet" href="{origin}/native-base.css">
-<main data-stack style="max-width: 24rem; margin: 4rem auto">
+const firstPage = `<main data-stack style="max-width: 24rem; margin: 4rem auto">
   <h1>Hello</h1>
   <label>Email <input type="email" required></label>
   <button commandfor="done" command="show-modal">Subscribe</button>
@@ -32,12 +29,8 @@ export function gettingStarted(site) {
   const content = `<h1>Getting started</h1>
 <p data-lead>native-base is CSS for plain HTML. Buttons are <code>&lt;button&gt;</code>, dialogs are <code>&lt;dialog&gt;</code>, and composite components take one data attribute. There is no JavaScript to install.</p>
 
-<h2 id="link">Link the stylesheet</h2>
-<p>All ${registry.items.length} components in ${kb(registry.bundle.size.gzip)}. The fastest way to try it.</p>
-${codeBlock('<link rel="stylesheet" href="{origin}/native-base.css">', 'html')}
-
 <h2 id="npm">Install from npm</h2>
-<p>Import the whole bundle or individual components. Per-component files expect their dependencies (listed on each page) to be imported first.</p>
+<p>All ${registry.items.length} components in ${kb(registry.bundle.size.gzip)}. Import the whole bundle once in your app’s entry CSS or JS, or only the components you use. Per-component files expect their dependencies (listed on each page) to be imported first.</p>
 ${codeBlock(`npm i @digiup/native-base`, 'sh')}
 ${codeBlock(`@import "@digiup/native-base/native-base.css";
 
@@ -52,7 +45,7 @@ ${codeBlock(`npx native-base init
 npx native-base add dialog select tabs`, 'sh')}
 
 <h2 id="first-page">Write HTML</h2>
-<p>A complete page with a validated field and a working modal, in ${countTokens(firstPage)} tokens.</p>
+<p>With the stylesheet imported, this is a validated field and a working modal, in ${countTokens(firstPage)} tokens.</p>
 ${codeBlock(firstPage, 'html', { tokens: countTokens(firstPage) })}
 
 <h2 id="frameworks">With a framework</h2>
@@ -82,22 +75,22 @@ export function registryGuide(site) {
   const endpoints = [
     ['/r/index.json', 'Every item, without file contents'],
     ['/r/{name}.json', 'One item: metadata, API, examples and CSS source'],
-    ['/r/{name}.css', 'One item’s minified CSS, ready for a link tag'],
     ['/r/theme-{name}.json', 'A theme: colors for light and dark, plus the seed that generated them'],
     ['/r/style-{name}.json', 'A style: spacing, radius, corner shape, borders, type and motion'],
-    ['/native-base.css', 'Everything, minified'],
+    ['/r/block-{name}.json', 'A block: one section of HTML, plus the components it uses as dependencies'],
+    ['/r/template-{name}.json', 'A template: a whole page of HTML, plus the components it uses'],
     ['/llms.txt', 'The markup API for language models'],
     ['/llms-full.txt', 'Every example, plus setup, CLI, theming and framework notes'],
     ['/skill/native-base/SKILL.md', 'The agent skill; its references sit beside it in references/'],
   ];
 
   const content = `<h1>Registry & CLI</h1>
-<p data-lead>Components ship as a registry: JSON and CSS files served over plain GET. The format follows shadcn/ui’s registry schema, so both CLIs can read it.</p>
+<p data-lead>Components ship as a registry: one JSON file per item, carrying its CSS source. The format follows shadcn/ui’s registry schema, so both CLIs can read it.</p>
 
 <h2 id="endpoints">Endpoints</h2>
 <table data-api>
   <thead><tr><th>GET</th><th>Returns</th></tr></thead>
-  <tbody>${endpoints.map(([path, what]) => `<tr><td><a href="${path.includes('{') ? path.replace('{name}', 'dialog') : path}"><code>${path}</code></a></td><td>${what}</td></tr>`).join('')}</tbody>
+  <tbody>${endpoints.map(([path, what]) => `<tr><td><a href="${path.includes('{') ? path.replace('block-{name}', 'block-hero-centered').replace('template-{name}', 'template-dashboard').replace('{name}', 'dialog') : path}"><code>${path}</code></a></td><td>${what}</td></tr>`).join('')}</tbody>
 </table>
 
 <h2 id="cli">native-base CLI</h2>
@@ -108,8 +101,12 @@ npx native-base init
 # copy components (and their dependencies)
 npx native-base add dialog menu
 
+# a whole section or page: the HTML goes to src/native-base/, its components to your styles
+npx native-base add block-pricing-tiers template-dashboard
+
 # browse
 npx native-base list
+npx native-base list blocks
 npx native-base view select
 
 # from your own deployed registry, or any registry item URL
@@ -124,11 +121,11 @@ ${codeBlock(`{
 <p>Every theme and style in the <a href="/playground/">playground</a> is a registry item too. A theme always lands in <code>theme.css</code> and a style in <code>style.css</code>, so adding another one swaps it instead of stacking. Both are unlayered <code>:root</code> blocks, so they win over the kit’s defaults.</p>
 <table data-api>
   <thead><tr><th>Theme</th><th>Colors</th></tr></thead>
-  <tbody>${THEME_PRESETS.map((p) => `<tr><td><a href="/r/theme-${slug(p.name)}.css"><code>theme-${slug(p.name)}</code></a></td><td>${esc(p.note)}</td></tr>`).join('')}</tbody>
+  <tbody>${THEME_PRESETS.map((p) => `<tr><td><a href="/r/theme-${slug(p.name)}.json"><code>theme-${slug(p.name)}</code></a></td><td>${esc(p.note)}</td></tr>`).join('')}</tbody>
 </table>
 <table data-api>
   <thead><tr><th>Style</th><th>Feel</th></tr></thead>
-  <tbody>${STYLE_PRESETS.map((p) => `<tr><td><a href="/r/style-${slug(p.name)}.css"><code>style-${slug(p.name)}</code></a></td><td>${esc(p.note)}</td></tr>`).join('')}</tbody>
+  <tbody>${STYLE_PRESETS.map((p) => `<tr><td><a href="/r/style-${slug(p.name)}.json"><code>style-${slug(p.name)}</code></a></td><td>${esc(p.note)}</td></tr>`).join('')}</tbody>
 </table>
 <p><code>native-base theme</code> composes one of each, generates a theme from a hue, or takes a custom one straight from a playground link or an exported file.</p>
 ${codeBlock(`# presets, from the registry
@@ -151,10 +148,7 @@ npx native-base init --theme rose --style hygge
 
 npx native-base list themes
 npx native-base view style-gatsby`, 'sh')}
-<p>Without the CLI, link the CSS straight from the registry, or import it from npm.</p>
-${codeBlock(`<link rel="stylesheet" href="{origin}/native-base.css">
-<link rel="stylesheet" href="{origin}/r/theme-indigo.css">
-<link rel="stylesheet" href="{origin}/r/style-mochi.css">`, 'html')}
+<p>Without the CLI, import them from npm.</p>
 ${codeBlock(`@import "@digiup/native-base/native-base.css";
 @import "@digiup/native-base/themes/indigo.css";
 @import "@digiup/native-base/styles/mochi.css";`, 'css')}
@@ -182,14 +176,14 @@ ${codeBlock(`{
   <output data-builder-output for="items">
     <p data-builder-summary>Select components to see the bundle.</p>
     ${codeBlock('npx native-base add button dialog', 'sh')}
-    <a data-variant download="native-base.css" href="/native-base.css">Download CSS</a>
+    <a data-variant download="native-base.css">Download CSS</a>
   </output>
 </form>
 
 <h2 id="authoring">Authoring</h2>
 <p>The registry is generated by a rolldown plugin from <code>registry.json</code> plus one folder per item: <code>registry/{name}/{name}.css</code> and <code>examples.html</code>. Examples are split on <code>&lt;!-- @example: Title --&gt;</code> comments and token-counted at build time.</p>`;
 
-  return docsPage({ site, path: '/docs/registry/', title: 'Registry & CLI', description: 'Install native-base components from a URL, with our CLI or shadcn’s.', content });
+  return docsPage({ site, path: '/docs/registry/', title: 'Registry & CLI', description: 'Copy native-base components into your project with our CLI or shadcn’s.', content });
 }
 
 export function theming(site) {

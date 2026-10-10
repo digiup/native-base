@@ -1,0 +1,62 @@
+<!-- @block: CTA band | A full-width call to action on the primary color with two buttons. -->
+<section data-section data-tone="primary">
+  <header>
+    <h2>Your next deploy could take 40 seconds</h2>
+    <p>Connect a repository and Relay ships it before your coffee cools. Free for personal projects; teams get 14 days of everything.</p>
+    <div data-row>
+      <a href="/signup" data-variant="primary" data-size="lg">Start deploying free</a>
+      <a href="/contact" data-variant="outline" data-size="lg">Talk to sales</a>
+    </div>
+  </header>
+</section>
+<!-- @block: Newsletter signup | An email signup for product updates, with the promise of what readers get and how often. -->
+<section data-section data-tone="muted">
+  <div data-split>
+    <header>
+      <h2>The Pulse changelog, in your inbox</h2>
+      <p>One email on the first Tuesday of the month: what shipped, what we learned from 4,000 teams' funnels, and nothing else.</p>
+    </header>
+    <form>
+      <label>Work email
+        <span data-group>
+          <input type="email" placeholder="you@company.com" autocomplete="email" required>
+          <button>Subscribe</button>
+        </span>
+        <small data-hint>Unsubscribe in one click. We never share your address.</small>
+        <small data-error>Enter an email address like name@company.com.</small>
+      </label>
+    </form>
+  </div>
+</section>
+<!-- @block: CTA dark with screenshot | A dark call to action beside a framed product screen. -->
+<section data-section data-theme="dark">
+  <div data-split>
+    <header>
+      <small>Strata</small>
+      <h2>Test every migration against real data</h2>
+      <p>Branch production in under a second, run the change, compare the results. Free up to 10 GB, no card required.</p>
+      <div data-row>
+        <a href="/signup" data-variant="primary" data-size="lg">Create your first branch</a>
+        <a href="/pricing" data-variant="ghost" data-size="lg">View pricing</a>
+      </div>
+    </header>
+    <div data-frame="console.strata.dev/acme/branches">
+      <div data-stack>
+        <div data-row="between">
+          <strong>Branches</strong>
+          <button data-size="sm">New branch</button>
+        </div>
+        <table>
+          <thead><tr><th>Branch</th><th>Status</th><th data-numeric>Size</th></tr></thead>
+          <tbody>
+            <tr><td>main</td><td><span data-badge data-variant="success">Primary</span></td><td data-numeric>48.2 GB</td></tr>
+            <tr aria-selected="true"><td>fix-invoice-totals</td><td><span data-badge data-variant="secondary">Migrating</span></td><td data-numeric>212 MB</td></tr>
+            <tr><td>preview-pr-1874</td><td><span data-badge data-variant="outline">Idle</span></td><td data-numeric>4 MB</td></tr>
+            <tr><td>load-test-oct</td><td><span data-badge data-variant="outline">Idle</span></td><td data-numeric>1.9 GB</td></tr>
+          </tbody>
+        </table>
+        <label>Migrating fix-invoice-totals, 72% <progress value="72" max="100"></progress></label>
+      </div>
+    </div>
+  </div>
+</section>

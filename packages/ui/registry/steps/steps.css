@@ -1,0 +1,100 @@
+@layer nb.components {
+  /* A container, so a horizontal row that runs out of room stacks like data-steps="vertical". */
+  :where([data-steps]) {
+    --_dot: calc(var(--spacing) * 8);
+    --_line: max(var(--border-width), 2px);
+    container: nb-steps / inline-size;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    counter-reset: nb-step;
+    list-style: none;
+
+    & > li {
+      position: relative;
+      display: grid;
+      flex: 1 1 0;
+      align-content: start;
+      gap: calc(var(--spacing) * 1);
+      min-inline-size: 0;
+      padding-inline-end: calc(var(--spacing) * 4);
+      counter-increment: nb-step;
+
+      /* The marker: a number, a check when done. */
+      &::before {
+        content: counter(nb-step);
+        display: grid;
+        place-items: center;
+        inline-size: var(--_dot);
+        block-size: var(--_dot);
+        margin-block-end: calc(var(--spacing) * 2);
+        border: var(--border-width) solid var(--border);
+        border-radius: 50%;
+        background: var(--muted);
+        color: var(--muted-foreground);
+        font-size: var(--text-sm);
+        font-weight: var(--weight);
+        font-variant-numeric: tabular-nums;
+        transition: background-color var(--duration), border-color var(--duration), color var(--duration);
+      }
+      /* The connector to the next step. */
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        inset-block-start: calc(var(--_dot) / 2 - var(--_line) / 2);
+        inset-inline: calc(var(--_dot) + var(--spacing) * 2) calc(var(--spacing) * 2);
+        block-size: var(--_line);
+        border-radius: var(--_line);
+        background: var(--border);
+      }
+
+      & > strong { color: var(--muted-foreground); font-size: var(--text-sm); font-weight: var(--weight); line-height: 1.4; }
+      & > small { color: var(--muted-foreground); font-size: var(--text-xs); line-height: 1.5; }
+    }
+
+    & > [aria-current=step] {
+      &::before { border-color: var(--primary); background: var(--background); color: var(--primary); box-shadow: 0 0 0 calc(var(--spacing) * 1) color-mix(in oklch, var(--primary) 15%, transparent); }
+      & > strong { color: var(--foreground); }
+    }
+    /* Done: any step that comes before the current one. The check is knocked out of a filled disc. */
+    & > li:has(~ [aria-current=step]) {
+      &::before {
+        content: "";
+        border-color: var(--primary);
+        background: var(--primary);
+        mask: var(--icon-check) center / 50% no-repeat exclude, linear-gradient(oklch(0 0 0) 0 0);
+      }
+      &::after { background: var(--primary); }
+      & > strong { color: var(--foreground); }
+    }
+  }
+
+  /* Vertical: marker beside the text, connectors running down. */
+  :where([data-steps=vertical]) > li {
+    flex-basis: 100%;
+    grid-template-columns: var(--_dot) minmax(0, 1fr);
+    column-gap: calc(var(--spacing) * 3);
+    row-gap: calc(var(--spacing) * .5);
+    padding: 0 0 calc(var(--spacing) * 6);
+    &::before { grid-row: 1 / span 2; margin: 0; }
+    & > strong { padding-block-start: calc((var(--_dot) - 1.4em) / 2); }
+    & > * { grid-column: 2; }
+    &:last-child { padding-block-end: 0; }
+    &:not(:last-child)::after { inset-block: calc(var(--_dot) + var(--spacing) * 1.5) calc(var(--spacing) * 1.5); inset-inline: calc(var(--_dot) / 2 - var(--_line) / 2) auto; inline-size: var(--_line); block-size: auto; }
+  }
+  @container nb-steps (width < 32rem) {
+    :where([data-steps]) > li {
+      flex-basis: 100%;
+      grid-template-columns: var(--_dot) minmax(0, 1fr);
+      column-gap: calc(var(--spacing) * 3);
+      row-gap: calc(var(--spacing) * .5);
+      padding: 0 0 calc(var(--spacing) * 6);
+      &::before { grid-row: 1 / span 2; margin: 0; }
+      & > strong { padding-block-start: calc((var(--_dot) - 1.4em) / 2); }
+      & > * { grid-column: 2; }
+      &:last-child { padding-block-end: 0; }
+      &:not(:last-child)::after { inset-block: calc(var(--_dot) + var(--spacing) * 1.5) calc(var(--spacing) * 1.5); inset-inline: calc(var(--_dot) / 2 - var(--_line) / 2) auto; inline-size: var(--_line); block-size: auto; }
+    }
+  }
+}

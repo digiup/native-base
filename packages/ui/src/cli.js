@@ -28,13 +28,14 @@ native-base: add native HTML components to your project
 Usage
   native-base init                 Create ${CONFIG_FILE} and add tokens + base
   native-base add <item...>        Copy items (and their dependencies) into your project
-  native-base list [kind]          Show the registry: components, themes or styles
+  native-base list [kind]          Show the registry: components, blocks, templates, themes or styles
   native-base view <item>          Print an item's markup API and examples, or a theme's CSS
   native-base theme [theme]        Write theme.css (colors) and style.css (spacing, shape, type)
   native-base skill                Install the native-base agent skill for coding agents
 
 Items can be names (button), namespaced (@native-base/button) or URLs to any registry item JSON.
 Themes and styles are items too: native-base add theme-indigo style-mochi
+Blocks and templates are HTML: native-base add block-hero-centered template-dashboard
 
 Theme and style sources
   A preset name (indigo, mochi), a playground link (…/playground/#s=…), or a .json/.css file
@@ -50,6 +51,7 @@ Theme and style sources
 
 Options
   -o, --out <dir>        Where CSS files go (default: src/styles/native-base), or skills for skill
+      --pages <dir>      Where block and template HTML goes (default: src/native-base)
   -r, --registry <url>   Registry base URL (default: the registry bundled with this package)
   -f, --force            Overwrite files that already exist
   -t, --theme <source>   Theme for init and theme
@@ -67,6 +69,7 @@ const { values: flags, positionals } = parseArgs({
   allowPositionals: true,
   options: {
     out: { type: 'string', short: 'o' },
+    pages: { type: 'string' },
     registry: { type: 'string', short: 'r' },
     force: { type: 'boolean', short: 'f' },
     theme: { type: 'string', short: 't' },
@@ -84,6 +87,7 @@ const { values: flags, positionals } = parseArgs({
 const config = existsSync(CONFIG_FILE) ? JSON.parse(await readFile(CONFIG_FILE, 'utf8')) : {};
 const registryBase = withSlash(flags.registry ?? config.registry ?? BUNDLED_REGISTRY);
 const outDir = flags.out ?? config.out ?? 'src/styles/native-base';
+const pagesDir = flags.pages ?? config.pages ?? 'src/native-base';
 
 function withSlash(url) {
   if (!/^[a-z]+:/.test(url)) url = new URL(url, `file://${process.cwd()}/`).href;
@@ -127,9 +131,22 @@ async function add(refs) {
   const index = existsSync(indexPath) ? await readFile(indexPath, 'utf8') : '';
   const imports = new Set(index.match(/@import "[^"]+";/g));
 
+  const pages = [];
   for (const item of items) {
     for (const file of item.files) {
       const name = file.target?.split('/').pop() ?? file.path.split('/').pop();
+      // Blocks and templates are markup to paste from, not stylesheets to import.
+      if (name.endsWith('.html')) {
+        const path = join(pagesDir, `${item.meta.kind}s`, name);
+        await mkdir(join(pagesDir, `${item.meta.kind}s`), { recursive: true });
+        if (existsSync(path) && !flags.force) console.log(`${styleText('dim', 'skip')}  ${relative('.', path)} ${styleText('dim', '(exists, use --force)')}`);
+        else {
+          await writeFile(path, `${file.content}\n`);
+          console.log(`${styleText('green', 'add')}   ${relative('.', path)}`);
+        }
+        pages.push(path);
+        continue;
+      }
       const path = join(outDir, name);
       const swap = item.meta?.kind === 'theme' || item.meta?.kind === 'style';
       if (swap) {
@@ -147,16 +164,17 @@ async function add(refs) {
   await writeFile(indexPath, `${[...imports].join('\n')}\n`);
 
   console.log(`\nImport once: ${styleText('cyan', `@import "./${relative('.', indexPath)}";`)}`);
+  if (pages.length) return console.log(`Paste the markup from ${pages.map((path) => styleText('cyan', relative('.', path))).join(', ')} into your pages.`);
   const last = items.at(-1);
   if (last.docs) console.log(`\n${styleText('bold', last.title)} markup:\n\n${last.docs}\n`);
 }
 
-const KINDS = { components: 'Components', themes: 'Themes', styles: 'Styles' };
-const kindOf = (item) => (item.meta?.kind === 'theme' ? 'Themes' : item.meta?.kind === 'style' ? 'Styles' : 'Components');
+const KINDS = { components: 'Components', blocks: 'Blocks', templates: 'Templates', themes: 'Themes', styles: 'Styles' };
+const kindOf = (item) => (item.meta?.kind ? KINDS[`${item.meta.kind}s`] : 'Components');
 
 async function list(filter) {
   const wanted = filter && (KINDS[filter] ?? KINDS[`${filter}s`]);
-  if (filter && !wanted) throw new Error(`Unknown kind "${filter}". Try: components, themes or styles`);
+  if (filter && !wanted) throw new Error(`Unknown kind "${filter}". Try: components, blocks, templates, themes or styles`);
   const index = await fetchJson(new URL('index.json', registryBase).href);
   const width = Math.max(...index.items.map((item) => item.name.length));
   for (const [group, items] of Map.groupBy(index.items, kindOf)) {
@@ -172,6 +190,13 @@ async function list(filter) {
 
 async function view(ref) {
   const item = await fetchJson(toUrl(ref));
+  if (item.meta?.kind === 'block' || item.meta?.kind === 'template') {
+    console.log(styleText('bold', `${item.title}`), styleText('dim', `(${item.meta.kind} · ${item.meta.tokens} tokens · uses ${item.registryDependencies.map((dep) => dep.replace(NAMESPACE, '')).join(', ')})`));
+    console.log(item.description, '\n');
+    console.log(item.files[0].content);
+    console.log(`\n${styleText('dim', `native-base add ${item.name}`)}`);
+    return;
+  }
   if (item.meta?.kind) {
     console.log(styleText('bold', `${item.title}`), styleText('dim', `(${item.meta.kind})`));
     console.log(item.description, '\n');
@@ -268,7 +293,7 @@ async function theme(source = flags.theme) {
     imports.add(`@import "./${name}";`);
   }
   await writeFile(indexPath, `${[...imports].join('\n')}\n`);
-  if (!existsSync(join(outDir, 'tokens.css'))) console.log(`\n${styleText('yellow', 'note')}  No tokens.css in ${outDir} yet. Run native-base init, or link native-base.css first.`);
+  if (!existsSync(join(outDir, 'tokens.css'))) console.log(`\n${styleText('yellow', 'note')}  No tokens.css in ${outDir} yet. Run native-base init, or import @digiup/native-base/native-base.css first.`);
   console.log(`\nImport once: ${styleText('cyan', `@import "./${relative('.', indexPath)}";`)}`);
 }
 

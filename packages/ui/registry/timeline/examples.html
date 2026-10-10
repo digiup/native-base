@@ -1,0 +1,75 @@
+<!-- @example: Activity feed -->
+<ol data-timeline>
+  <li data-variant="success">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+    <time datetime="2026-10-09T14:32">Today, 14:32</time>
+    <strong>Deployed to production</strong>
+    <p>v2.14.0 is live on acme.app. Build took 48 seconds.</p>
+  </li>
+  <li>
+    <span data-avatar>MR</span>
+    <time datetime="2026-10-09T11:05">Today, 11:05</time>
+    <strong>Maya Reyes approved the pull request</strong>
+    <p>“Looks great. Ship it once the preview checks pass.”</p>
+  </li>
+  <li>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M6 9v12"/></svg>
+    <time datetime="2026-10-08T17:48">Yesterday, 17:48</time>
+    <strong>Jonas Berg opened #482</strong>
+    <p>Move billing emails to the new template engine.</p>
+  </li>
+  <li data-variant="destructive">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+    <time datetime="2026-10-08T09:12">Yesterday, 09:12</time>
+    <strong>Preview build failed</strong>
+    <p>Type error in <code>src/billing/invoice.ts</code>, line 88.</p>
+  </li>
+</ol>
+<!-- @example: Changelog -->
+<ol data-timeline>
+  <li>
+    <time datetime="2026-10-06">October 6, 2026</time>
+    <strong>Segmented controls and star ratings</strong>
+    <p>Two new form components, both plain radio groups. The segmented highlight slides with anchor positioning.</p>
+    <div data-row>
+      <span data-badge>New</span>
+      <span data-badge data-variant="secondary">Forms</span>
+    </div>
+  </li>
+  <li>
+    <time datetime="2026-09-22">September 22, 2026</time>
+    <strong>Charts that grow in on load</strong>
+    <p>Column, bar and sparkline charts from a list and one custom property per item.</p>
+  </li>
+  <li>
+    <time datetime="2026-09-08">September 8, 2026</time>
+    <strong>Corner shapes for every style</strong>
+    <p>Squircle, bevel, notch and scoop corners follow <code>--corner-shape</code> everywhere.</p>
+  </li>
+</ol>
+<!-- @example: Order status -->
+<article data-card style="max-inline-size: 24rem">
+  <header>
+    <h3>Order #10482</h3>
+    <p>Arrives Friday, October 10</p>
+  </header>
+  <ol data-timeline>
+    <li data-variant="success">
+      <strong>Order placed</strong>
+      <time datetime="2026-10-06T09:41">Mon, Oct 6 · 09:41</time>
+    </li>
+    <li data-variant="success">
+      <strong>Packed and shipped</strong>
+      <time datetime="2026-10-07T16:20">Tue, Oct 7 · 16:20</time>
+    </li>
+    <li data-variant="warning">
+      <strong>Delayed at the Hamburg hub</strong>
+      <time datetime="2026-10-08T22:05">Wed, Oct 8 · 22:05</time>
+      <p>Weather held up the overnight truck. New estimate: Friday.</p>
+    </li>
+    <li>
+      <strong>Out for delivery</strong>
+      <p>We’ll email you when the driver is on the way.</p>
+    </li>
+  </ol>
+</article>

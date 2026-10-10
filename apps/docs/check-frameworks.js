@@ -1,5 +1,5 @@
 /**
- * Every registry example, in every framework: React's version is rendered and compared with the
+ * Every registry example and block, in every framework: React's version is rendered and compared with the
  * HTML it came from, and Solid, Vue and Svelte's versions are put through their own compilers.
  *
  *   node check-frameworks.js
@@ -50,6 +50,10 @@ for (const item of registry.items) {
   for (const example of item.examples) {
     if (translatable(example.code)) cases.push({ id: `${item.name}/${example.title}`, name: pascal(`${item.name} ${example.title}`), html: example.code });
   }
+}
+// Blocks show the same picker in their Code tab.
+for (const block of registry.blocks) {
+  if (translatable(block.code)) cases.push({ id: `block-${block.name}`, name: pascal(`block ${block.name}`), html: block.code });
 }
 
 const failures = [];

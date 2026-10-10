@@ -1,20 +1,5 @@
-import { codeBlock, esc, kb, resolveItems, slug } from '../html.js';
+import { codeBlock, esc, kb, resolveItems, slug, variants } from '../html.js';
 import { docsPage } from '../layout.js';
-import { FRAMEWORK_LABELS, translatable, translate } from '../translate.js';
-
-/** "Destructive with icon" → DestructiveWithIcon, so the generated component has a name to export. */
-const componentName = (title) => title.replace(/(?:^|[^a-z0-9])([a-z0-9])/gi, (_, character) => character.toUpperCase()).replace(/[^A-Za-z0-9]/g, '');
-
-/** The same example in every framework, switched by the picker in the code bar. */
-function variants(ex) {
-  if (!translatable(ex.code)) return codeBlock(ex.code, 'html', { tokens: ex.tokens });
-  const translated = translate(ex.code, componentName(ex.title));
-  const blocks = Object.keys(FRAMEWORK_LABELS).map((framework) => {
-    const { code, language, file } = translated[framework];
-    return codeBlock(code, language, { label: file, framework, tokens: framework === 'html' ? ex.tokens : undefined });
-  });
-  return `<div data-variants>${blocks.join('')}</div>`;
-}
 
 function example(ex) {
   const id = slug(ex.title);
@@ -41,7 +26,6 @@ export default function component(site, item) {
 
   const install = [
     ['CLI', codeBlock(`npx native-base add ${item.name}`, 'sh')],
-    ['URL', codeBlock(deps.map((dep) => `<link rel="stylesheet" href="{origin}/r/${dep.name}.css">`).join('\n'), 'html')],
     ['npm', codeBlock(deps.map((dep) => `@import "@digiup/native-base/components/${dep.name}.css";`).join('\n'), 'css')],
     ['shadcn', codeBlock(`npx shadcn add {origin}/r/${item.name}.json`, 'sh')],
   ];
@@ -78,5 +62,6 @@ ${item.examples.map(example).join('')}
   ${next ? `<a href="/docs/${next.name}/" rel="next"><small>Next</small>${esc(next.title)}</a>` : ''}
 </nav>`;
 
-  return docsPage({ site, path: `/docs/${item.name}/`, title: item.title, description: item.description, content });
+  const toc = [...item.examples.map((ex) => [slug(ex.title), esc(ex.title)]), ['api', 'API'], ['install', 'Install'], ['source', 'Source']];
+  return docsPage({ site, path: `/docs/${item.name}/`, title: item.title, description: item.description, content, toc });
 }

@@ -1,0 +1,31 @@
+<!-- @example: Pagination -->
+<nav aria-label="Pagination">
+  <ol data-pagination>
+    <li><a href="?page=3" rel="prev">Previous</a></li>
+    <li><a href="?page=1">1</a></li>
+    <li><span>…</span></li>
+    <li><a href="?page=3">3</a></li>
+    <li><a href="?page=4" aria-current="page">4</a></li>
+    <li><a href="?page=5">5</a></li>
+    <li><span>…</span></li>
+    <li><a href="?page=12">12</a></li>
+    <li><a href="?page=5" rel="next">Next</a></li>
+  </ol>
+</nav>
+<!-- @example: First page -->
+<nav aria-label="Pagination">
+  <ol data-pagination>
+    <li><a rel="prev" aria-disabled="true">Previous</a></li>
+    <li><a href="?page=1" aria-current="page">1</a></li>
+    <li><a href="?page=2">2</a></li>
+    <li><a href="?page=3">3</a></li>
+    <li><a href="?page=2" rel="next">Next</a></li>
+  </ol>
+</nav>
+<!-- @example: Previous and next only -->
+<nav aria-label="Pagination">
+  <ol data-pagination>
+    <li><a href="/changelog/2026-08" rel="prev">August 2026</a></li>
+    <li><a href="/changelog/2026-10" rel="next">October 2026</a></li>
+  </ol>
+</nav>

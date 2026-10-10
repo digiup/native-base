@@ -1,0 +1,61 @@
+<!-- @block: FAQ split | Frequently asked questions in an accordion beside a heading and a way to reach a person. -->
+<section data-section>
+  <div data-split>
+    <header>
+      <small>FAQ</small>
+      <h2>Questions before you switch</h2>
+      <p>Moving deploys is a big decision. Here is what teams ask us most. Anything else, <a href="/contact">talk to an engineer</a> and get an answer the same day.</p>
+    </header>
+    <div>
+      <details name="faq-split" open>
+        <summary>How long does a migration from our current CI take?</summary>
+        <p>Most teams deploy their first app within an hour. Relay detects the framework and build command; you add environment variables and point your domain. Large monorepos usually take a week, with our engineers pairing on it.</p>
+      </details>
+      <details name="faq-split">
+        <summary>Can we keep our existing cloud account?</summary>
+        <p>Yes. On Team and Enterprise, Relay can deploy into your own AWS or GCP account, so data and spend stay where they are today.</p>
+      </details>
+      <details name="faq-split">
+        <summary>What happens to previews when a branch merges?</summary>
+        <p>The preview URL and its database branch are deleted ten minutes after merge. Pin a preview to keep it for a demo.</p>
+      </details>
+      <details name="faq-split">
+        <summary>Do you charge for build minutes?</summary>
+        <p>No. Plans are priced per seat. Builds, previews and rollbacks are unlimited within fair use.</p>
+      </details>
+      <details name="faq-split">
+        <summary>Is there an on-premises option?</summary>
+        <p>Enterprise customers can run the Relay control plane in a private VPC. Contact sales for the architecture review.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<!-- @block: FAQ centered | A narrow, centered accordion of common questions under a heading. -->
+<section data-section style="--max: 44rem">
+  <header>
+    <h2>Frequently asked questions</h2>
+    <p>Everything about billing, trials and your data.</p>
+  </header>
+  <div>
+    <details name="faq-centered" open>
+      <summary>Do I need a credit card to start the trial?</summary>
+      <p>No. The 14-day Team trial starts without a card. You choose a plan at the end, or drop back to Hobby automatically.</p>
+    </details>
+    <details name="faq-centered">
+      <summary>Can I change plans later?</summary>
+      <p>Anytime. Upgrades take effect immediately and are prorated; downgrades apply at the next billing date.</p>
+    </details>
+    <details name="faq-centered">
+      <summary>Where is my data stored?</summary>
+      <p>In the region you pick when you create a workspace: Frankfurt, Virginia or Sydney. It does not leave that region.</p>
+    </details>
+    <details name="faq-centered">
+      <summary>Do you offer discounts for startups and nonprofits?</summary>
+      <p>Startups under two years old and registered nonprofits get 50% off Team for the first year. Apply from the billing page.</p>
+    </details>
+    <details name="faq-centered">
+      <summary>How do I cancel?</summary>
+      <p>From Settings, Billing, Cancel plan. Your workspace stays readable for 30 days so you can export everything.</p>
+    </details>
+  </div>
+</section>

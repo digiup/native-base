@@ -2,7 +2,7 @@
   "name": "native-base",
   "rules": [
     "Write semantic HTML. button, input, select, textarea, dialog, details, table, progress and meter are styled with no classes.",
-    "Composite components use one data attribute as their hook: data-card, data-badge, data-alert, data-avatar, data-tabs, data-carousel, data-toast, data-tooltip, data-breadcrumb.",
+    "Composite components use one data attribute as their hook: data-card, data-badge, data-alert, data-avatar, data-tabs, data-carousel, data-toast, data-tooltip, data-breadcrumb, data-navbar, data-shell, data-section, data-stat, data-chart, data-steps, data-timeline, data-segmented, …",
     "Variants on any component: data-variant=\"secondary|outline|ghost|link|destructive|success|warning\". Sizes: data-size=\"sm|lg|icon\".",
     "Open overlays with invoker commands, not JS: <button commandfor=\"id\" command=\"show-modal|close|toggle-popover|show-popover\">, or popovertarget=\"id\".",
     "Layout: data-row (wrapping flex, =between|end|center), data-stack (vertical), data-grid (responsive columns). Tune with style=\"--gap:…\" or \"--min:…\".",
@@ -131,6 +131,46 @@
       }
     },
     {
+      "name": "segmented",
+      "title": "Segmented control",
+      "category": "Forms",
+      "description": "A radio group drawn as a pill track. The highlight slides between options with CSS anchor positioning.",
+      "registryDependencies": ["tokens"],
+      "native": ["<fieldset>", "anchor positioning", "anchor-scope", ":has()"],
+      "api": {
+        "<fieldset data-segmented>": "Container. Name it with aria-label or a <legend> (the legend is visually hidden)",
+        "<label><input type=radio name> Text</label>": "One option; all share a name. Segments are equal width; an svg icon may sit beside or replace the text (then put aria-label on the input)",
+        "data-size": "sm | lg"
+      }
+    },
+    {
+      "name": "rating",
+      "title": "Rating",
+      "category": "Forms",
+      "description": "Star ratings: a radio group to pick one, or a read-only score with fractional fill.",
+      "registryDependencies": ["tokens"],
+      "native": ["<fieldset>", ":has()", "mask-image"],
+      "api": {
+        "<fieldset data-rating>": "Input: five radios sharing a name, each with an aria-label (\"3 stars\"). An optional visible <legend> labels it",
+        "<span data-rating style=\"--value: 4.5\" role=\"img\" aria-label>": "Read-only score out of 5, filled fractionally",
+        "data-size": "sm | lg. Stars scale with the font size"
+      }
+    },
+    {
+      "name": "dropzone",
+      "title": "Dropzone",
+      "category": "Forms",
+      "description": "A file input with a large drop target. Dropping onto it is the browser's own behavior.",
+      "registryDependencies": ["tokens"],
+      "native": ["<input type=file>", ":focus-within", ":has()"],
+      "api": {
+        "<label data-dropzone>": "The drop area. Children: optional svg, strong, small, and the <input type=file>",
+        "<input type=file multiple accept>": "Covers the area invisibly, so a drop lands on it. With required, the border turns solid once a file is chosen",
+        "<small data-hint> / <small data-error>": "Optional; the error replaces the hint after an invalid submit",
+        "data-size=\"sm\"": "Compact single row, icon at the start"
+      }
+    },
+    {
       "name": "progress",
       "title": "Progress & Meter",
       "category": "Display",
@@ -234,6 +274,59 @@
       }
     },
     {
+      "name": "stat",
+      "title": "Stat",
+      "category": "Display",
+      "description": "Key numbers for dashboards and landing pages, with an up or down trend.",
+      "registryDependencies": ["tokens"],
+      "native": ["font-variant-numeric"],
+      "api": {
+        "data-stat": "Container. Children: small (label), optional svg after it (icon at the row end), strong (value), p (context), or a data-chart=\"spark\"",
+        "<span data-trend=\"up|down\">": "Change, colored and arrowed; sits beside the value. Add data-variant=\"success|destructive\" when down is good (or up is bad); any other value is a neutral pill",
+        "data-card data-stat": "Add data-card for a surface"
+      }
+    },
+    {
+      "name": "chart",
+      "title": "Chart",
+      "category": "Display",
+      "description": "Column and bar charts from a list and one custom property per item. Values grow in on load.",
+      "registryDependencies": ["tokens"],
+      "native": ["calc() on custom properties", "@starting-style", "attr()"],
+      "api": {
+        "<ul data-chart style=\"--max: 100\" aria-label>": "Column chart. data-chart=\"bars\" for horizontal bars, data-chart=\"spark\" for a label-less sparkline",
+        "<li style=\"--v: 40\"><span>Label</span></li>": "One datum; --v and --max are unitless. The span is its label (visually hidden in a sparkline). In bars, a second child such as <data value> is the value column",
+        "--color": "Bar color (default --primary)",
+        "aria-current=\"true\"": "Highlight one item",
+        "data-tooltip": "Show the value on hover",
+        "--height": "Column chart height (default 10rem)"
+      }
+    },
+    {
+      "name": "timeline",
+      "title": "Timeline",
+      "category": "Display",
+      "description": "Activity feeds and changelogs: a vertical line of events.",
+      "registryDependencies": ["tokens"],
+      "native": ["<time>", "<ol>"],
+      "api": {
+        "<ol data-timeline>": "Container",
+        "<li>": "Event. Children: time, strong, p, then anything (badges, a card). An svg or [data-avatar] first child replaces the dot",
+        "data-variant": "success | warning | destructive on an li colors its dot"
+      }
+    },
+    {
+      "name": "empty",
+      "title": "Empty state",
+      "category": "Display",
+      "description": "What a page shows before there is anything to show.",
+      "registryDependencies": ["tokens"],
+      "native": [],
+      "api": {
+        "data-empty": "Container. Children: svg (icon), h2–h4, p, and an actions [data-row]. Drops its dashed border inside a td or data-card"
+      }
+    },
+    {
       "name": "dialog",
       "title": "Dialog & Sheet",
       "category": "Overlays",
@@ -303,6 +396,64 @@
       }
     },
     {
+      "name": "navbar",
+      "title": "Navbar",
+      "category": "Navigation",
+      "description": "A site header whose links collapse into a popover menu when the bar gets narrow. A container query decides, so it also works inside sidebars and previews.",
+      "registryDependencies": ["popover", "button"],
+      "native": ["container queries", "popover", "backdrop-filter"],
+      "api": {
+        "<header data-navbar>": "The bar, its content aligned with data-section at --max (default 72rem). data-navbar=\"sticky\" pins it with a translucent backdrop",
+        "> a:first-child": "Brand: an svg and/or text",
+        "> nav[popover][id]": "Links. Inline when the bar is at least 48rem wide, otherwise a dropdown. aria-current=\"page\" marks the active one",
+        "> button[popovertarget]": "Menu button (an svg and aria-label). Only shown when the bar is narrow; ghost unless it has a data-variant",
+        "> div": "Trailing actions, pushed to the end"
+      }
+    },
+    {
+      "name": "shell",
+      "title": "App shell",
+      "category": "Navigation",
+      "description": "The frame of an app: a sidebar of navigation beside the page. On small screens the sidebar becomes a popover.",
+      "registryDependencies": ["popover", "button"],
+      "native": ["popover", "container queries", "@starting-style", "position: sticky"],
+      "api": {
+        "<div data-shell>": "Sidebar beside the page. Below 56rem of width (a container query) the sidebar becomes a sheet",
+        "> aside[popover][id]": "Sidebar. Children: a brand link, nav (ul of links with optional svg and trailing small or [data-badge]; small group labels or details/summary groups), footer (pinned to the bottom)",
+        "> main": "The page",
+        "button[popovertarget] data-shell-toggle": "Opens the sidebar on small screens; hidden on large ones",
+        "aria-current=\"page\"": "Active link",
+        "--height": "Shell height, default 100dvh. Set it to show the shell inside a smaller box"
+      }
+    },
+    {
+      "name": "pagination",
+      "title": "Pagination",
+      "category": "Navigation",
+      "description": "Page links with previous and next.",
+      "registryDependencies": ["tokens"],
+      "native": ["aria-current", "rel=prev/next"],
+      "api": {
+        "<ol data-pagination>": "Inside nav[aria-label=Pagination]",
+        "<li><a>": "Page link. aria-current=\"page\" for the current one",
+        "<li><span>…</span>": "Gap",
+        "a[rel=prev], a[rel=next]": "Previous and next with an arrow. aria-disabled=\"true\" at either end"
+      }
+    },
+    {
+      "name": "steps",
+      "title": "Steps",
+      "category": "Navigation",
+      "description": "Progress through a multi-step flow. Steps before the current one are marked done.",
+      "registryDependencies": ["tokens"],
+      "native": ["counters", ":has()", "aria-current"],
+      "api": {
+        "<ol data-steps>": "Horizontal; stacks by itself when narrower than 32rem. data-steps=\"vertical\" always stacks",
+        "<li>": "Step. Children: strong (title), small (detail)",
+        "aria-current=\"step\"": "The current step; earlier ones show a check"
+      }
+    },
+    {
       "name": "accordion",
       "title": "Accordion",
       "category": "Disclosure",
@@ -338,6 +489,153 @@
         "data-carousel": "Every child is a slide",
         "--slide": "Slide width, e.g. 50% to show two"
       }
+    },
+    {
+      "name": "section",
+      "title": "Section",
+      "category": "Sections",
+      "description": "Page sections for marketing and content pages: a centered column, an intro header, split layouts and a browser frame for product shots.",
+      "registryDependencies": ["tokens"],
+      "native": ["container queries", "max() / clamp()", "text-wrap: balance"],
+      "api": {
+        "<section data-section>": "Full-bleed band with its content centered at --max (default 72rem)",
+        "data-section=\"hero\"": "Hero: display-size heading, more room",
+        "> header": "Intro: small (eyebrow) or [data-badge], h1/h2, p (lead), [data-row] (actions). Centered; start-aligned inside data-split",
+        "data-align=\"start\"": "Left-align the intro",
+        "data-tone=\"muted|primary\"": "Band background. primary inverts the colors inside, buttons included. Use data-theme=\"dark\" for a dark band",
+        "<div data-split>": "Two equal columns from any two children; they wrap to one when there is no room. data-split=\"reverse\" swaps them side by side",
+        "<div data-frame>": "Browser-window chrome around any content. data-frame=\"app.acme.com\" shows an address. An img or data-shell bleeds to the edges; anything else is padded"
+      }
+    },
+    {
+      "name": "marquee",
+      "title": "Marquee",
+      "category": "Sections",
+      "description": "An endlessly scrolling row for logo clouds and testimonials. Pauses on hover; still under reduced motion.",
+      "registryDependencies": ["tokens"],
+      "native": ["@keyframes", "mask-image", "prefers-reduced-motion"],
+      "api": {
+        "<div data-marquee>": "Container. data-marquee=\"reverse\" scrolls the other way",
+        "> ul": "The items. Repeat the list once with aria-hidden=\"true\" so the loop is seamless",
+        "--speed": "Seconds per loop (default 40s)",
+        "--gap": "Space between items"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "file": "hero",
+      "title": "Heroes"
+    },
+    {
+      "file": "navbar",
+      "title": "Navbars"
+    },
+    {
+      "file": "logos",
+      "title": "Logo clouds"
+    },
+    {
+      "file": "features",
+      "title": "Features"
+    },
+    {
+      "file": "stats",
+      "title": "Stats"
+    },
+    {
+      "file": "pricing",
+      "title": "Pricing"
+    },
+    {
+      "file": "testimonials",
+      "title": "Testimonials"
+    },
+    {
+      "file": "faq",
+      "title": "FAQ"
+    },
+    {
+      "file": "cta",
+      "title": "Calls to action"
+    },
+    {
+      "file": "team",
+      "title": "Team"
+    },
+    {
+      "file": "contact",
+      "title": "Contact"
+    },
+    {
+      "file": "footer",
+      "title": "Footers"
+    },
+    {
+      "file": "auth",
+      "title": "Authentication"
+    },
+    {
+      "file": "dashboard",
+      "title": "Dashboard"
+    },
+    {
+      "file": "settings",
+      "title": "Settings"
+    },
+    {
+      "file": "onboarding",
+      "title": "Onboarding"
+    },
+    {
+      "file": "files",
+      "title": "Files & uploads"
+    },
+    {
+      "file": "commerce",
+      "title": "Commerce"
+    }
+  ],
+  "templates": [
+    {
+      "name": "landing",
+      "title": "SaaS landing page",
+      "description": "A complete product homepage: sticky navbar, hero with a live dashboard in a browser frame, logo marquee, features, a bento of live UI, stats, pricing, testimonials, FAQ and footer."
+    },
+    {
+      "name": "dashboard",
+      "title": "Analytics dashboard",
+      "description": "A store analytics dashboard in an app shell: KPI cards with trends and sparklines, a revenue column chart, top sources as bars, an activity timeline, and an orders table with selection, row menus and pagination."
+    },
+    {
+      "name": "settings",
+      "title": "Account settings",
+      "description": "Account settings in an app shell: tabs for profile (photo dropzone, validated fields), notification switches, billing with usage meters and invoices, and team members with an invite dialog and a typed-confirmation delete."
+    },
+    {
+      "name": "mail",
+      "title": "Mail inbox",
+      "description": "A three-pane mail client: folders and labels in the app shell sidebar, a filterable message list, and a reading pane with an action toolbar, attachments and a reply box."
+    },
+    {
+      "name": "pricing",
+      "title": "Pricing page",
+      "description": "Plans with a monthly and yearly toggle, an enterprise band, a grouped feature comparison table and a billing FAQ."
+    },
+    {
+      "name": "product",
+      "title": "Product page",
+      "description": "An e-commerce product page with a gallery, options, ratings, reviews and shipping details."
+    },
+    {
+      "name": "sign-in",
+      "title": "Sign in",
+      "description": "A full-height sign-in page: social providers, a validated email and password form, and a live product preview with a star-rated testimonial beside it."
+    },
+    {
+      "name": "changelog",
+      "title": "Changelog",
+      "description": "Release notes on a timeline, with tags, live UI previews in browser frames, a subscribe form and pagination."
     }
   ]
 }

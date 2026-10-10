@@ -1,0 +1,231 @@
+<div data-shell>
+  <aside popover id="dash-sidebar" aria-label="Sidebar">
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+      Sorrel
+    </a>
+    <search>
+      <input type="search" placeholder="Search orders, customers…" aria-label="Search">
+    </search>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg> Overview</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Orders <span data-badge data-variant="secondary">12</span></a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg> Products</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Customers</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5"/></svg> Discounts <span data-badge data-variant="secondary">3</span></a></li>
+      </ul>
+      <small>Reports</small>
+      <ul>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg> Sales</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Traffic</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg> Settings</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <span data-avatar data-size="sm">MO</span>
+      <div>
+        <strong>Maya Okafor</strong>
+        <small>maya@sorrel.shop</small>
+      </div>
+      <menu popover id="dash-account">
+        <li><small>Sorrel Goods</small></li>
+        <li><button>Profile</button></li>
+        <li><button>Billing</button></li>
+        <li><button>Keyboard shortcuts <kbd>?</kbd></button></li>
+        <li><hr></li>
+        <li><button data-variant="destructive">Log out</button></li>
+      </menu>
+      <button popovertarget="dash-account" data-variant="ghost" data-size="icon" aria-label="Account menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg></button>
+    </footer>
+  </aside>
+
+  <main data-stack>
+    <header data-row="between">
+      <div data-row style="--gap: .75rem">
+        <button popovertarget="dash-sidebar" data-shell-toggle data-variant="outline" data-size="icon" aria-label="Open navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg></button>
+        <div>
+          <nav aria-label="Breadcrumb">
+            <ol data-breadcrumb>
+              <li><a href="#">Sorrel Goods</a></li>
+              <li><a href="#">Analytics</a></li>
+              <li aria-current="page">Overview</li>
+            </ol>
+          </nav>
+          <h1>Overview</h1>
+        </div>
+      </div>
+      <div data-row>
+        <fieldset data-segmented data-size="sm" aria-label="Date range">
+          <label><input type="radio" name="dash-range"> 7d</label>
+          <label><input type="radio" name="dash-range"> 30d</label>
+          <label><input type="radio" name="dash-range" checked> 12m</label>
+        </fieldset>
+        <button data-variant="outline" data-size="sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> Export</button>
+        <button data-variant="ghost" data-size="icon" aria-label="Notifications" data-tooltip="Notifications" data-side="bottom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button>
+      </div>
+    </header>
+
+    <div data-grid style="--min: 12rem">
+      <article data-card data-stat>
+        <small>Revenue</small>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <strong>$638,012</strong>
+        <p><span data-trend="up">12.4%</span> vs. last year</p>
+        <ul data-chart="spark" style="--max: 10" aria-hidden="true"><li style="--v: 4"></li><li style="--v: 5"></li><li style="--v: 8"></li><li style="--v: 3"></li><li style="--v: 4"></li><li style="--v: 5"></li><li style="--v: 6"></li><li style="--v: 6"></li><li style="--v: 5"></li><li style="--v: 7"></li><li style="--v: 7"></li><li style="--v: 8" aria-current="true"></li></ul>
+      </article>
+      <article data-card data-stat>
+        <small>Orders</small>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <strong>13,948</strong>
+        <p><span data-trend="up">8.1%</span> vs. last year</p>
+        <ul data-chart="spark" style="--max: 10" aria-hidden="true"><li style="--v: 5"></li><li style="--v: 5"></li><li style="--v: 9"></li><li style="--v: 4"></li><li style="--v: 4"></li><li style="--v: 5"></li><li style="--v: 6"></li><li style="--v: 6"></li><li style="--v: 6"></li><li style="--v: 7"></li><li style="--v: 7"></li><li style="--v: 8" aria-current="true"></li></ul>
+      </article>
+      <article data-card data-stat>
+        <small>Conversion rate</small>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>
+        <strong>3.42%</strong>
+        <p><span data-trend="down">0.3 pts</span> vs. last year</p>
+        <ul data-chart="spark" style="--max: 10" aria-hidden="true"><li style="--v: 7"></li><li style="--v: 8"></li><li style="--v: 9"></li><li style="--v: 7"></li><li style="--v: 6"></li><li style="--v: 6"></li><li style="--v: 7"></li><li style="--v: 6"></li><li style="--v: 5"></li><li style="--v: 6"></li><li style="--v: 5"></li><li style="--v: 5" aria-current="true"></li></ul>
+      </article>
+      <article data-card data-stat>
+        <small>Avg. order value</small>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5"/></svg>
+        <strong>$45.74</strong>
+        <p><span data-trend="up">3.9%</span> vs. last year</p>
+        <ul data-chart="spark" style="--max: 10" aria-hidden="true"><li style="--v: 6"></li><li style="--v: 6"></li><li style="--v: 7"></li><li style="--v: 6"></li><li style="--v: 6"></li><li style="--v: 7"></li><li style="--v: 7"></li><li style="--v: 7"></li><li style="--v: 7"></li><li style="--v: 8"></li><li style="--v: 8"></li><li style="--v: 9" aria-current="true"></li></ul>
+      </article>
+    </div>
+
+    <article data-card>
+      <header>
+        <h2>Revenue</h2>
+        <p>Gross sales by month, October 2025 to September 2026</p>
+      </header>
+      <ul data-chart style="--max: 75; --height: 14rem" aria-label="Revenue per month, in thousands of dollars">
+        <li style="--v: 44.6" data-tooltip="$44.6k"><span>Oct</span></li>
+        <li style="--v: 48.1" data-tooltip="$48.1k"><span>Nov</span></li>
+        <li style="--v: 71.4" data-tooltip="$71.4k"><span>Dec</span></li>
+        <li style="--v: 39.2" data-tooltip="$39.2k"><span>Jan</span></li>
+        <li style="--v: 41.8" data-tooltip="$41.8k"><span>Feb</span></li>
+        <li style="--v: 47.5" data-tooltip="$47.5k"><span>Mar</span></li>
+        <li style="--v: 52.3" data-tooltip="$52.3k"><span>Apr</span></li>
+        <li style="--v: 55" data-tooltip="$55.0k"><span>May</span></li>
+        <li style="--v: 50.7" data-tooltip="$50.7k"><span>Jun</span></li>
+        <li style="--v: 58.9" data-tooltip="$58.9k"><span>Jul</span></li>
+        <li style="--v: 62.4" data-tooltip="$62.4k"><span>Aug</span></li>
+        <li style="--v: 66.1" data-tooltip="$66.1k" aria-current="true"><span>Sep</span></li>
+      </ul>
+    </article>
+
+    <div data-grid style="--min: 20rem">
+      <article data-card>
+        <header>
+          <h2>Top sources</h2>
+          <p>Where this year’s orders came from</p>
+        </header>
+        <ul data-chart="bars" style="--max: 31" aria-label="Orders by source">
+          <li style="--v: 31"><span>Organic search</span> <data value="31">31%</data></li>
+          <li style="--v: 22"><span>Direct</span> <data value="22">22%</data></li>
+          <li style="--v: 15"><span>Instagram</span> <data value="15">15%</data></li>
+          <li style="--v: 11"><span>Newsletter</span> <data value="11">11%</data></li>
+          <li style="--v: 8"><span>Pinterest</span> <data value="8">8%</data></li>
+          <li style="--v: 7"><span>Paid search</span> <data value="7">7%</data></li>
+          <li style="--v: 6"><span>Referral</span> <data value="6">6%</data></li>
+        </ul>
+        <footer data-row="between">
+          <small>408,212 sessions</small>
+          <a href="#"><small>Full traffic report</small></a>
+        </footer>
+      </article>
+      <article data-card>
+        <header>
+          <h2>Activity</h2>
+          <p>What your team did today</p>
+        </header>
+        <ol data-timeline>
+          <li data-variant="warning"><time datetime="2026-10-09T14:48">12 min ago</time><strong>Order #3218 refunded</strong><p>Priya Nair refunded $86.00 to Jonah Weiss.</p></li>
+          <li><time datetime="2026-10-09T13:55">1 hour ago</time><strong>Product published</strong><p>Speckled stoneware mug is live in 3 colors.</p></li>
+          <li data-variant="success"><time datetime="2026-10-09T11:02">4 hours ago</time><strong>Payout sent</strong><p>$12,480.22 to the account ending 4417.</p></li>
+          <li data-variant="destructive"><time datetime="2026-10-09T08:30">This morning</time><strong>Low stock</strong><p>Oat linen napkins, set of 4: 6 left.</p></li>
+        </ol>
+      </article>
+    </div>
+
+    <article data-card>
+      <header>
+        <h2>Recent orders</h2>
+        <p>Paid, pending and failed orders from the last 48 hours.</p>
+      </header>
+      <div data-row="between">
+        <small>2 of 6 selected</small>
+        <div data-row>
+          <button data-variant="outline" data-size="sm">Mark fulfilled</button>
+          <button data-variant="outline" data-size="sm">Print labels</button>
+        </div>
+      </div>
+      <div style="overflow-x: auto">
+        <table>
+          <thead>
+            <tr>
+              <th><input type="checkbox" aria-label="Select all orders"></th>
+              <th>Order</th><th>Customer</th><th>Status</th><th>Date</th><th data-numeric>Amount</th><th><span hidden>Actions</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr aria-selected="true">
+              <td><input type="checkbox" checked aria-label="Select order #3221"></td>
+              <td>#3221</td><td>Lena&nbsp;Fischer</td><td><span data-badge data-variant="success">Paid</span></td><td>Oct&nbsp;9,&nbsp;2026</td><td data-numeric>$128.00</td>
+              <td><button popovertarget="order-3221" data-variant="ghost" data-size="icon" aria-label="Actions for order #3221"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                <menu popover id="order-3221"><li><button>View order</button></li><li><button>Print packing slip</button></li><li><hr></li><li><button data-variant="destructive">Refund</button></li></menu></td>
+            </tr>
+            <tr aria-selected="true">
+              <td><input type="checkbox" checked aria-label="Select order #3220"></td>
+              <td>#3220</td><td>Marcus&nbsp;Bell</td><td><span data-badge data-variant="warning">Pending</span></td><td>Oct&nbsp;9,&nbsp;2026</td><td data-numeric>$54.00</td>
+              <td><button popovertarget="order-3220" data-variant="ghost" data-size="icon" aria-label="Actions for order #3220"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                <menu popover id="order-3220"><li><button>View order</button></li><li><button>Send payment reminder</button></li><li><hr></li><li><button data-variant="destructive">Cancel order</button></li></menu></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" aria-label="Select order #3219"></td>
+              <td>#3219</td><td>Aiko&nbsp;Tanaka</td><td><span data-badge data-variant="success">Paid</span></td><td>Oct&nbsp;8,&nbsp;2026</td><td data-numeric>$64.50</td>
+              <td><button popovertarget="order-3219" data-variant="ghost" data-size="icon" aria-label="Actions for order #3219"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                <menu popover id="order-3219"><li><button>View order</button></li><li><button>Print packing slip</button></li><li><hr></li><li><button data-variant="destructive">Refund</button></li></menu></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" aria-label="Select order #3218"></td>
+              <td>#3218</td><td>Jonah&nbsp;Weiss</td><td><span data-badge data-variant="outline">Refunded</span></td><td>Oct&nbsp;8,&nbsp;2026</td><td data-numeric>$86.00</td>
+              <td><button popovertarget="order-3218" data-variant="ghost" data-size="icon" aria-label="Actions for order #3218"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                <menu popover id="order-3218"><li><button>View order</button></li><li><button>View refund</button></li></menu></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" aria-label="Select order #3217"></td>
+              <td>#3217</td><td>Sofía&nbsp;Marín</td><td><span data-badge data-variant="destructive">Failed</span></td><td>Oct&nbsp;7,&nbsp;2026</td><td data-numeric>$212.00</td>
+              <td><button popovertarget="order-3217" data-variant="ghost" data-size="icon" aria-label="Actions for order #3217"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                <menu popover id="order-3217"><li><button>View order</button></li><li><button>Retry payment</button></li><li><hr></li><li><button data-variant="destructive">Cancel order</button></li></menu></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" aria-label="Select order #3216"></td>
+              <td>#3216</td><td>Theo&nbsp;Lambert</td><td><span data-badge data-variant="success">Paid</span></td><td>Oct&nbsp;7,&nbsp;2026</td><td data-numeric>$47.90</td>
+              <td><button popovertarget="order-3216" data-variant="ghost" data-size="icon" aria-label="Actions for order #3216"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                <menu popover id="order-3216"><li><button>View order</button></li><li><button>Print packing slip</button></li><li><hr></li><li><button data-variant="destructive">Refund</button></li></menu></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <footer data-row="between">
+        <small>Showing 1–6 of 248 orders</small>
+        <nav aria-label="Pagination">
+          <ol data-pagination>
+            <li><a href="#" rel="prev" aria-label="Previous page"></a></li>
+            <li><a href="#" aria-current="page">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><span>…</span></li>
+            <li><a href="#">42</a></li>
+            <li><a href="#" rel="next" aria-label="Next page"></a></li>
+          </ol>
+        </nav>
+      </footer>
+    </article>
+  </main>
+</div>

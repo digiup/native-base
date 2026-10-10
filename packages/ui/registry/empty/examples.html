@@ -1,0 +1,39 @@
+<!-- @example: Empty state -->
+<div data-empty>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/><path d="M12 10v6"/><path d="M9 13h6"/></svg>
+  <h3>No projects yet</h3>
+  <p>Projects keep your deployments, domains and environment variables together. Create one to get started.</p>
+  <div data-row>
+    <button>Create project</button>
+    <button data-variant="outline">Import from Git</button>
+  </div>
+</div>
+<!-- @example: No search results -->
+<div data-empty>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+  <h3>No invoices match “acme 2024”</h3>
+  <p>Try a different customer name or invoice number, or clear the filters to see everything.</p>
+  <div data-row>
+    <button data-variant="outline">Clear filters</button>
+  </div>
+</div>
+<!-- @example: In a table -->
+<table>
+  <thead>
+    <tr><th>Name</th><th>Email</th><th>Role</th><th data-numeric>Last active</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="4">
+        <div data-empty>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6"/><path d="M22 11h-6"/></svg>
+          <h4>Invite your team</h4>
+          <p>Members can review deploys, manage domains and see usage.</p>
+          <div data-row>
+            <button data-size="sm">Invite members</button>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

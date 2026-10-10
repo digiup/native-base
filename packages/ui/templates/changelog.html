@@ -1,0 +1,178 @@
+<header data-navbar="sticky">
+  <a href="#" aria-label="Orbit home">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 4.6c1.9 1.9-.6 7.5-5.5 12.4S3.4 24.3 1.5 22.4"/><path d="M4.6 4.6C2.7 6.5 5.2 12.1 10.1 17s10.5 7.4 12.4 5.5"/></svg>
+    Orbit
+  </a>
+  <nav popover id="changelog-menu" aria-label="Main">
+    <a href="#">Product</a>
+    <a href="#">Pricing</a>
+    <a href="#">Docs</a>
+    <a href="#" aria-current="page">Changelog</a>
+  </nav>
+  <button popovertarget="changelog-menu" aria-label="Open menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <div>
+    <a href="#" data-variant="ghost">Log in</a>
+    <a href="#" data-variant="primary">Try Orbit</a>
+  </div>
+</header>
+
+<main>
+  <section data-section="hero" style="--max: 48rem">
+    <header>
+      <small>Changelog</small>
+      <h1>What’s new in Orbit</h1>
+      <p>New features, improvements and fixes to the product analytics platform, shipped every week.</p>
+      <form data-row>
+        <div data-group>
+          <input type="email" name="email" size="28" placeholder="you@company.com" aria-label="Email address" autocomplete="email" required>
+          <button type="submit">Subscribe</button>
+        </div>
+        <a href="#" data-variant="ghost" aria-label="RSS feed">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+          RSS
+        </a>
+      </form>
+    </header>
+
+    <ol data-timeline>
+      <li>
+        <time datetime="2026-10-07">v4.2 · October 7, 2026</time>
+        <h3>Funnels you can branch</h3>
+        <div data-row><span data-badge>New</span><span data-badge data-variant="secondary">Improved</span></div>
+        <p>A funnel step can now split into several paths, so you can compare how people who invite a teammate convert against those who import data first. Conversion is shown per branch and for the funnel as a whole.</p>
+        <div data-frame="orbit.so/acme/funnels/trial-to-paid">
+          <ul data-chart="bars" style="--max: 100" aria-label="Trial to paid funnel, last 30 days">
+            <li style="--v: 100"><span>Pricing page</span> <data value="18420">100%</data></li>
+            <li style="--v: 38"><span>Started trial</span> <data value="7000">38%</data></li>
+            <li style="--v: 21" aria-current="true"><span>Invited team</span> <data value="3868">21%</data></li>
+            <li style="--v: 9"><span>Upgraded</span> <data value="1658">9%</data></li>
+          </ul>
+        </div>
+        <ul>
+          <li>Drag a step onto another to create a branch.</li>
+          <li>Funnels load up to four times faster on projects with over 1 billion events.</li>
+          <li>Export any funnel as CSV, including per-branch breakdowns.</li>
+        </ul>
+      </li>
+
+      <li data-variant="success">
+        <time datetime="2026-09-29">v4.1.3 · September 29, 2026</time>
+        <h3>Fixes for retention and exports</h3>
+        <div data-row><span data-badge data-variant="outline">Fixed</span></div>
+        <ul>
+          <li>Weekly retention no longer counts a user twice across a daylight saving change.</li>
+          <li>Scheduled CSV exports respect the project’s time zone.</li>
+          <li>The event picker keeps its scroll position after a search.</li>
+        </ul>
+      </li>
+
+      <li>
+        <time datetime="2026-09-18">v4.1 · September 18, 2026</time>
+        <h3>Live dashboards</h3>
+        <div data-row><span data-badge>New</span></div>
+        <p>Dashboards now update every five seconds while they are open, with no refresh and no extra cost. Put one on the office TV during a launch and watch sign-ups arrive.</p>
+        <div data-frame="orbit.so/acme/dashboards/launch-day">
+          <div data-grid style="--min: 12rem">
+            <article data-card data-stat>
+              <small>Sign-ups today</small>
+              <strong>2,846</strong>
+              <span data-trend="up">31%</span>
+              <ul data-chart="spark" style="--max: 320" aria-label="Sign-ups per hour">
+                <li style="--v: 62"><span>08:00: 62</span></li>
+                <li style="--v: 88"><span>09:00: 88</span></li>
+                <li style="--v: 141"><span>10:00: 141</span></li>
+                <li style="--v: 210"><span>11:00: 210</span></li>
+                <li style="--v: 302"><span>12:00: 302</span></li>
+                <li style="--v: 276"><span>13:00: 276</span></li>
+                <li style="--v: 254"><span>14:00: 254</span></li>
+                <li style="--v: 288" aria-current="true"><span>15:00: 288</span></li>
+              </ul>
+            </article>
+            <article data-card data-stat>
+              <small>Active right now</small>
+              <strong>412</strong>
+              <span data-trend data-variant="success">Live</span>
+              <p>Updated 3 seconds ago</p>
+            </article>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <time datetime="2026-09-02">v4.0 · September 2, 2026</time>
+        <h3>Orbit 4: a new query engine</h3>
+        <div data-row><span data-badge>New</span><span data-badge data-variant="secondary">Improved</span></div>
+        <p>We rebuilt the engine behind every chart on columnar storage. Most queries now return in under a second, even across years of data, and sampling is off by default. Benchmarks below ran on a project with 2.1 billion events.</p>
+        <div data-frame="orbit.so/acme/insights/benchmarks">
+          <div data-grid style="--min: 9rem">
+            <div data-stat><small>Weekly actives</small><strong>0.4 s</strong><span data-trend="down" data-variant="success">92%</span><p>Was 4.8 s</p></div>
+            <div data-stat><small>Five-step funnel</small><strong>0.9 s</strong><span data-trend="down" data-variant="success">92%</span><p>Was 11.2 s</p></div>
+            <div data-stat><small>12-week retention</small><strong>1.1 s</strong><span data-trend="down" data-variant="success">85%</span><p>Was 7.5 s</p></div>
+          </div>
+        </div>
+        <ul>
+          <li>Breakdowns support up to 10,000 values instead of 300.</li>
+          <li>Saved insights migrate automatically; nothing to change on your side.</li>
+          <li>The old engine stays available under Settings until December 1.</li>
+        </ul>
+      </li>
+
+      <li>
+        <time datetime="2026-08-12">v3.9 · August 12, 2026</time>
+        <h3>Alerts in Slack and Microsoft Teams</h3>
+        <div data-row><span data-badge>New</span></div>
+        <p>Set a threshold on any metric and Orbit posts to a channel when it is crossed, with a link to the chart and the deploy that preceded the change.</p>
+        <div data-frame="orbit.so/acme/alerts/new">
+          <div data-stack>
+            <label>Alert when <select><option>Checkout conversion</option><option>Sign-ups per hour</option><option>Error events</option></select></label>
+            <div data-grid style="--min: 10rem">
+              <label>Drops below <input type="text" value="2.5%"></label>
+              <label>For at least <select><option>15 minutes</option><option>1 hour</option><option>1 day</option></select></label>
+            </div>
+            <label><input type="checkbox" role="switch" checked> Post to #growth-alerts</label>
+            <div data-row="end">
+              <button data-variant="outline" type="button">Send test</button>
+              <button type="button">Create alert</button>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-variant="success">
+        <time datetime="2026-07-30">v3.8.2 · July 30, 2026</time>
+        <h3>Smaller fixes</h3>
+        <div data-row><span data-badge data-variant="outline">Fixed</span><span data-badge data-variant="secondary">Improved</span></div>
+        <ul>
+          <li>Cohort sizes match between the cohort page and the people list.</li>
+          <li>The JavaScript SDK is 4 kB smaller after dropping a legacy polyfill.</li>
+          <li>Dark mode charts use higher-contrast gridlines.</li>
+        </ul>
+      </li>
+    </ol>
+    <nav aria-label="Pagination">
+      <ol data-pagination>
+        <li><a href="#" rel="prev" aria-disabled="true">Newer</a></li>
+        <li><a href="#" aria-current="page">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><span>…</span></li>
+        <li><a href="#">12</a></li>
+        <li><a href="#" rel="next">Older</a></li>
+      </ol>
+    </nav>
+  </section>
+</main>
+
+<footer data-section data-tone="muted">
+  <div data-row="between">
+    <small>© 2026 Orbit Analytics, Inc.</small>
+    <nav aria-label="Footer" data-row style="--gap: calc(var(--spacing) * 6)">
+      <a href="#">Docs</a>
+      <a href="#">Status</a>
+      <a href="#">Privacy</a>
+      <a href="#">RSS</a>
+    </nav>
+  </div>
+</footer>

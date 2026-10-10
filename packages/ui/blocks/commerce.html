@@ -1,0 +1,174 @@
+<!-- @block: Product grid | A shelf of product cards with image, rating, price and an add-to-cart button. -->
+<div data-grid style="--min: 14rem">
+  <article data-card>
+    <div role="img" aria-label="Everyday Tote in olive" style="aspect-ratio: 4/3; border-radius: calc(var(--radius) - 2px); corner-shape: var(--corner-shape); background: linear-gradient(135deg, var(--muted), color-mix(in oklab, var(--success) 25%, var(--muted)))"></div>
+    <header>
+      <h3>Everyday Tote</h3>
+      <p>Waxed canvas · Olive</p>
+      <span data-row><span data-rating style="--value: 4.8" role="img" aria-label="Rated 4.8 out of 5"></span> <small>412 reviews</small></span>
+    </header>
+    <footer data-row="between">
+      <strong>$68</strong>
+      <button type="button" data-size="sm">Add to cart</button>
+    </footer>
+  </article>
+  <article data-card>
+    <div role="img" aria-label="Ceramic pour-over set in sand" style="aspect-ratio: 4/3; border-radius: calc(var(--radius) - 2px); corner-shape: var(--corner-shape); background: linear-gradient(135deg, var(--muted), color-mix(in oklab, var(--warning) 25%, var(--muted)))"></div>
+    <header>
+      <h3>Pour-Over Set</h3>
+      <p>Stoneware · Sand</p>
+      <span data-row><span data-rating style="--value: 4.6" role="img" aria-label="Rated 4.6 out of 5"></span> <small>189 reviews</small></span>
+    </header>
+    <footer data-row="between">
+      <strong>$54</strong>
+      <button type="button" data-size="sm">Add to cart</button>
+    </footer>
+  </article>
+  <article data-card>
+    <div role="img" aria-label="Merino crew sweater in navy" style="aspect-ratio: 4/3; border-radius: calc(var(--radius) - 2px); corner-shape: var(--corner-shape); background: linear-gradient(135deg, var(--muted), color-mix(in oklab, var(--primary) 25%, var(--muted)))"></div>
+    <header>
+      <h3>Merino Crew</h3>
+      <p>Extra-fine wool · Navy</p>
+      <span data-row><span data-rating style="--value: 4.9" role="img" aria-label="Rated 4.9 out of 5"></span> <small>1,027 reviews</small></span>
+    </header>
+    <footer data-row="between">
+      <strong>$118</strong>
+      <button type="button" data-size="sm">Add to cart</button>
+    </footer>
+  </article>
+  <article data-card>
+    <div role="img" aria-label="Field notebooks in rust" style="aspect-ratio: 4/3; border-radius: calc(var(--radius) - 2px); corner-shape: var(--corner-shape); background: linear-gradient(135deg, var(--muted), color-mix(in oklab, var(--destructive) 22%, var(--muted)))"></div>
+    <header>
+      <h3>Field Notebooks</h3>
+      <p>Pack of 3 · Recycled paper</p>
+      <span data-row><span data-rating style="--value: 4.3" role="img" aria-label="Rated 4.3 out of 5"></span> <small>76 reviews</small></span>
+    </header>
+    <footer data-row="between">
+      <span><strong>$14</strong> <small><s>$18</s></small></span>
+      <button type="button" data-size="sm">Add to cart</button>
+    </footer>
+  </article>
+</div>
+<!-- @block: Order summary | The cart: line items with quantities, a promo code, totals and the checkout button. -->
+<article data-card>
+  <header>
+    <h2>Your cart</h2>
+    <p>3 items · ships in 2–3 business days</p>
+  </header>
+  <div data-stack>
+    <div data-row="between">
+      <span data-row style="--gap: calc(var(--spacing) * 3)">
+        <span role="img" aria-label="Everyday Tote" style="inline-size: calc(var(--spacing) * 12); aspect-ratio: 1; border-radius: calc(var(--radius) - 2px); corner-shape: var(--corner-shape); background: linear-gradient(135deg, var(--muted), color-mix(in oklab, var(--success) 25%, var(--muted)))"></span>
+        <span data-stack style="--gap: 0">Everyday Tote <small>Olive · $68.00</small></span>
+      </span>
+      <span data-row>
+        <span data-group>
+          <select name="qty-tote" aria-label="Quantity, Everyday Tote">
+            <option selected>1</option><option>2</option><option>3</option><option>4</option>
+          </select>
+        </span>
+        <strong>$68.00</strong>
+      </span>
+    </div>
+    <div data-row="between">
+      <span data-row style="--gap: calc(var(--spacing) * 3)">
+        <span role="img" aria-label="Merino Crew" style="inline-size: calc(var(--spacing) * 12); aspect-ratio: 1; border-radius: calc(var(--radius) - 2px); corner-shape: var(--corner-shape); background: linear-gradient(135deg, var(--muted), color-mix(in oklab, var(--primary) 25%, var(--muted)))"></span>
+        <span data-stack style="--gap: 0">Merino Crew <small>Navy, M · $118.00</small></span>
+      </span>
+      <span data-row>
+        <span data-group>
+          <select name="qty-crew" aria-label="Quantity, Merino Crew">
+            <option>1</option><option selected>2</option><option>3</option><option>4</option>
+          </select>
+        </span>
+        <strong>$236.00</strong>
+      </span>
+    </div>
+  </div>
+  <div data-group>
+    <input name="promo" placeholder="Promo code" aria-label="Promo code" autocomplete="off">
+    <button type="button" data-variant="outline">Apply</button>
+  </div>
+  <table>
+    <tbody>
+      <tr><td>Subtotal</td><td data-numeric>$304.00</td></tr>
+      <tr><td>Shipping</td><td data-numeric>Free</td></tr>
+      <tr><td>Estimated tax</td><td data-numeric>$26.98</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td>Total</td><td data-numeric>$330.98</td></tr>
+    </tfoot>
+  </table>
+  <button type="button" data-size="lg">Checkout</button>
+</article>
+<!-- @block: Checkout | Contact, shipping and payment details beside an order summary, ready to pay. -->
+<form data-grid style="--min: 20rem; --gap: calc(var(--spacing) * 10)">
+  <div data-stack style="--gap: calc(var(--spacing) * 8)">
+    <fieldset>
+      <legend>Contact</legend>
+      <label>Email <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
+      <label><input type="checkbox" name="news" checked> Email me about new arrivals and restocks</label>
+    </fieldset>
+    <fieldset>
+      <legend>Shipping address</legend>
+      <label>Full name <input name="name" autocomplete="shipping name" required></label>
+      <label>Address <input name="address" autocomplete="shipping street-address" placeholder="Street and number" required></label>
+      <div data-grid style="--min: 9rem">
+        <label>City <input name="city" autocomplete="shipping address-level2" required></label>
+        <label>ZIP code <input name="zip" autocomplete="shipping postal-code" inputmode="numeric" required></label>
+        <label>
+          State
+          <select name="state" autocomplete="shipping address-level1">
+            <option>California</option>
+            <option selected>New York</option>
+            <option>Oregon</option>
+            <option>Texas</option>
+            <option>Washington</option>
+          </select>
+        </label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Payment</legend>
+      <div data-grid style="--min: 10rem">
+        <label data-card>
+          <input type="radio" name="payment" value="card" checked>
+          <span data-stack style="--gap: 0">Card <small>Visa, Mastercard, Amex</small></span>
+        </label>
+        <label data-card>
+          <input type="radio" name="payment" value="paypal">
+          <span data-stack style="--gap: 0">PayPal <small>Pay in 4 available</small></span>
+        </label>
+      </div>
+      <label>Card number <input name="cc-number" autocomplete="cc-number" inputmode="numeric" placeholder="1234 1234 1234 1234" required></label>
+      <div data-grid style="--min: 9rem">
+        <label>Expiry <input name="cc-exp" autocomplete="cc-exp" placeholder="MM / YY" required></label>
+        <label>CVC <input name="cc-csc" autocomplete="cc-csc" inputmode="numeric" placeholder="123" required></label>
+      </div>
+    </fieldset>
+  </div>
+  <div>
+    <aside data-card>
+      <header>
+        <h2>Order summary</h2>
+        <p>2 items</p>
+      </header>
+      <table>
+        <tbody>
+          <tr><td>Everyday Tote <small>× 1</small></td><td data-numeric>$68.00</td></tr>
+          <tr><td>Merino Crew <small>× 2</small></td><td data-numeric>$236.00</td></tr>
+          <tr><td>Shipping</td><td data-numeric>Free</td></tr>
+          <tr><td>Estimated tax</td><td data-numeric>$26.98</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Total</td><td data-numeric>$330.98</td></tr>
+        </tfoot>
+      </table>
+      <button type="submit" data-size="lg">Pay $330.98</button>
+      <small>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Payments are encrypted and processed by Stripe.
+      </small>
+    </aside>
+  </div>
+</form>

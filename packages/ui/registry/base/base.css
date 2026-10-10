@@ -28,6 +28,7 @@
   :where(small) { font-size: .875em; color: var(--muted-foreground); }
   :where(ul, ol) { margin: 0 0 1em; padding-inline-start: calc(var(--spacing) * 5); }
   :where(hr) { margin: calc(var(--spacing) * 6) 0; border: 0; border-block-start: 1px solid var(--border); }
+  :where(figure) { margin: 0; }
   :where(blockquote) { margin: 0 0 1em; padding-inline-start: calc(var(--spacing) * 4); border-inline-start: 2px solid var(--border); font-style: italic; }
   :where(mark) { padding: 0 .15em; border-radius: 2px; background: light-dark(oklch(.95 .12 100), oklch(.45 .1 90)); color: inherit; }
   :where(code, kbd, samp, pre) { font-family: var(--font-mono); font-size: .875em; }

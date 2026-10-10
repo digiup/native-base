@@ -1,0 +1,275 @@
+<!-- @block: KPI row | Four headline metrics, each with its change since last month and a ten-month sparkline. -->
+<div data-grid style="--min: 14rem">
+  <article data-card data-stat>
+    <small>Revenue</small>
+    <strong>$48,295</strong>
+    <span data-trend="up">12.4%</span>
+    <p>vs $42,970 in September</p>
+    <ul data-chart="spark" style="--max: 48.3" aria-label="Revenue, January to October">
+      <li style="--v: 29.1"><span>Jan: $29.1k</span></li>
+      <li style="--v: 31.4"><span>Feb: $31.4k</span></li>
+      <li style="--v: 30.2"><span>Mar: $30.2k</span></li>
+      <li style="--v: 34.8"><span>Apr: $34.8k</span></li>
+      <li style="--v: 36.5"><span>May: $36.5k</span></li>
+      <li style="--v: 35.9"><span>Jun: $35.9k</span></li>
+      <li style="--v: 39.7"><span>Jul: $39.7k</span></li>
+      <li style="--v: 41.2"><span>Aug: $41.2k</span></li>
+      <li style="--v: 43"><span>Sep: $43.0k</span></li>
+      <li style="--v: 48.3" aria-current="true"><span>Oct: $48.3k</span></li>
+    </ul>
+  </article>
+  <article data-card data-stat>
+    <small>Subscriptions</small>
+    <strong>2,184</strong>
+    <span data-trend="up">3.1%</span>
+    <p>66 net new this month</p>
+    <ul data-chart="spark" style="--max: 2184" aria-label="Subscriptions, January to October">
+      <li style="--v: 1720"><span>Jan: 1,720</span></li>
+      <li style="--v: 1768"><span>Feb: 1,768</span></li>
+      <li style="--v: 1801"><span>Mar: 1,801</span></li>
+      <li style="--v: 1846"><span>Apr: 1,846</span></li>
+      <li style="--v: 1890"><span>May: 1,890</span></li>
+      <li style="--v: 1934"><span>Jun: 1,934</span></li>
+      <li style="--v: 1987"><span>Jul: 1,987</span></li>
+      <li style="--v: 2051"><span>Aug: 2,051</span></li>
+      <li style="--v: 2118"><span>Sep: 2,118</span></li>
+      <li style="--v: 2184" aria-current="true"><span>Oct: 2,184</span></li>
+    </ul>
+  </article>
+  <article data-card data-stat>
+    <small>Refund rate</small>
+    <strong>1.6%</strong>
+    <span data-trend="down" data-variant="success">0.4 pts</span>
+    <p>Lowest since February</p>
+    <ul data-chart="spark" style="--max: 2.9" aria-label="Refund rate, January to October">
+      <li style="--v: 2.9"><span>Jan: 2.9%</span></li>
+      <li style="--v: 2.4"><span>Feb: 2.4%</span></li>
+      <li style="--v: 2.6"><span>Mar: 2.6%</span></li>
+      <li style="--v: 2.3"><span>Apr: 2.3%</span></li>
+      <li style="--v: 2.2"><span>May: 2.2%</span></li>
+      <li style="--v: 2.4"><span>Jun: 2.4%</span></li>
+      <li style="--v: 2.1"><span>Jul: 2.1%</span></li>
+      <li style="--v: 1.9"><span>Aug: 1.9%</span></li>
+      <li style="--v: 2.0"><span>Sep: 2.0%</span></li>
+      <li style="--v: 1.6" aria-current="true"><span>Oct: 1.6%</span></li>
+    </ul>
+  </article>
+  <article data-card data-stat>
+    <small>Average order</small>
+    <strong>$86.40</strong>
+    <span data-trend="down">2.3%</span>
+    <p>Fewer bundles in the mix</p>
+    <ul data-chart="spark" style="--max: 91" aria-label="Average order, January to October">
+      <li style="--v: 81"><span>Jan: $81</span></li>
+      <li style="--v: 84"><span>Feb: $84</span></li>
+      <li style="--v: 83"><span>Mar: $83</span></li>
+      <li style="--v: 87"><span>Apr: $87</span></li>
+      <li style="--v: 88"><span>May: $88</span></li>
+      <li style="--v: 90"><span>Jun: $90</span></li>
+      <li style="--v: 91"><span>Jul: $91</span></li>
+      <li style="--v: 89"><span>Aug: $89</span></li>
+      <li style="--v: 88.4"><span>Sep: $88.4</span></li>
+      <li style="--v: 86.4" aria-current="true"><span>Oct: $86.4</span></li>
+    </ul>
+  </article>
+</div>
+<!-- @block: Revenue chart | Revenue by day with a range switcher, the period total, hover values and a legend. -->
+<article data-card>
+  <header>
+    <h2>Revenue</h2>
+    <p>Gross volume across all channels, before refunds.</p>
+  </header>
+  <div data-row="between">
+    <div data-stat>
+      <small>Last 7 days</small>
+      <strong>$71,840</strong>
+      <p><span data-trend="up">9.6%</span> vs previous 7 days</p>
+    </div>
+    <fieldset data-segmented aria-label="Range">
+      <label><input type="radio" name="revenue-range" value="7d" checked> 7d</label>
+      <label><input type="radio" name="revenue-range" value="30d"> 30d</label>
+      <label><input type="radio" name="revenue-range" value="90d"> 90d</label>
+    </fieldset>
+  </div>
+  <ul data-chart style="--max: 14000; --height: 12rem" aria-label="Revenue per day, last 7 days">
+      <li style="--v: 8420" data-tooltip="$8,420"><span>Fri</span></li>
+      <li style="--v: 6180" data-tooltip="$6,180"><span>Sat</span></li>
+      <li style="--v: 5240" data-tooltip="$5,240"><span>Sun</span></li>
+      <li style="--v: 11630" data-tooltip="$11,630"><span>Mon</span></li>
+      <li style="--v: 12950" data-tooltip="$12,950"><span>Tue</span></li>
+      <li style="--v: 13710" data-tooltip="$13,710"><span>Wed</span></li>
+      <li style="--v: 13710" data-tooltip="$13,710" aria-current="true"><span>Today</span></li>
+  </ul>
+  <footer data-row>
+    <span data-badge data-variant="secondary">Settled</span>
+    <span data-badge>Today, still settling</span>
+  </footer>
+</article>
+<!-- @block: Top pages | The most visited pages as horizontal bars, with visitor counts on hover. -->
+<article data-card>
+  <header>
+    <h2>Top pages</h2>
+    <p>Unique visitors, last 30 days</p>
+  </header>
+  <ul data-chart="bars" style="--max: 18240" aria-label="Unique visitors per page">
+      <li style="--v: 18240"><span>/</span> <data value="18240">18,240</data></li>
+      <li style="--v: 9870"><span>/pricing</span> <data value="9870">9,870</data></li>
+      <li style="--v: 6415"><span>/docs/getting-started</span> <data value="6415">6,415</data></li>
+      <li style="--v: 4102"><span>/blog/edge-caching</span> <data value="4102">4,102</data></li>
+      <li style="--v: 2788"><span>/changelog</span> <data value="2788">2,788</data></li>
+      <li style="--v: 1530"><span>/careers</span> <data value="1530">1,530</data></li>
+  </ul>
+  <footer>
+    <small><a href="/analytics/pages">View all 214 pages</a></small>
+  </footer>
+</article>
+<!-- @block: Recent activity | A feed of what the team did recently: deploys, comments, invites and incidents. -->
+<article data-card>
+  <header>
+    <h2>Recent activity</h2>
+    <p>Everything that happened in Northwind today.</p>
+  </header>
+  <ol data-timeline>
+    <li>
+      <span data-avatar data-size="sm">AL</span>
+      <time datetime="2026-10-09T09:24">9:24 AM</time>
+      <strong>Ada Lovelace deployed web to production</strong>
+      <p><span data-badge data-variant="success">Ready</span> Commit <code>4f2c1a9</code> built in 48 seconds.</p>
+    </li>
+    <li>
+      <span data-avatar data-size="sm">JL</span>
+      <time datetime="2026-10-09T08:51">8:51 AM</time>
+      <strong>Jackson Lee commented on “Checkout redesign”</strong>
+      <p>“Moved the promo field below the totals, ready for another look.”</p>
+    </li>
+    <li data-variant="destructive">
+      <time datetime="2026-10-09T07:12">7:12 AM</time>
+      <strong>API latency alert resolved</strong>
+      <p><span data-badge data-variant="destructive">Incident</span> p95 latency on api-eu-west was above 800 ms for 14 minutes.</p>
+    </li>
+    <li>
+      <span data-avatar data-size="sm">SD</span>
+      <time datetime="2026-10-08T17:40">Yesterday</time>
+      <strong>Sofia Davis invited 3 people to Design</strong>
+      <p><span data-badge data-variant="secondary">Pending</span> Invitations expire in 7 days.</p>
+    </li>
+  </ol>
+</article>
+<!-- @block: Orders table | Searchable, filterable orders with status badges, row selection, row actions and pagination. -->
+<article data-card>
+  <header>
+    <h2>Orders</h2>
+    <p>1,284 orders in October.</p>
+  </header>
+  <search data-grid style="--min: 12rem">
+    <input type="search" name="q" placeholder="Search orders or customers…" aria-label="Search orders">
+    <select name="status" aria-label="Status">
+      <option>All statuses</option>
+      <option>Paid</option>
+      <option>Pending</option>
+      <option>Refunded</option>
+      <option>Failed</option>
+    </select>
+    <select name="period" aria-label="Period">
+      <option>Last 7 days</option>
+      <option selected>Last 30 days</option>
+      <option>This quarter</option>
+    </select>
+  </search>
+  <table>
+    <thead>
+      <tr>
+        <th><input type="checkbox" aria-label="Select all orders"></th>
+        <th>Customer</th>
+        <th>Status</th>
+        <th data-numeric>Amount</th>
+        <th aria-label="Actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr aria-selected="true">
+        <td><input type="checkbox" aria-label="Select order 3210" checked></td>
+        <td>Olivia Martin<br><small>#3210 · Oct 9</small></td>
+        <td><span data-badge data-variant="success">Paid</span></td>
+        <td data-numeric>$1,249.00</td>
+        <td><button popovertarget="order-actions" data-variant="ghost" data-size="icon" aria-label="Actions for order 3210"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" aria-label="Select order 3209"></td>
+        <td>Jackson Lee<br><small>#3209 · Oct 9</small></td>
+        <td><span data-badge data-variant="warning">Pending</span></td>
+        <td data-numeric>$89.00</td>
+        <td><button popovertarget="order-actions" data-variant="ghost" data-size="icon" aria-label="Actions for order 3209"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></td>
+      </tr>
+      <tr aria-selected="true">
+        <td><input type="checkbox" aria-label="Select order 3208" checked></td>
+        <td>Isabella Nguyen<br><small>#3208 · Oct 8</small></td>
+        <td><span data-badge data-variant="success">Paid</span></td>
+        <td data-numeric>$412.50</td>
+        <td><button popovertarget="order-actions" data-variant="ghost" data-size="icon" aria-label="Actions for order 3208"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" aria-label="Select order 3207"></td>
+        <td>William Kim<br><small>#3207 · Oct 8</small></td>
+        <td><span data-badge data-variant="outline">Refunded</span></td>
+        <td data-numeric>$39.00</td>
+        <td><button popovertarget="order-actions" data-variant="ghost" data-size="icon" aria-label="Actions for order 3207"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" aria-label="Select order 3206"></td>
+        <td>Sofia Davis<br><small>#3206 · Oct 7</small></td>
+        <td><span data-badge data-variant="destructive">Failed</span></td>
+        <td data-numeric>$268.00</td>
+        <td><button popovertarget="order-actions" data-variant="ghost" data-size="icon" aria-label="Actions for order 3206"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></td>
+      </tr>
+    </tbody>
+  </table>
+  <menu popover id="order-actions">
+    <li><button>View order</button></li>
+    <li><button>Copy order ID</button></li>
+    <li><button>Resend receipt</button></li>
+    <li><hr></li>
+    <li><button data-variant="destructive">Refund</button></li>
+  </menu>
+  <footer data-row="between">
+    <small>2 of 1,284 selected</small>
+    <nav aria-label="Pagination">
+      <ol data-pagination>
+        <li><a rel="prev" aria-disabled="true" aria-label="Previous page"></a></li>
+        <li><a href="?page=1" aria-current="page">1</a></li>
+        <li><a href="?page=2">2</a></li>
+        <li><a href="?page=3">3</a></li>
+        <li><span>…</span></li>
+        <li><a href="?page=257">257</a></li>
+        <li><a href="?page=2" rel="next" aria-label="Next page"></a></li>
+      </ol>
+    </nav>
+  </footer>
+</article>
+<!-- @block: Usage quotas | How much of each plan limit the workspace has used this billing period. -->
+<article data-card>
+  <header>
+    <h2>Usage</h2>
+    <p>Pro plan · resets on November 1</p>
+  </header>
+  <label>
+    <span data-row="between">Bandwidth <small>824 GB of 1 TB</small></span>
+    <meter value="824" max="1000" low="700" high="900" optimum="0">82%</meter>
+  </label>
+  <label>
+    <span data-row="between">Build minutes <small>5,710 of 6,000</small></span>
+    <meter value="5710" max="6000" low="4200" high="5400" optimum="0">95%</meter>
+  </label>
+  <label>
+    <span data-row="between">Serverless invocations <small>1.2M of 5M</small></span>
+    <meter value="1.2" max="5" low="3.5" high="4.5" optimum="0">24%</meter>
+  </label>
+  <label>
+    <span data-row="between">Team seats <small>7 of 10</small></span>
+    <meter value="7" max="10" low="8" high="9" optimum="0">7 of 10</meter>
+  </label>
+  <footer data-row="between">
+    <small>Build minutes run out in about 3 days.</small>
+    <button data-size="sm">Upgrade plan</button>
+  </footer>
+</article>

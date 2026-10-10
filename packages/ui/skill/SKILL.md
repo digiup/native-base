@@ -9,11 +9,12 @@ native-base styles semantic HTML. The markup is the API: elements are styled as 
 
 ## Workflow
 
-1. **Find the setup.** Look for `@digiup/native-base` in package.json, a `native-base.json`, or a link to `native-base.css`. If there is none and the user wants it, follow [references/setup.md](references/setup.md). Done when you know where the CSS is imported.
+1. **Find the setup.** Look for `@digiup/native-base` in package.json, a `native-base.json`, or an import of `native-base.css`. If there is none and the user wants it, follow [references/setup.md](references/setup.md). Done when you know where the CSS is imported.
 2. **Look up every component before writing it.** Read its `## <Title>` section in [references/components.md](references/components.md), or run `npx native-base view <name>`. Done when every element and `data-*` hook you are about to write appears in a section you read.
-3. **Write the markup** by the rules below.
-4. **Copy what you used.** When `native-base.json` exists, the project owns the CSS: run `npx native-base add <name...>` for each component you used that is not in its `out` directory yet. Dependencies come along.
-5. **Theme on request.** Colors and the non-color style tokens are separate halves: [references/theming.md](references/theming.md).
+3. **Start from a block or template when one fits.** Before building a section or page from scratch (hero, pricing, dashboard, settings, sign-in, checkout…), look for it in [references/patterns.md](references/patterns.md) or `npx native-base list blocks`, and reuse its structure.
+4. **Write the markup** by the rules below.
+5. **Copy what you used.** When `native-base.json` exists, the project owns the CSS: run `npx native-base add <name...>` for each component you used that is not in its `out` directory yet. Dependencies come along.
+6. **Theme on request.** Colors and the non-color style tokens are separate halves: [references/theming.md](references/theming.md).
 
 ## Rules
 

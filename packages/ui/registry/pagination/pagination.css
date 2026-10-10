@@ -1,0 +1,51 @@
+@layer nb.components {
+  :where([data-pagination]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--spacing) * 1);
+    margin: 0;
+    padding: 0;
+    font-size: var(--text-sm);
+    list-style: none;
+
+    & li { display: flex; }
+    & a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(var(--spacing) * 1);
+      min-inline-size: calc(var(--spacing) * 9);
+      block-size: calc(var(--spacing) * 9);
+      padding: 0 calc(var(--spacing) * 2);
+      border: var(--border-width) solid transparent;
+      border-radius: calc(var(--radius) - 2px); corner-shape: var(--corner-shape);
+      color: inherit;
+      font-weight: var(--weight);
+      font-variant-numeric: tabular-nums;
+      text-decoration: none;
+      transition: background-color var(--duration), border-color var(--duration);
+      &:hover { background: var(--accent); }
+      &[aria-current=page] { border-color: var(--input); background: var(--background); box-shadow: var(--shadow); }
+      &[aria-disabled=true] { opacity: .5; pointer-events: none; }
+    }
+    & li > span { display: grid; place-items: center; min-inline-size: calc(var(--spacing) * 9); color: var(--muted-foreground); letter-spacing: .1em; }
+
+    /* Previous / next: the chevron is the shared icon, turned to point the way. */
+    & a:is([rel=prev], [rel=next]) { padding-inline: calc(var(--spacing) * 2.5); }
+    & a[rel=prev] { padding-inline-end: calc(var(--spacing) * 3.5); }
+    & a[rel=next] { padding-inline-start: calc(var(--spacing) * 3.5); }
+    & a[rel=prev]::before, & a[rel=next]::after {
+      content: "";
+      inline-size: 1rem;
+      block-size: 1rem;
+      background: currentColor;
+      mask: var(--icon-chevron) center / contain no-repeat;
+      rotate: 90deg;
+    }
+    & a[rel=next]::after { rotate: -90deg; }
+    &:dir(rtl) a[rel=prev]::before { rotate: -90deg; }
+    &:dir(rtl) a[rel=next]::after { rotate: 90deg; }
+  }
+}

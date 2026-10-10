@@ -1,0 +1,40 @@
+<!-- @example: Navbar -->
+<header data-navbar>
+  <a href="/">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    Relay
+  </a>
+  <nav popover id="site-nav" aria-label="Main">
+    <a href="/product" aria-current="page">Product</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/customers">Customers</a>
+    <a href="/docs">Docs</a>
+    <a href="/changelog">Changelog</a>
+  </nav>
+  <button popovertarget="site-nav" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <div>
+    <a href="/login" data-variant="ghost">Log in</a>
+    <a href="/signup" data-variant="primary">Sign up</a>
+  </div>
+</header>
+<!-- @example: Sticky with a search field -->
+<header data-navbar="sticky">
+  <a href="/">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+    Stacks
+  </a>
+  <nav popover id="docs-nav" aria-label="Documentation">
+    <a href="/guides" aria-current="page">Guides</a>
+    <a href="/api">API reference</a>
+    <a href="/examples">Examples</a>
+  </nav>
+  <button popovertarget="docs-nav" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <div>
+    <input type="search" placeholder="Search docs…" aria-label="Search docs">
+    <span data-avatar data-size="sm">AL</span>
+  </div>
+</header>

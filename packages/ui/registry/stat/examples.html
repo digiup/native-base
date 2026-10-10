@@ -1,0 +1,69 @@
+<!-- @example: KPI row -->
+<div data-grid style="--min: 13rem">
+  <article data-card data-stat>
+    <small>Revenue</small>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    <strong>$48,295</strong>
+    <span data-trend="up">12.4%</span>
+    <p>vs. $42,970 last month</p>
+  </article>
+  <article data-card data-stat>
+    <small>Active users</small>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    <strong>2,318</strong>
+    <span data-trend="up">8.1%</span>
+    <p>176 joined this week</p>
+  </article>
+  <article data-card data-stat>
+    <small>Churn rate</small>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17 13.5 8.5l-5 5L2 7"/><path d="M16 17h6v-6"/></svg>
+    <strong>1.9%</strong>
+    <span data-trend="down" data-variant="success">0.4 pts</span>
+    <p>Lowest since January</p>
+  </article>
+  <article data-card data-stat>
+    <small>Failed payments</small>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg>
+    <strong>23</strong>
+    <span data-trend="up" data-variant="destructive">+9</span>
+    <p>Retries run every 6 hours</p>
+  </article>
+</div>
+<!-- @example: With a sparkline -->
+<article data-card data-stat style="max-inline-size: 22rem">
+  <small>Monthly recurring revenue</small>
+  <strong>$128.4k</strong>
+  <span data-trend="up">18.2%</span>
+  <ul data-chart="spark" style="--max: 130" aria-label="MRR over the last 12 months, in thousands of dollars">
+    <li style="--v: 62"><span>Nov: $62k</span></li>
+    <li style="--v: 66"><span>Dec: $66k</span></li>
+    <li style="--v: 71"><span>Jan: $71k</span></li>
+    <li style="--v: 69"><span>Feb: $69k</span></li>
+    <li style="--v: 78"><span>Mar: $78k</span></li>
+    <li style="--v: 84"><span>Apr: $84k</span></li>
+    <li style="--v: 91"><span>May: $91k</span></li>
+    <li style="--v: 97"><span>Jun: $97k</span></li>
+    <li style="--v: 104"><span>Jul: $104k</span></li>
+    <li style="--v: 109"><span>Aug: $109k</span></li>
+    <li style="--v: 117"><span>Sep: $117k</span></li>
+    <li style="--v: 128" aria-current="true"><span>Oct: $128k</span></li>
+  </ul>
+  <p>Up from $108.6k in September</p>
+</article>
+<!-- @example: Without a surface -->
+<div data-grid style="--min: 9rem; --gap: calc(var(--spacing) * 8)">
+  <div data-stat>
+    <small>Uptime, 90 days</small>
+    <strong>99.98%</strong>
+  </div>
+  <div data-stat>
+    <small>p95 latency</small>
+    <strong>142 ms</strong>
+    <span data-trend="down" data-variant="success">18 ms</span>
+  </div>
+  <div data-stat>
+    <small>Deploys this week</small>
+    <strong>64</strong>
+    <span data-trend="flat">No change</span>
+  </div>
+</div>
