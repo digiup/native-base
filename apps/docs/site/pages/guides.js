@@ -1,6 +1,7 @@
 import { countTokens } from 'gpt-tokenizer';
 import { codeBlock, esc, kb } from '../html.js';
 import { STYLE_PRESETS, THEME_PRESETS, slug } from '@digiup/native-base/presets';
+import { asks } from '../ask.js';
 import { docsPage } from '../layout.js';
 
 const firstPage = `<main data-stack style="max-width: 24rem; margin: 4rem auto">
@@ -216,7 +217,7 @@ export function theming(site) {
 <p>The variables split in two. A <strong>theme</strong> is the colors. A <strong>style</strong> is everything else: spacing, radius, corner shape, borders, fonts, type scale, weights, shadows and motion. They are independent, so one brand theme can ship with a compact style in the app and an airy one on the marketing site. The <a href="/playground/">playground</a> edits both halves, previews light and dark side by side, and exports one <code>:root</code> block you can paste unlayered anywhere after native-base.</p>
 
 <h2 id="cli">From the command line</h2>
-<p>Every theme and style is in the registry. Pick one of each, or bring a custom one from the playground. <a href="/docs/registry/#themes">More on the registry</a>.</p>
+<p>Every theme and style is in the registry. Pick one of each, or bring a custom one from the playground. <a href="/docs/registry/#themes">More on the registry</a>, or let <a href="/docs/ai-theming/">your coding agent run it</a>.</p>
 ${codeBlock(`npx native-base theme indigo --style mochi
 npx native-base theme "{origin}/playground/#s=…"`, 'sh')}
 
@@ -289,4 +290,94 @@ ${codeBlock(`<select name="color-scheme" aria-label="Theme">
 <p>All styles live in <code>@layer nb.tokens, nb.base, nb.components, nb.transitions</code>. Unlayered CSS beats every layer regardless of specificity, so <code>button { border-radius: 0 }</code> just works. No <code>!important</code>, no <code>:where()</code> gymnastics.</p>`;
 
   return docsPage({ site, path: '/docs/theming/', title: 'Theming', description: 'Theme native-base with shadcn/ui-compatible CSS variables.', content });
+}
+
+export function aiTheming(site) {
+  const seeds = [
+    ['--hue', '0–360', 'The primary’s hue in OKLCH. A brand hex converts to one: #0D9488 is 185.'],
+    ['--chroma', '0–0.3', 'How strong the primary is. Below 0.02 it is black and white.'],
+    ['--tint', '0–1', 'How much of the hue the greys take. 0 is pure grey.'],
+    ['--tint-hue', '0–360', 'A separate hue for the greys, such as warm greys under a blue primary.'],
+  ];
+  const rules = `## Theming
+Theme native-base with its CLI, not by editing component CSS or markup.
+\`npx native-base theme\` rewrites theme.css (colors) and style.css
+(spacing, shape, type, motion). \`npx native-base --help\` lists the flags.`;
+
+  const content = `<h1>Theming with AI</h1>
+<p data-lead>Tell your coding agent how the app should look. It turns the request into one <code>native-base theme</code> command, and the CLI rewrites your colors and style. Your markup doesn’t change.</p>
+
+<h2 id="how">How it works</h2>
+<p>A native-base theme is two small CSS files. <code>theme.css</code> holds the colors and <code>style.css</code> holds the rest: spacing, radius, corner shape, borders, type and motion. Every component reads those variables, so swapping the two files restyles the whole interface.</p>
+<p>The agent skill teaches your agent the variables, the presets and what each one feels like. The CLI writes the files. Together, a request in plain words becomes one command:</p>
+<ol>
+  <li>You describe the look: a brand color, a mood, a kind of product.</li>
+  <li>The agent chooses presets that fit, or converts your brand color to the numbers the generator takes.</li>
+  <li>It runs <code>npx native-base theme</code>, which replaces <code>theme.css</code>, <code>style.css</code> or both.</li>
+</ol>
+<p>Nothing else is touched. Running another theme command swaps the files instead of stacking them, so trying a different look costs one more command.</p>
+
+<h2 id="setup">Set it up</h2>
+<p>Copy the kit into your project, then install the skill. Claude Code, Codex, Cursor and other agents that read <code>SKILL.md</code> load it whenever they work on UI.</p>
+${codeBlock(`npx native-base init
+npx native-base skill                       # .claude/skills/native-base
+npx native-base skill --out .agents/skills  # anywhere else`, 'sh')}
+<p>If your agent doesn’t support skills, put a note in its rules file (<code>AGENTS.md</code>, <code>CLAUDE.md</code> or a Cursor rule) and point it at <a href="/llms-full.txt">/llms-full.txt</a>, which has the same theming reference.</p>
+${codeBlock(rules, 'md', { label: 'AGENTS.md' })}
+
+<h2 id="requests">From request to command</h2>
+<p>A few requests and what an agent runs for each. The <a href="/#ask">home page</a> previews them live.</p>
+<table data-api>
+  <thead><tr><th>You ask</th><th>The agent runs</th></tr></thead>
+  <tbody>${asks.map(({ prompt, command }) => `<tr><td>${esc(prompt)}</td><td><code>${esc(command)}</code></td></tr>`).join('')}</tbody>
+</table>
+<p>The CLI reports what it wrote, so the agent can tell you what changed:</p>
+${codeBlock(`$ ${asks[1].command}\n${asks[1].out.join('\n')}`, 'sh', { label: 'terminal' })}
+
+<h2 id="create">Create a new theme</h2>
+<p>Presets are a starting point. For anything else, the generator builds all twenty color variables for light and dark from four numbers. Your agent picks them from what you describe.</p>
+<table data-api>
+  <thead><tr><th>Flag</th><th>Range</th><th>Sets</th></tr></thead>
+  <tbody>${seeds.map(([flag, range, what]) => `<tr><td><code>${flag}</code></td><td>${range}</td><td>${esc(what)}</td></tr>`).join('')}</tbody>
+</table>
+${codeBlock(`# "Our brand is #0D9488"
+npx native-base theme --hue 185 --chroma .1 --tint .25
+
+# "Blue buttons, but warm greys"
+npx native-base theme --hue 250 --chroma .16 --tint .3 --tint-hue 60
+
+# "Monochrome with a slight blue cast"
+npx native-base theme --hue 250 --chroma 0 --tint .4`, 'sh')}
+
+<h2 id="change">Change the theme</h2>
+<p>Changing a theme is another theme command. Name a preset and adjust any number, or swap one half and keep the other.</p>
+${codeBlock(`# "Tone the indigo down a bit"
+npx native-base theme indigo --chroma .1
+
+# "Keep the colors, make it roomier"
+npx native-base theme hygge
+
+# "Try it with Zurich instead"
+npx native-base theme indigo --style zurich`, 'sh')}
+<p>Passing a style name alone writes only <code>style.css</code>; generator flags alone write only <code>theme.css</code>. When the agent wants to show you the CSS before writing it, it adds <code>--print</code>.</p>
+
+<h2 id="handoff">Fine-tune by hand, hand it back</h2>
+<p>Some choices are easier to make by eye. Tune the colors and style in the <a href="/playground/">playground</a>, copy its share link, and paste it to your agent. The link carries the whole state, so the agent applies exactly what you built.</p>
+${codeBlock(`npx native-base theme "{origin}/playground/#s=…"`, 'sh')}
+<p>An existing shadcn/ui theme works the same way: save it to a file and ask the agent to apply it. Colors it leaves out fall back to the defaults.</p>
+${codeBlock(`npx native-base theme ./shadcn-theme.css`, 'sh')}
+
+<h2 id="presets">Presets the agent knows</h2>
+<p>The skill carries each preset’s description, which is how the agent matches a mood to a name.</p>
+<table data-api>
+  <thead><tr><th>Theme</th><th>Colors</th></tr></thead>
+  <tbody>${THEME_PRESETS.map((p) => `<tr><td><code>${slug(p.name)}</code></td><td>${esc(p.note)}</td></tr>`).join('')}</tbody>
+</table>
+<table data-api>
+  <thead><tr><th>Style</th><th>Feel</th></tr></thead>
+  <tbody>${STYLE_PRESETS.map((p) => `<tr><td><code>${slug(p.name)}</code></td><td>${esc(p.note)}</td></tr>`).join('')}</tbody>
+</table>
+<p>See every variable on the <a href="/docs/theming/">theming page</a>.</p>`;
+
+  return docsPage({ site, path: '/docs/ai-theming/', title: 'Theming with AI', description: 'Describe a look in plain words and let your coding agent theme native-base through the CLI.', content });
 }

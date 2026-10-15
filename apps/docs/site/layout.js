@@ -5,6 +5,7 @@ const GUIDES = [
   ['/docs/', 'Getting started'],
   ['/docs/registry/', 'Registry & CLI'],
   ['/docs/theming/', 'Theming'],
+  ['/docs/ai-theming/', 'Theming with AI'],
 ];
 
 const FRAMEWORKS = FRAMEWORK_LINKS;
@@ -101,7 +102,7 @@ ${consentBanner()}
       <a href="/" data-logo>${LOGO}<span>native-base</span></a>
       <p>CSS for the HTML you already write. MIT licensed. This site loads no web fonts and no client router; only the framework guides load a framework.</p>
     </div>
-    <nav aria-label="Docs"><small>Docs</small><a href="/docs/">Getting started</a><a href="/docs/theming/">Theming</a><a href="/docs/registry/">Registry & CLI</a><a href="/playground/">Playground</a></nav>
+    <nav aria-label="Docs"><small>Docs</small><a href="/docs/">Getting started</a><a href="/docs/theming/">Theming</a><a href="/docs/ai-theming/">Theming with AI</a><a href="/docs/registry/">Registry & CLI</a><a href="/playground/">Playground</a></nav>
     <nav aria-label="Library"><small>Library</small><a href="/docs/components/">Components</a><a href="/blocks/">Blocks</a><a href="/templates/">Templates</a><a href="/kitchen-sink/">Kitchen sink</a></nav>
     <nav aria-label="For agents"><small>For agents</small><a href="/llms.txt">llms.txt</a><a href="/llms-full.txt">llms-full.txt</a><a href="/skill/native-base/SKILL.md">Agent skill</a><a href="/r/index.json">Registry JSON</a></nav>
     <nav aria-label="Get it"><small>Get it</small><a href="https://www.npmjs.com/package/@digiup/native-base">npm</a><a href="https://github.com/digiup/native-base">GitHub</a><button type="button" data-consent-open hidden>Cookie settings</button></nav>
