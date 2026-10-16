@@ -1,5 +1,6 @@
-import { STYLE_PRESETS, STYLE_VAR_NAMES, THEME_PRESETS, THEME_VAR_NAMES, slug, styleFrom, themeFrom } from '@digiup/native-base/presets';
+import { STYLE_PRESETS, THEME_PRESETS, slug, styleFrom, themeFrom } from '@digiup/native-base/presets';
 import { countTokens } from 'gpt-tokenizer';
+import { asks, styleDecls, themeDecls } from '../ask.js';
 import { cases, primaryButton } from '../compare.js';
 import { codeBlock, esc, kb } from '../html.js';
 import { page } from '../layout.js';
@@ -152,18 +153,34 @@ const scene = `<div data-scene-stage aria-hidden="true" inert>
 
 /** Preset → declarations. Themes keep both halves through light-dark(), so the color-scheme switch still applies. */
 function presetRules() {
-  const styleRules = STYLE_PRESETS.map((preset) => {
-    const { vars } = styleFrom(preset);
-    const decls = STYLE_VAR_NAMES.map((name) => `${name}: ${vars[name]};`).join(' ');
-    return `[data-restyle]:has([name=home-style][value=${slug(preset.name)}]:checked) [data-restyled] { ${decls} }`;
-  });
-  const themeRules = THEME_PRESETS.slice(1).map((preset) => {
-    const { light, dark } = themeFrom(preset);
-    const decls = THEME_VAR_NAMES.map((name) => `${name}: ${light[name] === dark[name] ? light[name] : `light-dark(${light[name]}, ${dark[name]})`};`).join(' ');
-    return `[data-restyle]:has([name=home-theme][value=${slug(preset.name)}]:checked) [data-restyled] { ${decls} }`;
-  });
+  const styleRules = STYLE_PRESETS.map(
+    (preset) => `[data-restyle]:has([name=home-style][value=${slug(preset.name)}]:checked) [data-restyled] { ${styleDecls(styleFrom(preset))} }`,
+  );
+  const themeRules = THEME_PRESETS.slice(1).map(
+    (preset) => `[data-restyle]:has([name=home-theme][value=${slug(preset.name)}]:checked) [data-restyled] { ${themeDecls(themeFrom(preset))} }`,
+  );
   return [...styleRules, ...themeRules].join('\n');
 }
+
+/** The checked request picks the reply that shows and the theme and style the preview wears. */
+const askRules = () =>
+  asks
+    .map(({ id, theme, style }) => {
+      const checked = `[data-ask]:has([name=home-ask][value=${id}]:checked)`;
+      return `${checked} [data-ask-reply=${id}] { display: grid; }\n${checked} [data-ask-preview] { ${themeDecls(theme)} ${styleDecls(style)} }`;
+    })
+    .join('\n');
+
+const askPreview = `<div data-ask-preview>
+  <article data-card>
+    <header><h3>Northwind Pro <span data-badge>Trial</span></h3><p>Everything your team needs to ship.</p></header>
+    <label>Work email <input type="email" placeholder="ada@northwind.dev"></label>
+    <fieldset data-segmented aria-label="Billing"><label><input type="radio" name="ask-period" checked> Monthly</label><label><input type="radio" name="ask-period"> Yearly</label></fieldset>
+    <label><input type="checkbox" role="switch" checked> Send me product updates</label>
+    <footer><button type="button">Start free trial</button><button type="button" data-variant="outline">Talk to sales</button></footer>
+  </article>
+  <div data-alert data-variant="success">${ICONS.check}<strong>Theme applied</strong><p>No markup changed.</p></div>
+</div>`;
 
 const chips = (name, presets, first) =>
   presets
@@ -295,6 +312,35 @@ export default function home(site) {
     </div>
     ${restyled}
     <p data-band-foot><a href="/playground/">Build your own theme and style in the playground ${ICONS.arrow}</a></p>
+  </div>
+</section>
+
+<section data-band data-ask id="ask">
+  <style>${askRules()}</style>
+  <div data-wrap>
+    <header data-band-head>
+      <h2>Describe it. Your agent themes it.</h2>
+      <p>The agent skill knows every preset and token, and the CLI writes them. Ask in plain words: the agent picks a theme and a style, or generates colors from your brand, then runs one command. Changing your mind is the same command again. Pick a request.</p>
+    </header>
+    <div data-ask-grid>
+      <div data-ask-chat>
+        <fieldset data-ask-prompts>
+          <legend>You</legend>
+          ${asks.map(({ id, prompt }, i) => `<label><input type="radio" name="home-ask" value="${id}"${i === 0 ? ' checked' : ''}> ${esc(prompt)}</label>`).join('')}
+        </fieldset>
+        ${asks
+          .map(
+            ({ id, reply, command, out }) => `<div data-ask-reply="${id}">
+          <small>Agent</small>
+          <p>${esc(reply)}</p>
+          <div data-ask-terminal><code><span>$</span> ${esc(command)}</code><samp>${out.map(esc).join('\n')}</samp></div>
+        </div>`,
+          )
+          .join('')}
+      </div>
+      ${askPreview}
+    </div>
+    <p data-band-foot><a href="/docs/ai-theming/">How theming with AI works ${ICONS.arrow}</a></p>
   </div>
 </section>
 

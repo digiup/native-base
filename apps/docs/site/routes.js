@@ -1,6 +1,6 @@
 import component from './pages/component.js';
 import { FRAMEWORK_NAMES, guide } from './pages/frameworks.js';
-import { gettingStarted, registryGuide, theming } from './pages/guides.js';
+import { aiTheming, gettingStarted, registryGuide, theming } from './pages/guides.js';
 import home from './pages/home.js';
 import kitchenSink from './pages/kitchen-sink.js';
 import overview from './pages/overview.js';
@@ -14,6 +14,7 @@ export function routes(site) {
     ['/docs/', () => gettingStarted(site)],
     ['/docs/registry/', () => registryGuide(site)],
     ['/docs/theming/', () => theming(site)],
+    ['/docs/ai-theming/', () => aiTheming(site)],
     ['/docs/components/', () => overview(site)],
     ['/blocks/', () => blocksGallery(site)],
     ['/templates/', () => templatesGallery(site)],
