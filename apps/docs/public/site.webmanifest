@@ -1,0 +1,14 @@
+{
+  "name": "native-base",
+  "short_name": "native-base",
+  "description": "CSS for the HTML you already write. No utility classes, no runtime, no Tailwind.",
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#d7f25a",
+  "background_color": "#121510",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any maskable" }
+  ]
+}

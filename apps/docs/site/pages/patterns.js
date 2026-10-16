@@ -1,6 +1,6 @@
 import { STYLE_PRESETS, THEME_PRESETS, slug } from '@digiup/native-base/presets';
 import { codeBlock, esc, variants } from '../html.js';
-import { page } from '../layout.js';
+import { page, socialMeta } from '../layout.js';
 
 const icon = (paths) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
 const DESKTOP = icon('<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>');
@@ -20,7 +20,7 @@ export function preview(pattern, kind) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(pattern.title)} · native-base ${kind}</title>
 <meta name="description" content="${esc(pattern.description)}">
-<link rel="icon" href="/favicon.svg">
+${socialMeta({ path: `/${kind}s/${pattern.name}/`, title: `${pattern.title} · native-base ${kind}`, description: pattern.description })}
 <script type="module" src="/src/preview.js"></script>
 </head>
 <body>

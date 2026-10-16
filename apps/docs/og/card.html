@@ -1,0 +1,85 @@
+<!doctype html>
+<!-- The share card: 1200×630, the size Open Graph, X, LinkedIn, Slack and Discord all expect. `pnpm og` renders it to public/og.png. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --hue: 118;
+    --mark: oklch(.91 .19 122);
+    --mark-ink: oklch(.25 .05 125);
+    --background: oklch(.165 .008 var(--hue));
+    --foreground: oklch(.95 .008 var(--hue));
+    --muted-foreground: oklch(.72 .015 var(--hue));
+    --border: oklch(.3 .01 var(--hue));
+    --card: oklch(.2 .009 var(--hue));
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 34px;
+    inline-size: 1200px;
+    block-size: 630px;
+    overflow: hidden;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* The hero's receding grid floor and glow. */
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 52% -60% -20%;
+    z-index: -1;
+    background:
+      linear-gradient(color-mix(in oklch, var(--mark) 22%, transparent) 1px, transparent 1px) 0 0 / 72px 72px,
+      linear-gradient(90deg, color-mix(in oklch, var(--mark) 22%, transparent) 1px, transparent 1px) 0 0 / 72px 72px;
+    transform: perspective(700px) rotateX(64deg);
+    transform-origin: 50% 0;
+    mask-image: linear-gradient(transparent, #000 25%, #000 50%, transparent 95%);
+  }
+  body::after {
+    content: "";
+    position: absolute;
+    inset: 22% 18% auto;
+    z-index: -1;
+    block-size: 60%;
+    background: radial-gradient(closest-side, color-mix(in oklch, var(--mark) 40%, transparent), transparent);
+    filter: blur(50px);
+    opacity: .45;
+  }
+  header { display: flex; align-items: center; gap: 16px; font-size: 34px; font-weight: 700; letter-spacing: -.03em; }
+  header svg { inline-size: 52px; block-size: 52px; }
+  h1 { margin: 0; font-size: 112px; font-weight: 800; line-height: .95; letter-spacing: -.06em; }
+  h1 code { padding: 0 .12em; border-radius: .12em; background: var(--mark); color: var(--mark-ink); font-family: var(--font-mono); font-size: .8em; font-weight: 700; letter-spacing: -.07em; }
+  h1 s { text-decoration-color: var(--mark); text-decoration-thickness: .08em; }
+  p { margin: 0; color: var(--muted-foreground); font-size: 30px; line-height: 1.35; }
+  kbd {
+    padding: 12px 22px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: color-mix(in oklch, var(--card) 85%, transparent);
+    font: 500 24px var(--font-mono);
+    & span { color: var(--mark); }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--mark)"/><path d="m12.5 10-6 6 6 6m7-12 6 6-6 6" fill="none" stroke="var(--mark-ink)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    native-base
+  </header>
+  <h1>Write <code>&lt;button&gt;</code>.<br>Skip the <s>classes</s>.</h1>
+  <p>CSS for the HTML you already write.<br>No utility classes, no runtime, no Tailwind.</p>
+  <kbd><span>$</span> npx native-base add dialog</kbd>
+</body>
+</html>
