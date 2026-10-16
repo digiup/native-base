@@ -1,4 +1,4 @@
-import { esc } from './html.js';
+import { esc, kb } from './html.js';
 import { FRAMEWORK_LINKS } from './pages/frameworks.js';
 
 const GUIDES = [
@@ -30,6 +30,45 @@ const MENU = icon('<path d="M4 6h16M4 12h16M4 18h16"/>');
 const SEARCH = icon('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>');
 const GITHUB = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a10.9 10.9 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>`;
 
+// Link previews need absolute URLs. Vercel names the production domain at build time; the fallback is today's.
+const ORIGIN = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : 'https://native-base-ui.vercel.app';
+const CARD_ALT = 'native-base: Write <button>. Skip the classes. CSS for the HTML you already write.';
+
+/**
+ * Icons and link-preview tags. Open Graph covers Facebook, LinkedIn, Slack, Discord, iMessage, WhatsApp and Telegram;
+ * X needs its own card type; Slack shows the label/data pairs under the preview; Discord colors the embed with theme-color.
+ */
+export function socialMeta({ path, title, description, facts = [] }) {
+  const url = ORIGIN + path;
+  const image = `${ORIGIN}/og.png`;
+  const tag = (attr, key, value) => `<meta ${attr}="${key}" content="${esc(value)}">`;
+  return [
+    `<link rel="canonical" href="${url}">`,
+    '<link rel="icon" href="/favicon.ico" sizes="32x32">',
+    '<link rel="icon" href="/favicon.svg" type="image/svg+xml">',
+    '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
+    '<link rel="manifest" href="/site.webmanifest">',
+    tag('name', 'theme-color', '#d7f25a'),
+    tag('property', 'og:type', 'website'),
+    tag('property', 'og:site_name', 'native-base'),
+    tag('property', 'og:locale', 'en_US'),
+    tag('property', 'og:url', url),
+    tag('property', 'og:title', title),
+    tag('property', 'og:description', description),
+    tag('property', 'og:image', image),
+    tag('property', 'og:image:type', 'image/png'),
+    tag('property', 'og:image:width', '1200'),
+    tag('property', 'og:image:height', '630'),
+    tag('property', 'og:image:alt', CARD_ALT),
+    tag('name', 'twitter:card', 'summary_large_image'),
+    tag('name', 'twitter:title', title),
+    tag('name', 'twitter:description', description),
+    tag('name', 'twitter:image', image),
+    tag('name', 'twitter:image:alt', CARD_ALT),
+    ...facts.flatMap(([label, data], i) => [tag('name', `twitter:label${i + 1}`, label), tag('name', `twitter:data${i + 1}`, data)]),
+  ].join('\n');
+}
+
 const current = (path, href) => (path === href ? ' aria-current="page"' : '');
 
 /** Every page, for the ⌘K dialog. Filtering is a few lines in main.js; the list itself is plain links. */
@@ -59,6 +98,8 @@ function consentBanner() {
 }
 
 export function page({ site, path, title, description, body, modules = [], styles = [] }) {
+  const fullTitle = title ? `${title} · native-base` : 'native-base · UI in a fraction of the tokens';
+  const facts = [['Components', String(site.registry.items.length)], ['CSS, gzipped', kb(site.registry.bundle.size.gzip)]];
   const nav = SECTIONS.map(([href, label, active]) => `<a href="${href}"${active(path) ? ' aria-current="page"' : ''}>${label}</a>`).join('');
 
   return `<!doctype html>
@@ -66,9 +107,9 @@ export function page({ site, path, title, description, body, modules = [], style
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${title ? `${esc(title)} · native-base` : 'native-base · UI in a fraction of the tokens'}</title>
+<title>${esc(fullTitle)}</title>
 <meta name="description" content="${esc(description)}">
-<link rel="icon" href="/favicon.svg">
+${socialMeta({ path, title: fullTitle, description, facts })}
 <link rel="stylesheet" href="/src/site.css">
 ${styles.map((href) => `<link rel="stylesheet" href="${href}">`).join('')}
 <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>

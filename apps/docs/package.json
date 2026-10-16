@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "node check-frameworks.js"
+    "check": "node check-frameworks.js",
+    "og": "node og/render.js"
   },
   "dependencies": {
     "@digiup/native-base": "workspace:*",
